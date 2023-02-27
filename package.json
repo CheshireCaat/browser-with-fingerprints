@@ -1,0 +1,73 @@
+{
+  "name": "browser-with-fingerprints",
+  "description": "A plugin that improves the stealth of automation libraries using fingerprints",
+  "homepage": "https://github.com/CheshireCaat/browser-with-fingerprints#readme",
+  "repository": "CheshireCaat/browser-with-fingerprints",
+  "author": "CheshireCaat",
+  "version": "1.2.6",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CheshireCaat/browser-with-fingerprints/issues",
+    "email": "cheshirecat902@gmail.com"
+  },
+  "types": "src/index.d.ts",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "browser-fingerprinting",
+    "device-fingerprinting",
+    "browser-fingerprint",
+    "device-fingerprint",
+    "privacy-protection",
+    "detection-evasion",
+    "fingerprinting",
+    "stealth-mode",
+    "chromedriver",
+    "websecurity",
+    "fingerprint",
+    "automation",
+    "playwright",
+    "puppeteer",
+    "selenium",
+    "chromium",
+    "headless",
+    "devtools",
+    "security",
+    "stealth",
+    "browser",
+    "privacy",
+    "chrome",
+    "web"
+  ],
+  "engines": {
+    "node": ">= 14.19.1"
+  },
+  "files": [
+    "src"
+  ],
+  "cpu": [
+    "ia32",
+    "x64"
+  ],
+  "os": [
+    "win32"
+  ],
+  "dependencies": {
+    "async-lock": "^1.4.0",
+    "bas-remote-node": "^1.4.1",
+    "chrome-remote-interface": "^0.32.1",
+    "compare-versions": "^5.0.3",
+    "dedent": "^0.7.0",
+    "fast-glob": "^3.2.12",
+    "once": "^1.4.0",
+    "proper-lockfile": "^4.1.2"
+  },
+  "devDependencies": {
+    "@cheshire-caat/prettier-config": "^1.0.0",
+    "dotenv": "^16.0.3",
+    "mocha": "^10.2.0"
+  },
+  "prettier": "@cheshire-caat/prettier-config"
+}

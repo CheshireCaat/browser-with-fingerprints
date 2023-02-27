@@ -1,0 +1,9 @@
+# Dependencies
+node_modules
+
+# Miscellaneous
+*.env
+data
+
+# Artifacts
+test/browser
