@@ -1,6 +1,6 @@
 const lock = new (require('async-lock'))();
 const { setViewport } = require('./browser');
-const { readFile, writeFile } = require('fs').promises;
+const { readFile, writeFile } = require('fs/promises');
 
 exports.configure = async (cleanup, browser, bounds = {}, sync = () => {}) => {
   browser.process.once('exit', () => cleanup(browser));

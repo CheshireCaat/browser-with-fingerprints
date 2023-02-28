@@ -1,5 +1,5 @@
 const fg = require('fast-glob');
-const { rm } = require('fs').promises;
+const { rm } = require('fs/promises');
 const { join } = require('path').posix;
 const lock = require('proper-lockfile');
 

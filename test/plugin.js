@@ -1,5 +1,5 @@
 const path = require('path');
-const fs = require('fs').promises;
+const fs = require('fs/promises');
 const assert = require('assert').strict;
 const { plugin, FingerprintPlugin } = require('..');
 

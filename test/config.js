@@ -1,4 +1,4 @@
-const fs = require('fs').promises;
+const fs = require('fs/promises');
 const assert = require('assert').strict;
 const { synchronize } = require('../src/plugin/config');
 
