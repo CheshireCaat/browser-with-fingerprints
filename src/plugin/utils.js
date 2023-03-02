@@ -1,7 +1,7 @@
 const IGNORED_ARGS = ['--kiosk', '--headless', '--start-maximized', '--start-fullscreen'];
 
 exports.defaultArgs = ({ args = [], devtools = false, headless = !devtools } = {}) => {
-  const result = ['--no-sandbox', '--no-proxy-server'];
+  const result = ['--no-sandbox', '--no-proxy-server', '--disable-features=NetworkServiceInProcess2'];
 
   if (headless) {
     result.push('--hide-scrollbars', '--mute-audio');
