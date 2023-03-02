@@ -2,7 +2,7 @@ const assert = require('assert').strict;
 const { defaultArgs, validateLauncher } = require('../src/plugin/utils');
 
 describe('utils', () => {
-  const DEFAULT_ARGS = ['--no-sandbox', '--no-proxy-server'];
+  const DEFAULT_ARGS = ['--no-sandbox', '--no-proxy-server', `--disable-features=NetworkServiceInProcess2`];
 
   describe('#defaultArgs()', () => {
     [false, true].forEach((headless) => {
@@ -20,7 +20,7 @@ describe('utils', () => {
     });
 
     it('should always return default arguments', () => {
-      assert.deepEqual(defaultArgs().slice(0, 2), DEFAULT_ARGS);
+      assert.deepEqual(defaultArgs().slice(0, DEFAULT_ARGS.length), DEFAULT_ARGS);
     });
   });
 
