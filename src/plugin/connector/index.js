@@ -1,4 +1,5 @@
 const { env } = require('process');
+const server = require('./server');
 const { reset } = require('./settings');
 const { notify } = require('./notifier');
 const lock = new (require('async-lock'))();
@@ -6,6 +7,7 @@ const client = new (require('bas-remote-node'))({ scriptName: 'FingerprintPlugin
 
 async function call(name, params = {}) {
   let timer = null;
+  await server.start();
   return await lock.acquire('client', async () => {
     try {
       await client.start();
