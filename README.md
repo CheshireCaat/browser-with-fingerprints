@@ -37,6 +37,8 @@ pnpm i browser-with-fingerprints
 yarn add browser-with-fingerprints
 ```
 
+Please note that according to the [architecture](#architecture) section, this plugin can only be installed and used on **Windows** operating system.
+
 ## Other plugins
 
 You can use this package directly to launch browsers and write your own plugins. But it's much better to use ready-made plugins for popular automation frameworks:
