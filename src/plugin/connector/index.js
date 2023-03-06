@@ -6,8 +6,8 @@ const lock = new (require('async-lock'))();
 const client = new (require('bas-remote-node'))({ scriptName: 'FingerprintPlugin', workingDir: env.FINGERPRINT_CWD });
 
 async function call(name, params = {}) {
+  server.listen();
   let timer = null;
-  await server.start();
   return await lock.acquire('client', async () => {
     try {
       await client.start();

@@ -1,7 +1,7 @@
 const net = require('net');
 const once = require('once');
 
-exports.start = once((...args) => {
+exports.listen = once(() => {
   let id = 0;
 
   return new Promise((resolve) => {
@@ -18,6 +18,12 @@ exports.start = once((...args) => {
           socket.write(new Uint8Array([0x07, 0x00, 0x00, 0x00, 0x00]));
         }
       });
+    });
+
+    server.on('error', ({ code }) => {
+      if (code === 'EADDRINUSE') {
+        setTimeout(() => server.listen(PORT, 'localhost'), 1000).unref();
+      }
     });
 
     server.listen(PORT, 'localhost', resolve).unref();
