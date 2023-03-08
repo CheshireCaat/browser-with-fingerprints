@@ -43,7 +43,7 @@ Please note that according to the [architecture](#architecture) section, this pl
 
 You can use this package directly to launch browsers and write your own plugins. But it's much better to use ready-made plugins for popular automation frameworks:
 
-- Plugin for **selenium** - [selenium-with-fingrprints](https://github.com/CheshireCaat/selenium-with-fingerprints)
+- Plugin for **selenium** - [selenium-with-fingerprints](https://github.com/CheshireCaat/selenium-with-fingerprints)
 - Plugin for **puppeteer** - [puppeteer-with-fingerprints](https://github.com/CheshireCaat/puppeteer-with-fingerprints)
 - Plugin for **playwright** - [playwright-with-fingerprints](https://github.com/CheshireCaat/playwright-with-fingerprints)
 
