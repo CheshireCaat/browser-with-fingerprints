@@ -4,7 +4,7 @@
   "homepage": "https://github.com/CheshireCaat/browser-with-fingerprints#readme",
   "repository": "CheshireCaat/browser-with-fingerprints",
   "author": "CheshireCaat",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CheshireCaat/browser-with-fingerprints/issues",
@@ -15,7 +15,7 @@
   "scripts": {
     "test": "mocha",
     "format": "npx prettier -w .",
-    "release": "npm test && npm format && npm publish"
+    "release": "npm test && npm run format && npm publish"
   },
   "keywords": [
     "browser-fingerprinting",
@@ -58,7 +58,7 @@
   ],
   "dependencies": {
     "async-lock": "^1.4.0",
-    "bas-remote-node": "^1.4.1",
+    "bas-remote-node": "^1.4.3",
     "chrome-remote-interface": "^0.32.1",
     "compare-versions": "^5.0.3",
     "dedent": "^0.7.0",
