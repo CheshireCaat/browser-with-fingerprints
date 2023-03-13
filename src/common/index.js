@@ -22,8 +22,6 @@ exports.scripts = {
   /**
    * Get the browser viewport size.
    *
-   * @returns {Promise<{width: number, height: number}>} - Promise which resolves to a browser viewport size.
-   *
    * @internal
    */
   getViewport: () => ({ width: window.innerWidth, height: window.innerHeight }),

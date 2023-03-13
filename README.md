@@ -293,6 +293,16 @@ The path to the executable file is defined on the plugin side and cannot be chan
 It means that you will not be able to use not only other versions of **Chrome** or **Chromium**, but also other browser engines.
 The same goes for some framework-specific launch options.
 
+### Limitations
+
+Please **note** that there are some restrictions at the moment:
+
+- Only **Windows** operating system is supported.
+- Parallel launch of browsers is synchronized between calls.
+- Working with **workers** is possible only when specifying separate `FINGERPRINT_CWD` for each worker.
+
+Also, there is no guarantee that each of these items will be changed in the future.
+
 ## Alternatives
 
 Also check out [BAS](https://bablosoft.com/shop/BrowserAutomationStudio) - a great alternative to automate the **Chrome** browser without programming skills.
