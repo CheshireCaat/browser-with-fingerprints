@@ -57,14 +57,14 @@
     "win32"
   ],
   "dependencies": {
-    "async-lock": "^1.4.0",
-    "bas-remote-node": "^1.4.4",
-    "chrome-remote-interface": "^0.32.1",
-    "compare-versions": "^5.0.3",
-    "dedent": "^0.7.0",
-    "fast-glob": "^3.2.12",
-    "once": "^1.4.0",
-    "proper-lockfile": "^4.1.2"
+    "async-lock": "1.4.0",
+    "bas-remote-node": "1.4.4",
+    "chrome-remote-interface": "0.32.1",
+    "compare-versions": "5.0.3",
+    "dedent": "0.7.0",
+    "fast-glob": "3.2.12",
+    "once": "1.4.0",
+    "proper-lockfile": "4.1.2"
   },
   "devDependencies": {
     "@cheshire-caat/prettier-config": "^1.0.0",
