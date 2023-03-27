@@ -37,6 +37,18 @@ export type Tag =
  */
 export interface FingerprintOptions {
   /**
+   * Allows you to better emulate devices with higher pixel density.
+   *
+   * If this option is enabled, emulation will be done in the most natural way.
+   * It means that the browser will render the page at a higher resolution, just like on a real device.
+   * The trade-off is higher system resource usage because you need to do more calculations to render the bigger picture.
+   *
+   * The **JavaScript** options related to pixel density, such as `devicePixelRatio`, will be replaced correctly whether this option is enabled or not.
+   * @default true
+   */
+  emulateDeviceScaleFactor?: boolean;
+
+  /**
    * The **Chrome** browser has a Sensor API that allows you to read data from devices such as accelerometer, gyroscope and others. Data from these devices is only available on mobile platforms.
    *
    * After enabling this option, data for these devices will be generated and replaced automatically. Enable this option to emulate mobile fingerprints more accurately.
