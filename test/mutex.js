@@ -25,11 +25,11 @@ describe('mutex', () => {
     });
 
     it('should properly create the named mutex', () => {
-      assert.doesNotThrow(() => create('foo'));
+      assert.doesNotThrow(() => create('test'));
     });
 
     it('should properly create the unnamed mutex', () => {
-      assert.doesNotThrow(() => create(void 0));
+      assert.doesNotThrow(() => create(undefined));
     });
   });
 

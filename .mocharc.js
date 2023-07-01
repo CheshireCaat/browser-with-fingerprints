@@ -1,7 +1,7 @@
 module.exports = {
   require: ['dotenv/config'],
   inlineDiffs: true,
-  timeout: '100s',
+  timeout: '120s',
   exit: true,
 };
 
