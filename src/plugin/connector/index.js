@@ -17,7 +17,7 @@ async function call(name, params = {}) {
         client.runFunction(`api_${name}`, params),
         new Promise((_, reject) => {
           setTimeout(
-            () => reject(new Error(`Timed out while calling a "${name}" method.`)),
+            () => reject(new Error(`Timed out while calling the "${name}" method.`)),
             env.FINGERPRINT_TIMEOUT ?? 300000
           ).unref();
         }),

@@ -36,7 +36,7 @@ describe('plugin', () => {
 
       await assert.rejects(() => {
         return plugin.fetch('', { tags: ['Microsoft Windows', 'Chrome'] });
-      }, /Timed out while calling a "fetch" method./);
+      }, /Timed out while calling the "fetch" method./);
     });
 
     after(() => (process.env.FINGERPRINT_TIMEOUT = 300000));
