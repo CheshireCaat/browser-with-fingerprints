@@ -22,7 +22,8 @@ exports.setViewport = async (browser, { width, height }) => {
     if (width === viewport.width && height === viewport.height) {
       break;
     } else if (i === MAX_RESIZE_RETRIES - 1) {
-      throw new Error('Unable to set correct viewport size.');
+      // TODO: improve handling of incorrect viewport size.
+      console.warn('Unable to set correct viewport size.');
     }
 
     delta.height += height - viewport.height;
