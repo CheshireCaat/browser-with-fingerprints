@@ -15,9 +15,9 @@ class SettingsCleaner {
   }
 
   async #set(op, pid, id) {
-    for (const item of [`t/${pid}`, `${id}.ini`, `${id}1.ini`]) {
+    for (const item of [`t/${pid}`, `s/${id}.ini`, `s/${id}1.ini`]) {
       try {
-        await lock[op](join(this.#path, item.includes(id) ? '../../s' : '', item));
+        await lock[op](join(this.#path, '../../', item));
       } catch (err) {
         if (err.code !== 'ENOENT') throw err;
       }
@@ -26,7 +26,7 @@ class SettingsCleaner {
 
   run(path, delay = 15000) {
     if (!this.#path) {
-      const pattern = `${join(path, '../../')}**/{${['*.ini', 't/*', 's/*']}}`;
+      const pattern = `${join(path, '../../')}{${['t/*', 's/*']}}`;
 
       const callback = async () => {
         for (const { stats, path } of await fg(pattern, { stats: true, onlyFiles: false, onlyDirectories: false })) {

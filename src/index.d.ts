@@ -198,9 +198,21 @@ export interface FetchOptions {
    * Select only those fingerprints that have a specific browser version.
    * It's recommended to use this option together with an explicit browser name.
    *
-   * For example, you can choose fingerprints for the **Chrome** browser with a version higher than `95`.
+   * For example, you can choose fingerprints for the **Chrome** browser with a version lower than `114`.
+   * You can also select the exact version by setting this option to the same value as for `minBrowserVersion`.
    *
-   * If this option is not specified, a fingerprint without a browser version limit will be selected.
+   * If this option is not specified, a fingerprint with no maximum version limit will be selected.
+   */
+  maxBrowserVersion?: number;
+
+  /**
+   * Select only those fingerprints that have a specific browser version.
+   * It's recommended to use this option together with an explicit browser name.
+   *
+   * For example, you can choose fingerprints for the **Chrome** browser with a version higher than `114`.
+   * You can also select the exact version by setting this option to the same value as for `maxBrowserVersion`.
+   *
+   * If this option is not specified, a fingerprint with no minimum version limit will be selected.
    */
   minBrowserVersion?: number;
 
@@ -254,6 +266,30 @@ export interface FetchOptions {
  * Describes a plugin that is capable of fetching a fingerprint and launching a browser instance using it.
  */
 export declare class FingerprintPlugin {
+  /**
+   * Get a list of all available browser versions.
+   *
+   * One possible use case would be to get a list of all versions using this method, and then launch a specific browser using an identifier
+   * or a version string. In addition, it can be used when obtaining a fingerprint to filter by the minimum and maximum version.
+   *
+   * If the `format` parameter is set to `extended`, a list of objects will be returned, each containing detailed information about the
+   * corresponding version - architecture, identifier, and so on. Otherwise, a simple list of browser versions will be returned.
+   * The results are always sorted by version in descending order, i.e. the latest version will be listed first.
+   *
+   * @example
+   * ```js
+   * // Get a list of versions in extended format.
+   * const versions = await plugin.versions('extended');
+   *
+   * // Force the plugin to use the latest version.
+   * plugin.version = versions[0]['browser_version'];
+   * ```
+   *
+   * @param format - The output format of the returned result.
+   * @returns The list of objects with detailed version information, or a list of strings.
+   */
+  versions<T extends string = 'default'>(format?: T): Promise<T extends 'extended' ? Version[] : string[]>;
+
   /**
    * Set the fingerprint settings using the specified fingerprint as a string and additional options when specified.
    * They will be used when launching the browser using the `spawn` or `launch` methods.
@@ -316,7 +352,7 @@ export declare class FingerprintPlugin {
    * It's very handy because you can combine several tags together and thus get fingerprints for any situation.
    *
    * Other options are also useful. For example, you can get fingerprints in which the screen sizes will be limited to the values that you specify using the `minWidth` and `minHeight` options.
-   * Or, if you want to always use the latest browser versions, you can use the `minBrowserVersion` option, which will filter out fingerprints that do not match the specified criteria.
+   * Or, if you want to use specific browser versions, you can use the `minBrowserVersion` and `maxBrowserVersion` options, which will filter out fingerprints that don't match the specified criteria.
    *
    * A fingerprint is an object with many properties that will be used for emulation. By default it's stored as a `JSON` string. It's strongly not recommended to change its parameters
    * manually if you aren't sure about what you are doing, otherwise correct operation of the fingerprint and anonymity of the browser is not guaranteed.
@@ -333,8 +369,8 @@ export declare class FingerprintPlugin {
    *
    * ```js
    * const result = await plugin.fetch('FINGERPRINT_KEY', {
-   *   tags: ['Android', 'Chrome'],
-   *   minBrowserVersion: 98,
+   *   tags: ['Desktop', 'Chrome'],
+   *   minBrowserVersion: 114,
    *   timeLimit: '15 days',
    * });
    * ```
@@ -378,6 +414,60 @@ export declare class FingerprintPlugin {
    * @returns Promise which resolves to a browser instance.
    */
   spawn(options?: Options): Promise<Browser>;
+
+  /**
+   * Get or set the current browser version used by the plugin instance.
+   *
+   * Initially it is set to `default`, which means that the latest available version will be used.
+   * The same behavior can be achieved by setting this property to an empty string or a zero identifier.
+   * Also you can use the `random` value to select a random version, or use the version identifier instead of the version string.
+   *
+   * In order to get a list of available versions, use the `versions` method - the return values (version numbers and identifiers) can be used for this property.
+   *
+   * @remarks
+   * **NOTE**: Please keep in mind that this property only affects a specific instance of the plugin, not the entire library.
+   *
+   * @example
+   * ```js
+   * // Use a specific version based on the full version string:
+   * plugin.version = '114.0.5735.91';
+   *
+   * // Use a specific version based on the major version string:
+   * plugin.version = '114';
+   *
+   * // Use a specific version based on the version identifier:
+   * plugin.version = '1';
+   *
+   * // Use a random version from all available:
+   * plugin.version = 'random';
+   *
+   * // Use the latest available version:
+   * plugin.version = 'default';
+   * ```
+   */
+  version: string;
+}
+
+/**
+ * Describes an object that provides complete information about the available browser version.
+ */
+export interface Version {
+  /**
+   * Browser architecture. Possible values - `x64` or `x86`.
+   */
+  architecture: 'x64' | 'x86';
+  /**
+   * Full browser version, for example - `114.0.5735.91`.
+   */
+  browser_version: string;
+  /**
+   * Full engine version, for example - `25.9.1`.
+   */
+  bas_version: string;
+  /**
+   * Internal identifier of the browser build.
+   */
+  id: number;
 }
 
 /**

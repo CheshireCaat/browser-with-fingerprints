@@ -1,10 +1,24 @@
+const path = require('path');
 const assert = require('assert').strict;
-const { defaultArgs, validateLauncher } = require('../src/plugin/utils');
+const { defaultArgs, getProfilePath, validateConfig, validateLauncher } = require('../src/plugin/utils');
 
 describe('utils', () => {
-  const DEFAULT_ARGS = ['--no-sandbox', '--no-proxy-server', `--disable-features=NetworkServiceInProcess2`];
+  const DEFAULT_ARGS = ['--no-proxy-server', `--disable-features=NetworkServiceInProcess2`];
 
   describe('#defaultArgs()', () => {
+    it('should add extra arguments if extensions or profile are passed', () => {
+      const args = defaultArgs({
+        args: ['--load-extension=test', '--disable-extensions-except=test'],
+        extensions: ['path'],
+        profile: 'test',
+      });
+
+      assert(args.includes('--user-data-dir=test'));
+      assert(args.includes(`--load-extension=path`));
+      assert(args.includes(`--load-extension=path,test`));
+      assert(args.includes(`--disable-extensions-except=path,test`));
+    });
+
     [false, true].forEach((headless) => {
       it(`should properly handle ${headless ? 'enabled' : 'disabled'} "headless" flag`, () => {
         assert(defaultArgs({ headless }).includes('--bas-force-visible-window') !== headless);
@@ -33,6 +47,36 @@ describe('utils', () => {
       for (const launcher of [false, null, {}]) {
         assert.throws(() => validateLauncher(launcher));
       }
+    });
+  });
+
+  describe('#validateConfig()', () => {
+    it('should do nothing when valid arguments are passed', () => {
+      assert.doesNotThrow(() => validateConfig('test', '', {}));
+    });
+
+    it('should throw an error otherwise', () => {
+      assert.throws(() => validateConfig('test', {}, ''), {
+        message: 'Invalid arguments for test configuration.',
+      });
+    });
+  });
+
+  describe('#getProfilePath()', () => {
+    const expected = path.resolve('./test');
+
+    it('should extract the profile path from the "args" option', () => {
+      assert.equal(getProfilePath({ args: [`--user-data-dir=${expected}`] }), expected);
+    });
+
+    it('should extract the profile path from the "userDataDir" option', () => {
+      assert.equal(getProfilePath({ userDataDir: './test' }), expected);
+    });
+
+    it('should return an empty string if options are not specified or missing', () => {
+      assert.equal(getProfilePath({ args: [], userDataDir: '' }), '');
+      assert.equal(getProfilePath({ userDataDir: '' }), '');
+      assert.equal(getProfilePath({ args: [] }), '');
     });
   });
 });

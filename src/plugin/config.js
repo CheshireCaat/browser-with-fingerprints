@@ -15,8 +15,9 @@ exports.configure = async (cleanup, browser, bounds = {}, sync = () => {}) => {
 };
 
 exports.synchronize = async (id, pwd, bounds = {}, action = () => {}) => {
+  const file = `${pwd}/s/${id}1.ini`;
+
   await lock.acquire(id, async () => {
-    const file = `${pwd}/browser/s/${id}1.ini`;
     let config = await readFile(file, 'utf8');
 
     for (const reset of [true, false]) {

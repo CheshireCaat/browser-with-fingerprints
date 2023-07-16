@@ -32,4 +32,4 @@ describe('config', () => {
   });
 });
 
-const sync = synchronize.bind(null, '', __dirname, { width: 100, height: 100 });
+const sync = synchronize.bind(null, '', `${__dirname}/browser`, { width: 100, height: 100 });

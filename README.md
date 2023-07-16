@@ -8,7 +8,7 @@ This package is the basis for other plugins and doesn't allow you to automate br
 
 **Warning:** plugin is still in beta stage, it means that bugs may happen, including critical.
 
-Current supported engine version - **111.0.5563.65**.
+Current supported engine version - **114.0.5735.91**.
 
 ## About
 
@@ -129,14 +129,48 @@ plugin.useProxy('127.0.0.1:8080').useFingerprint(fingerprint);
 
 Use these links to see a detailed description of the methods:
 
-- [This](src/index.d.ts#L270) one for the **useFingerprint** method (also see additional options [here](src/index.d.ts#L38)).
-- [This](src/index.d.ts#L297) one for the **useProxy** method (also see additional options [here](src/index.d.ts#L98)).
+- [This](src/index.d.ts#L318) one for the **useFingerprint** method (also see additional options [here](src/index.d.ts#L38)).
+- [This](src/index.d.ts#L345) one for the **useProxy** method (also see additional options [here](src/index.d.ts#L110)).
 
 The usage of these methods is very similar - they both take two parameters, the first of which is the configuration data itself, and the second is additional options.
 The fingerprint and proxy will not be changed unless the appropriate method is used. In this case, all settings related to browser fingerprinting will remain at their original values.
 
 Fingerprint and proxy aren't applied instantly when calling methods. Instead, the configuration is saved and used directly when the browser is launched using the **launch** or **spawn** methods.
 Thus, you can pre-configure the plugin in a certain way, or change something immediately before launching the browser.
+
+### Configuring browser version
+
+Now it is possible to change the browser version while using the plugin - the engine may come with several different builds of the browser.
+
+In order to do this, use the **version** property. It defaults to `default`, which means that the latest available version will be used:
+
+```js
+const { plugin } = require('browser-with-fingerprints');
+
+// Use a specific version:
+plugin.version = '114.0.5735.91';
+
+// Use the latest available version:
+plugin.version = 'default';
+```
+
+If you specify an unavailable or invalid version, an appropriate error will be thrown when the browser starts.
+Also keep in mind that this property only affects a specific instance of the plugin, not the entire library.
+
+In order to get a list of available versions shipped with the engine, use the **versions** method.
+It returns a list of browser versions as strings or objects with additional information, depending on the format passed:
+
+```js
+const { plugin } = require('browser-with-fingerprints');
+
+// The list of versions is always sorted in descending order:
+await plugin.versions('extended').then((versions) => {
+  // The latest available browser version will be used:
+  plugin.version = versions[0]['browser_version'];
+});
+```
+
+Thanks to this, you can, for example, use the version that corresponds to a certain fingerprint, and vice versa.
 
 ### Fingerprint usage
 
@@ -169,14 +203,16 @@ const { plugin } = require('browser-with-fingerprints');
 
 const fingerprint = await plugin.fetch('SERVICE_KEY', {
   tags: ['Microsoft Windows', 'Chrome'],
-  // Fetch fingerprints only with a browser version higher than 98:
-  minBrowserVersion: 98,
+  // Fetch fingerprints only with a browser version higher than 114:
+  minBrowserVersion: 114,
+  // Fetch fingerprints only with a browser version lower than 116:
+  maxBrowserVersion: 116,
   // Fetch fingerprints only collected in the last 15 days:
   timeLimit: '15 days',
 });
 ```
 
-All possible settings for **fetch** method, as well as their descriptions, you can find [here](src/index.d.ts#L137).
+All possible settings for **fetch** method, as well as their descriptions, you can find [here](src/index.d.ts#L149).
 
 You can **reuse** fingerprints instead of requesting new ones each time.
 To do this, you can save them to a file or to a database - use any option convenient for you.
@@ -196,7 +232,7 @@ await writeFile('fingerprint.json', fingerprint);
 plugin.useFingerprint(await readFile('fingerprint.json', 'utf8'));
 ```
 
-You can learn more about the options directly when adding these methods - just use the built-in [annotations](src/index.d.ts#L334).
+You can learn more about the options directly when adding these methods - just use the built-in [annotations](src/index.d.ts#L382).
 
 You can use any [tags](src/index.d.ts#L15), filters (e.g. [time](src/index.d.ts#L8) limit) and settings if you have a service key.
 
@@ -208,7 +244,7 @@ const fingerprint = await plugin.fetch('', {
   // You can only use these tags with the free version:
   tags: ['Microsoft Windows', 'Chrome'],
   // You also cannot use such filters in the free version:
-  // minBrowserVersion: 105,
+  // minBrowserVersion: 114,
 });
 ```
 
@@ -235,7 +271,7 @@ plugin.useProxy('127.0.0.1:8080', {
 });
 ```
 
-You can learn more about the parameters and additional options for this method [here](src/index.d.ts#L297) and [here](src/index.d.ts#L98).
+You can learn more about the parameters and additional options for this method [here](src/index.d.ts#L345) and [here](src/index.d.ts#L110).
 
 The browser supports two types of proxies - **https** and **socks5**.
 It is better to always specify the proxy type in the address line - otherwise, **https** will be used by default.
@@ -344,6 +380,12 @@ You can also use the **FINGERPRINT_CWD** environment variable to specify the dir
 
 ```properties
 FINGERPRINT_CWD="../plugin-engine"
+```
+
+The **FINGERPRINT_TIMEOUT** variable can be set if it's necessary to change the default timeout for executing engine methods, such as applying or fetching a fingerprint:
+
+```properties
+FINGERPRINT_TIMEOUT=300000
 ```
 
 You can define it in any way convenient for you, but by default variables are read from the **env** files using the [dotenv](https://github.com/motdotla/dotenv) library.

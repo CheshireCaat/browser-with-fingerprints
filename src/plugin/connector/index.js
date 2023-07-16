@@ -3,10 +3,15 @@ const server = require('./server');
 const { reset } = require('./settings');
 const { notify } = require('./notifier');
 const lock = new (require('async-lock'))();
-const client = new (require('bas-remote-node'))({ scriptName: 'FingerprintPlugin', workingDir: env.FINGERPRINT_CWD });
+const client = new (require('bas-remote-node'))({ scriptName: 'FingerprintPluginV2', workingDir: env.FINGERPRINT_CWD });
+
+server.listen().then(({ port }) => {
+  Object.assign(client.options, {
+    args: [`--mock-pcap-port=${port}`],
+  });
+});
 
 async function call(name, params = {}) {
-  server.listen();
   let timer = null;
   return await lock.acquire('client', async () => {
     try {
@@ -40,6 +45,8 @@ client._engine.on('beforeDownload', () => {
   console.log('The browser is downloading - this may take some time.');
 });
 
+exports.versions = (format = 'default') => call('versions', { format });
+
 exports.fetch = (token, parameters) => call('fetch', { token, parameters });
 
-exports.setup = (proxy, fingerprint) => call('setup', { proxy, fingerprint });
+exports.setup = (proxy, fingerprint, configuration) => call('setup', { proxy, fingerprint, ...configuration });

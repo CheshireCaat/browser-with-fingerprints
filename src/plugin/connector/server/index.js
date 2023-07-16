@@ -26,8 +26,8 @@ exports.listen = once(() => {
       }
     });
 
-    server.listen(PORT, 'localhost', resolve).unref();
+    server.listen(PORT, 'localhost', () => resolve(server.address())).unref();
   });
 });
 
-const PORT = 29815;
+const PORT = 0;

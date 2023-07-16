@@ -23,6 +23,8 @@ describe('plugin', () => {
     for (const method of ['fetch', 'spawn', 'launch', 'useProxy', 'useFingerprint']) {
       assert.equal(typeof plugin[method], 'function');
     }
+    assert.equal(typeof plugin.versions, 'function');
+    assert.equal(typeof plugin.version, 'string');
   });
 
   for (const method of ['useProxy', 'useFingerprint']) {
@@ -38,7 +40,7 @@ describe('plugin', () => {
         assert.throws(() => plugin[method]('', ''));
       });
 
-      it('should return the current instance as a result', () => {
+      it('should return the current plugin instance as a result', () => {
         assert.equal(plugin, plugin[method]());
       });
 

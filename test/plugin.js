@@ -71,10 +71,18 @@ describe('plugin', () => {
       await assert.rejects(() => plugin.launch());
     });
 
-    it('should override the "headless" and "executablePath" options', async () => {
-      const actual = await stub.launch({ headless: true, executablePath: 'worker.exe' });
+    it('should override some parameters passed by the user', async () => {
+      const result = await stub.launch({
+        headless: true,
+        userDataDir: '',
+        executablePath: '',
+        defaultViewport: {},
+      });
 
-      assert.notDeepEqual(actual, { headless: true, executablePath: 'worker.exe' });
+      assert.equal(result.headless, false);
+      assert.equal(result.userDataDir, null);
+      assert.equal(result.defaultViewport, null);
+      assert.notEqual(result.executablePath, 'test');
     });
 
     it('should always pass the default argument list to the launcher', async () => {
@@ -91,10 +99,8 @@ describe('plugin', () => {
       const pid = args.find((arg) => arg.includes('parent')).split('=')[1];
       const id = args.find((arg) => arg.includes('unique')).split('=')[1];
 
-      for (const item of [`t/${pid}`, `${id}.ini`, `${id}1.ini`]) {
-        await assert.doesNotReject(
-          fs.access(path.join(path.dirname(executablePath), item.includes(id) ? '../../s' : '', item))
-        );
+      for (const item of [`t/${pid}`, `s/${id}.ini`, `s/${id}1.ini`]) {
+        await assert.doesNotReject(fs.access(path.join(path.dirname(executablePath), '../../', item)));
       }
     });
 
@@ -113,6 +119,40 @@ describe('plugin', () => {
     });
 
     afterEach(() => (delete stub.proxy, delete stub.fingerprint));
+  });
+
+  describe('#versions()', () => {
+    ['extended', 'default'].forEach((format) => {
+      it(`should return a list of browser versions in the ${format} format`, async () => {
+        let versions = null;
+
+        await assert.doesNotReject(async () => (versions = await plugin.versions(format)));
+
+        assert(Array.isArray(versions));
+        assert.notEqual(versions.length, 0);
+        versions.forEach((version) => assert.equal(typeof version, format === 'extended' ? 'object' : 'string'));
+      });
+    });
+  });
+
+  describe('#version', () => {
+    let versions = [];
+
+    before(async () => {
+      versions = await stub.versions('extended');
+    });
+
+    it('should by default point to the latest available browser version', () => {
+      assert.equal(stub.version, 'default');
+    });
+
+    it('should change the browser version used in the plugin instance', async () => {
+      for (const version of versions.reverse()) {
+        stub.version = version['browser_version'];
+        const { executablePath } = await stub.launch();
+        assert(executablePath.includes(`browser.${version['id']}`));
+      }
+    });
   });
 
   stub.configure = (cleanup) => cleanup();
