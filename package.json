@@ -4,7 +4,7 @@
   "homepage": "https://github.com/CheshireCaat/browser-with-fingerprints#readme",
   "repository": "CheshireCaat/browser-with-fingerprints",
   "author": "CheshireCaat",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CheshireCaat/browser-with-fingerprints/issues",
@@ -61,8 +61,8 @@
     "bas-remote-node": "1.4.6",
     "chrome-remote-interface": "0.32.2",
     "compare-versions": "6.0.0",
-    "dedent": "1.0.2",
-    "fast-glob": "3.3.0",
+    "dedent": "1.2.0",
+    "fast-glob": "3.3.1",
     "once": "1.4.0",
     "proper-lockfile": "4.1.2"
   },

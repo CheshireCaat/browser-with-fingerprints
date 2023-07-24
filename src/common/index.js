@@ -26,3 +26,8 @@ exports.scripts = {
    */
   getViewport: () => ({ width: window.innerWidth, height: window.innerHeight }),
 };
+
+/**
+ * The maximum number of attempts to resize the browser.
+ */
+exports.MAX_RESIZE_RETRIES = 3;

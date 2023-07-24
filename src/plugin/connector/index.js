@@ -3,7 +3,7 @@ const server = require('./server');
 const { reset } = require('./settings');
 const { notify } = require('./notifier');
 const lock = new (require('async-lock'))();
-const client = new (require('bas-remote-node'))({ scriptName: 'FingerprintPluginV2', workingDir: env.FINGERPRINT_CWD });
+const client = new (require('bas-remote-node'))({ scriptName: 'FingerprintPluginV3', workingDir: env.FINGERPRINT_CWD });
 
 server.listen().then(({ port }) => {
   Object.assign(client.options, {

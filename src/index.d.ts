@@ -198,7 +198,7 @@ export interface FetchOptions {
    * Select only those fingerprints that have a specific browser version.
    * It's recommended to use this option together with an explicit browser name.
    *
-   * For example, you can choose fingerprints for the **Chrome** browser with a version lower than `114`.
+   * For example, you can choose fingerprints for the **Chrome** browser with a version lower than `115`.
    * You can also select the exact version by setting this option to the same value as for `minBrowserVersion`.
    *
    * If this option is not specified, a fingerprint with no maximum version limit will be selected.
@@ -209,7 +209,7 @@ export interface FetchOptions {
    * Select only those fingerprints that have a specific browser version.
    * It's recommended to use this option together with an explicit browser name.
    *
-   * For example, you can choose fingerprints for the **Chrome** browser with a version higher than `114`.
+   * For example, you can choose fingerprints for the **Chrome** browser with a version higher than `115`.
    * You can also select the exact version by setting this option to the same value as for `maxBrowserVersion`.
    *
    * If this option is not specified, a fingerprint with no minimum version limit will be selected.
@@ -370,7 +370,7 @@ export declare class FingerprintPlugin {
    * ```js
    * const result = await plugin.fetch('FINGERPRINT_KEY', {
    *   tags: ['Desktop', 'Chrome'],
-   *   minBrowserVersion: 114,
+   *   minBrowserVersion: 115,
    *   timeLimit: '15 days',
    * });
    * ```
@@ -430,10 +430,10 @@ export declare class FingerprintPlugin {
    * @example
    * ```js
    * // Use a specific version based on the full version string:
-   * plugin.version = '114.0.5735.91';
+   * plugin.version = '115.0.5790.99';
    *
    * // Use a specific version based on the major version string:
-   * plugin.version = '114';
+   * plugin.version = '115';
    *
    * // Use a specific version based on the version identifier:
    * plugin.version = '1';
@@ -457,7 +457,7 @@ export interface Version {
    */
   architecture: 'x64' | 'x86';
   /**
-   * Full browser version, for example - `114.0.5735.91`.
+   * Full browser version, for example - `115.0.5790.99`.
    */
   browser_version: string;
   /**
