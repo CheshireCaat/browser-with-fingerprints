@@ -18,15 +18,16 @@ async function call(name, params = {}) {
       await client.start();
       reset(client._engine.exeDir, client._engine.zipDir);
       if (name === 'fetch') timer = notify(params.token);
+      // prettier-ignore
       const { error, ...result } = await Promise.race([
         client.runFunction(`api_${name}`, params),
-        new Promise((_, reject) => {
+        params?.parameters?.perfectCanvasRequest ? null : new Promise((_, reject) => {
           setTimeout(
             () => reject(new Error(`Timed out while calling the "${name}" method.`)),
             env.FINGERPRINT_TIMEOUT ?? 300000
           ).unref();
         }),
-      ]);
+      ].filter(Boolean));
 
       if (error) throw new Error(error);
       return result.response ?? result;
@@ -36,6 +37,10 @@ async function call(name, params = {}) {
     }
   });
 }
+
+client.on('messageReceived', (evt) => {
+  evt.type === 'log' && console.log(evt.data.text.split(' : ')[1]);
+});
 
 client._engine.on('beforeExtract', () => {
   console.log('The browser is installing - this may take some time.');
