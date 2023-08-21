@@ -3,12 +3,14 @@ const server = require('./server');
 const { reset } = require('./settings');
 const { notify } = require('./notifier');
 const lock = new (require('async-lock'))();
+const debug = require('debug')('browser-with-fingerprints:connector');
 const client = new (require('bas-remote-node'))({ scriptName: 'FingerprintPluginV3', workingDir: env.FINGERPRINT_CWD });
 
 server.listen().then(({ port }) => {
   Object.assign(client.options, {
     args: [`--mock-pcap-port=${port}`],
   });
+  debug(`PCAP server listening on ${port}`);
 });
 
 async function call(name, params = {}) {
