@@ -22,11 +22,11 @@ exports.listen = once(() => {
 
     server.on('error', ({ code }) => {
       if (code === 'EADDRINUSE') {
-        setTimeout(() => server.listen(PORT, 'localhost'), 1000).unref();
+        setTimeout(() => server.listen(PORT, '127.0.0.1'), 1000).unref();
       }
     });
 
-    server.listen(PORT, 'localhost', () => resolve(server.address())).unref();
+    server.listen(PORT, '127.0.0.1', () => resolve(server.address())).unref();
   });
 });
 

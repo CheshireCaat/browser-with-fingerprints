@@ -1,8 +1,8 @@
 const mutex = require('./mutex');
 const cleaner = require('./cleaner');
 const launcher = require('./launcher');
-const { setup, fetch, versions } = require('./connector');
 const { configure, synchronize } = require('./config');
+const { setup, fetch, versions } = require('./connector');
 const { defaultArgs, getProfilePath, validateConfig, validateLauncher } = require('./utils');
 
 module.exports = class FingerprintPlugin {
