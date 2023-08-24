@@ -201,9 +201,12 @@ export interface FetchOptions {
    * For example, you can choose fingerprints for the **Chrome** browser with a version lower than `115`.
    * You can also select the exact version by setting this option to the same value as for `minBrowserVersion`.
    *
+   * The preferred option is to use the `current` value - this way the filter will use the current browser version installed for the plugin.
+   * It can be very convenient, as the maximum versions of the browser and fingerprint will be exactly the same.
+   *
    * If this option is not specified, a fingerprint with no maximum version limit will be selected.
    */
-  maxBrowserVersion?: number;
+  maxBrowserVersion?: number | 'current';
 
   /**
    * Select only those fingerprints that have a specific browser version.
@@ -212,9 +215,12 @@ export interface FetchOptions {
    * For example, you can choose fingerprints for the **Chrome** browser with a version higher than `115`.
    * You can also select the exact version by setting this option to the same value as for `maxBrowserVersion`.
    *
+   * The preferred option is to use the `current` value - this way the filter will use the current browser version installed for the plugin.
+   * It can be very convenient, as the minimum versions of the browser and fingerprint will be exactly the same.
+   *
    * If this option is not specified, a fingerprint with no minimum version limit will be selected.
    */
-  minBrowserVersion?: number;
+  minBrowserVersion?: number | 'current';
 
   /**
    * Select only those fingerprints whose maximum browser height matches the specified one.
