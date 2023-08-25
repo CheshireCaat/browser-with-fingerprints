@@ -64,11 +64,12 @@ module.exports = class FingerprintPlugin {
   }
 
   async versions(format = 'default') {
-    return await versions(format /* type */);
+    return await versions(format /* value */);
   }
 
   async fetch(key, options = {}) {
-    return await fetch(key, { ...options });
+    const config = { version: this.version };
+    return await fetch(key, options, config);
   }
 
   async launch(options = {}) {

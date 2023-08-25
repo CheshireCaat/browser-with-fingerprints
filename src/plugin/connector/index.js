@@ -54,6 +54,6 @@ client._engine.on('beforeDownload', () => {
 
 exports.versions = (format = 'default') => call('versions', { format });
 
-exports.fetch = (token, parameters) => call('fetch', { token, parameters });
+exports.fetch = (token, parameters, configuration) => call('fetch', { token, parameters, ...configuration });
 
 exports.setup = (proxy, fingerprint, configuration) => call('setup', { proxy, fingerprint, ...configuration });
