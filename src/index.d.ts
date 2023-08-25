@@ -288,7 +288,7 @@ export declare class FingerprintPlugin {
    * const versions = await plugin.versions('extended');
    *
    * // Force the plugin to use the latest version.
-   * plugin.version = versions[0]['browser_version'];
+   * plugin.useBrowserVersion(versions[0]['browser_version']);
    * ```
    *
    * @param format - The output format of the returned result.
@@ -349,6 +349,29 @@ export declare class FingerprintPlugin {
    * @returns The same plugin instance with an updated proxy settings (for optional chaining).
    */
   useProxy(value?: string, options?: ProxyOptions): this;
+
+  /**
+   * Set the current browser version used by the plugin instance.
+   *
+   * Initially, the `default` value is used, which means that the latest available version will be used.
+   * The same behavior can be achieved by passing an empty string or a zero identifier as a parameter to this method.
+   * Also you can use the `random` value to select a random version, or use the version identifier instead of the version string.
+   *
+   * In order to get a list of available versions, use the `versions` method - the return values (version numbers and identifiers) can be used for this method.
+   *
+   * @example
+   * ```js
+   * // Use a specific version:
+   * plugin.useBrowserVersion('115.0.5790.99');
+   *
+   * // Use the latest available version:
+   * plugin.useBrowserVersion('default');
+   * ```
+   *
+   * @param version - Version value as a string.
+   * @returns The same plugin instance with an updated proxy settings (for optional chaining).
+   */
+  useBrowserVersion(version: string): this;
 
   /**
    * Obtain a fingerprint using the specified service key and additional options.

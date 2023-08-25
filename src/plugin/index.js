@@ -20,6 +20,11 @@ module.exports = class FingerprintPlugin {
     return this;
   }
 
+  useBrowserVersion(version = null) {
+    this.version = version;
+    return this;
+  }
+
   setProxyFromArguments(args = []) {
     if (this.proxy == null) {
       for (const arg of args) {
@@ -54,7 +59,7 @@ module.exports = class FingerprintPlugin {
     });
 
     await (spawn ? configure : this.configure.bind(this))(
-      (target) => target === browser && cleaner.include(pid, id),
+      () => cleaner.include(pid, id),
       browser,
       bounds,
       synchronize.bind(null, id, pwd, bounds)

@@ -148,10 +148,10 @@ In order to do this, use the **version** property. It defaults to `default`, whi
 const { plugin } = require('browser-with-fingerprints');
 
 // Use a specific version:
-plugin.version = '115.0.5790.99';
+plugin.useBrowserVersion('115.0.5790.99');
 
 // Use the latest available version:
-plugin.version = 'default';
+plugin.useBrowserVersion('default');
 ```
 
 If you specify an unavailable or invalid version, an appropriate error will be thrown when the browser starts.
@@ -166,7 +166,7 @@ const { plugin } = require('browser-with-fingerprints');
 // The list of versions is always sorted in descending order:
 await plugin.versions('extended').then((versions) => {
   // The latest available browser version will be used:
-  plugin.version = versions[0]['browser_version'];
+  plugin.useBrowserVersion(versions[0]['browser_version']);
 });
 ```
 
