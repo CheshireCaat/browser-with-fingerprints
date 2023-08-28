@@ -6,6 +6,16 @@ const { setup, fetch, versions } = require('./connector');
 const { defaultArgs, getProfilePath, validateConfig, validateLauncher } = require('./utils');
 
 module.exports = class FingerprintPlugin {
+  static create(launcher) {
+    validateLauncher(launcher);
+    return new this(launcher);
+  }
+
+  constructor(launcher) {
+    this.launcher = launcher;
+    this.version = 'default';
+  }
+
   useFingerprint(value = '', options = {}) {
     validateConfig('fingerprint', value, options);
 
@@ -83,15 +93,5 @@ module.exports = class FingerprintPlugin {
 
   async spawn(options = {}) {
     return await this.#run(true, options);
-  }
-
-  static create(launcher) {
-    validateLauncher(launcher);
-    return new this(launcher);
-  }
-
-  constructor(launcher) {
-    this.launcher = launcher;
-    this.version = 'default';
   }
 };
