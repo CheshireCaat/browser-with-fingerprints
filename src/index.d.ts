@@ -310,10 +310,10 @@ export declare class FingerprintPlugin {
    *
    * @example
    * ```js
-   * // Just for an example, you need to use the real value.
+   * // Just for an example, you need to use the real value:
    * const fingerprint = '...';
    *
-   * // The browser will be launched with a fingerprint.
+   * // The browser will be launched with the specified fingerprint:
    * const browser = await plugin.useFingerprint(fingerprint).launch();
    * ```
    *
@@ -337,10 +337,10 @@ export declare class FingerprintPlugin {
    *
    * @example
    * ```js
-   * // Just for an example, you need to use the real value.
+   * // Just for an example, you need to use the real value:
    * const proxy = '...';
    *
-   * // The browser will be launched with a proxy.
+   * // The browser will be launched with the specified proxy:
    * const browser = await plugin.useProxy(proxy).launch();
    * ```
    *
