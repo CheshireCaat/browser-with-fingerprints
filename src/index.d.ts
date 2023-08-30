@@ -445,6 +445,42 @@ export declare class FingerprintPlugin {
   spawn(options?: Options): Promise<Browser>;
 
   /**
+   * Change the request timeout that the plugin uses to work with the engine.
+   * This method is an alternative to using the `FINGERPRINT_TIMEOUT` environment variable.
+   *
+   * You can read a bit more about these settings [here](https://github.com/CheshireCaat/browser-with-fingerprints#testing).
+   *
+   * @remarks
+   * **NOTE**: This action changes the configuration for all instances of the plugin, that is, it works globally, just like environment variables.
+   *
+   * @example
+   * ```js
+   * plugin.setRequestTimeout(300000);
+   * ```
+   *
+   * @param timeout - The selected request timeout.
+   */
+  setRequestTimeout(timeout: number): void;
+
+  /**
+   * Change the working folder that the plugin uses to work with the engine.
+   * This method is an alternative to using the `FINGERPRINT_CWD` environment variable.
+   *
+   * You can read a bit more about these settings [here](https://github.com/CheshireCaat/browser-with-fingerprints#testing).
+   *
+   * @remarks
+   * **NOTE**: This action changes the configuration for all instances of the plugin, that is, it works globally, just like environment variables.
+   *
+   * @example
+   * ```js
+   * plugin.setWorkingFolder('data');
+   * ```
+   *
+   * @param folder - The selected working folder.
+   */
+  setWorkingFolder(folder: string): void;
+
+  /**
    * Get or set the current browser version used by the plugin instance.
    *
    * Initially it is set to `default`, which means that the latest available version will be used.

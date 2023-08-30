@@ -3,6 +3,7 @@ const server = require('./server');
 const { reset } = require('./settings');
 const { notify } = require('./notifier');
 const lock = new (require('async-lock'))();
+const config = { timeout: env.FINGERPRINT_TIMEOUT };
 const debug = require('debug')('browser-with-fingerprints:connector');
 const client = new (require('bas-remote-node'))({ scriptName: 'FingerprintPluginV3', workingDir: env.FINGERPRINT_CWD });
 
@@ -26,7 +27,7 @@ async function call(name, params = {}) {
         params?.parameters?.perfectCanvasRequest ? null : new Promise((_, reject) => {
           setTimeout(
             () => reject(new Error(`Timed out while calling the "${name}" method.`)),
-            env.FINGERPRINT_TIMEOUT ?? 300000
+            config.timeout ?? 300000
           ).unref();
         }),
       ].filter(Boolean));
@@ -51,6 +52,12 @@ client._engine.on('beforeExtract', () => {
 client._engine.on('beforeDownload', () => {
   console.log('The browser is downloading - this may take some time.');
 });
+
+exports.setEngineOptions = ({ folder = '', timeout = 0 } = {}) => {
+  folder && (config.folder = folder);
+  timeout && (config.timeout = timeout);
+  folder && client.setWorkingFolder(folder);
+};
 
 exports.versions = (format = 'default') => call('versions', { format });
 

@@ -32,14 +32,14 @@ describe('plugin', () => {
     });
 
     it('should throw an error if getting a fingerprint takes too long', async () => {
-      process.env.FINGERPRINT_TIMEOUT = 0;
+      plugin.setRequestTimeout(100);
 
       await assert.rejects(() => {
         return plugin.fetch('', { tags: ['Microsoft Windows', 'Chrome'] });
       }, /Timed out while calling the "fetch" method./);
     });
 
-    after(() => (process.env.FINGERPRINT_TIMEOUT = 300000));
+    after(() => plugin.setRequestTimeout(300000));
   });
 
   describe('#spawn()', () => {
