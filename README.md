@@ -8,7 +8,7 @@ This package is the basis for other plugins and doesn't allow you to automate br
 
 **Warning:** plugin is still in beta stage, it means that bugs may happen, including critical.
 
-Current supported engine version - **115.0.5790.99**.
+Current supported engine version - **116.0.5845.97**.
 
 ## About
 
@@ -140,9 +140,10 @@ Thus, you can pre-configure the plugin in a certain way, or change something imm
 
 ### Configuring browser version
 
-Now it is possible to change the browser version while using the plugin - the engine may come with several different builds of the browser.
+You can change the browser version right while using the plugin - the engine may come with several different builds of the browser.
 
-In order to do this, use the **version** property. It defaults to `default`, which means that the latest available version will be used:
+In order to do this, use the **useBrowserVersion** method or the **version** property (deprecated).
+The last one defaults to `default`, which means that the latest available version will be used:
 
 ```js
 const { plugin } = require('browser-with-fingerprints');
