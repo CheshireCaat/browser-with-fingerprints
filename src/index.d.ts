@@ -319,7 +319,7 @@ export declare class FingerprintPlugin {
    *
    * @param value - Fingerprint value as a string.
    * @param options - Set of configurable options for applying a fingerprint.
-   * @returns The same plugin instance with an updated fingerprint settings (for optional chaining).
+   * @returns The same plugin instance with an updated settings (for optional chaining).
    */
   useFingerprint(value?: string, options?: FingerprintOptions): this;
 
@@ -346,7 +346,7 @@ export declare class FingerprintPlugin {
    *
    * @param value - Proxy value as a string.
    * @param options - Set of configurable options for applying a proxy.
-   * @returns The same plugin instance with an updated proxy settings (for optional chaining).
+   * @returns The same plugin instance with an updated settings (for optional chaining).
    */
   useProxy(value?: string, options?: ProxyOptions): this;
 
@@ -369,7 +369,7 @@ export declare class FingerprintPlugin {
    * ```
    *
    * @param version - Version value as a string.
-   * @returns The same plugin instance with an updated proxy settings (for optional chaining).
+   * @returns The same plugin instance with an updated settings (for optional chaining).
    */
   useBrowserVersion(version: string): this;
 
