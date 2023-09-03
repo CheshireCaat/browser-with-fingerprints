@@ -5,7 +5,7 @@ const { notify } = require('./notifier');
 const lock = new (require('async-lock'))();
 const config = { timeout: env.FINGERPRINT_TIMEOUT };
 const debug = require('debug')('browser-with-fingerprints:connector');
-const client = new (require('bas-remote-node'))({ scriptName: 'FingerprintPluginV3', workingDir: env.FINGERPRINT_CWD });
+const client = new (require('bas-remote-node'))({ scriptName: 'FingerprintPluginV4', workingDir: env.FINGERPRINT_CWD });
 
 server.listen().then(({ port }) => {
   Object.assign(client.options, {

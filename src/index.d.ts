@@ -105,6 +105,27 @@ export interface FingerprintOptions {
 }
 
 /**
+ * Options related to the browser profile configuration.
+ */
+export interface ProfileOptions {
+  /**
+   * Always load a fingerprint from the profile folder.
+   *
+   * In case the profile folder already exists and contains fingerprint data, tell the plugin to apply the last fingerprint used for this profile.
+   * @default true
+   */
+  loadFingerprint?: boolean;
+
+  /**
+   * Always load a proxy from the profile folder.
+   *
+   * In case the profile folder already exists and contains proxy data, tell the plugin to apply the last proxy used for this profile.
+   * @default true
+   */
+  loadProxy?: boolean;
+}
+
+/**
  * Options related to the browser proxy configuration.
  */
 export interface ProxyOptions {
@@ -300,13 +321,14 @@ export declare class FingerprintPlugin {
    * Set the fingerprint settings using the specified fingerprint as a string and additional options when specified.
    * They will be used when launching the browser using the `spawn` or `launch` methods.
    *
-   * Note that this method performs the fingerprint setup once. After launching the browser, the data cannot be changed.
-   * In order to change fingerprint again, you'll need to restart the browser with different settings or launch a separate browser instance.
-   *
-   * You can chain method calls to set up a proxy and a fingerprint.
+   * You can chain method calls to set up a proxy, profile and fingerprint.
    * As a result, they return the current instance of the plugin, so you can call them in any order, and launch the browser immediately after application.
    *
    * See the [documentation](https://github.com/CheshireCaat/browser-with-fingerprints#fingerprint-usage) for more details.
+   *
+   * @remarks
+   * **NOTE**: This method performs the fingerprint setup once. After launching the browser, the data cannot be changed.
+   * In order to change fingerprint again, you'll need to restart the browser with different settings or launch a separate browser instance.
    *
    * @example
    * ```js
@@ -324,16 +346,45 @@ export declare class FingerprintPlugin {
   useFingerprint(value?: string, options?: FingerprintOptions): this;
 
   /**
+   * Set the profile settings using the specified profile as a string and additional options when specified.
+   * They will be used when launching the browser using the `spawn` or `launch` methods.
+   *
+   * You can chain method calls to set up a proxy, profile and fingerprint.
+   * As a result, they return the current instance of the plugin, so you can call them in any order, and launch the browser immediately after application.
+   *
+   * See the [documentation](https://github.com/CheshireCaat/browser-with-fingerprints#profile-usage) for more details.
+   *
+   * @remarks
+   * **NOTE**: This method performs the profile setup once. After launching the browser, the data cannot be changed.
+   * In order to change profile again, you'll need to restart the browser with different settings or launch a separate browser instance.
+   *
+   * @example
+   * ```js
+   * // Just for an example, you need to use the real value:
+   * const profile = '...';
+   *
+   * // The browser will be launched with the specified profile:
+   * const browser = await plugin.useProfile(profile).launch();
+   * ```
+   *
+   * @param value - Profile value as a string.
+   * @param options - Set of configurable options for applying a profile.
+   * @returns The same plugin instance with an updated settings (for optional chaining).
+   */
+  useProfile(value?: string, options?: ProfileOptions): this;
+
+  /**
    * Set the proxy settings using the specified proxy as a string and additional options when specified.
    * They will be used when launching the browser using the `spawn` or `launch` methods.
    *
-   * Note that this method performs the proxy setup once. After launching the browser, the data cannot be changed.
-   * In order to change proxy again, you'll need to restart the browser with different settings or launch a separate browser instance.
-   *
-   * You can chain method calls to set up a proxy and a fingerprint.
+   * You can chain method calls to set up a proxy, profile and fingerprint.
    * As a result, they return the current instance of the plugin, so you can call them in any order, and launch the browser immediately after application.
    *
    * See the [documentation](https://github.com/CheshireCaat/browser-with-fingerprints#proxy-usage) for more details.
+   *
+   * @remarks
+   * **NOTE**: This method performs the proxy setup once. After launching the browser, the data cannot be changed.
+   * In order to change proxy again, you'll need to restart the browser with different settings or launch a separate browser instance.
    *
    * @example
    * ```js

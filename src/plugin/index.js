@@ -23,6 +23,13 @@ module.exports = class FingerprintPlugin {
     return this;
   }
 
+  useProfile(value = '', options = {}) {
+    validateConfig('profile', value, options);
+
+    this.profile = { value, options };
+    return this;
+  }
+
   useProxy(value = '', options = {}) {
     validateConfig('proxy', value, options);
 
@@ -59,8 +66,14 @@ module.exports = class FingerprintPlugin {
     const { proxy, fingerprint } = this.setProxyFromArguments(options.args);
 
     const { id, pid, pwd, path, bounds, ...config } = await setup(proxy, fingerprint, {
-      profile: getProfilePath(options),
       version: this.version,
+      profile: this.profile ?? {
+        options: {
+          loadProxy: true,
+          loadFingerprint: true,
+        },
+        value: getProfilePath(options),
+      },
     });
 
     await cleaner.run(path).ignore(pid, id);
