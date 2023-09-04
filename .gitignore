@@ -9,4 +9,5 @@ test/browser
 
 # Miscellaneous
 *.env
+tools
 data

@@ -130,9 +130,9 @@ plugin.useProxy('127.0.0.1:8080').useFingerprint(fingerprint);
 
 Use these links to see a detailed description of the methods:
 
-- [This](src/index.d.ts#L346) one for the **useFingerprint** method (also see additional options [here](src/index.d.ts#L38)).
-- [This](src/index.d.ts#L374) one for the **useProfile** method (also see additional options [here](src/index.d.ts#L110)).
-- [This](src/index.d.ts#L402) one for the **useProxy** method (also see additional options [here](src/index.d.ts#L131)).
+- [This](src/index.d.ts#L362) one for the **useFingerprint** method (also see additional options [here](src/index.d.ts#L38)).
+- [This](src/index.d.ts#L390) one for the **useProfile** method (also see additional options [here](src/index.d.ts#L110)).
+- [This](src/index.d.ts#L418) one for the **useProxy** method (also see additional options [here](src/index.d.ts#L131)).
 
 The usage of these methods is very similar - each takes two parameters, the first of which is the configuration data itself, and the second is additional options.
 The fingerprint and proxy will not be changed unless the appropriate method is used. In this case, all settings related to browser fingerprinting will remain at their original values.
@@ -215,7 +215,7 @@ const fingerprint = await plugin.fetch('SERVICE_KEY', {
 });
 ```
 
-All possible settings for **fetch** method, as well as their descriptions, you can find [here](src/index.d.ts#L170).
+All possible settings for **fetch** method, as well as their descriptions, you can find [here](src/index.d.ts#L186).
 
 The special `current` value can be used to filter fingerprints by browser version - in this case, the version installed for the plugin will be used.
 It can be very convenient as the browser and fingerprint versions will be exactly the same and you don't have to enter the exact values in multiple places.
@@ -238,7 +238,7 @@ await writeFile('fingerprint.json', fingerprint);
 plugin.useFingerprint(await readFile('fingerprint.json', 'utf8'));
 ```
 
-You can learn more about the options directly when adding these methods - just use the built-in [annotations](src/index.d.ts#L462).
+You can learn more about the options directly when adding these methods - just use the built-in [annotations](src/index.d.ts#L478).
 
 You can use any [tags](src/index.d.ts#L15), filters (e.g. [time](src/index.d.ts#L8) limit) and settings if you have a service key.
 
@@ -299,7 +299,7 @@ After launching a browser with your profile, the fingerprint and proxy data you 
 This setting itself is saved between browser launches, that is, it behaves in the same way as other similar methods.
 To run different profiles, you need to call this method again with different values for the profile directory.
 
-You can learn more about the parameters and additional options for this method [here](src/index.d.ts#L374) and [here](src/index.d.ts#L110).
+You can learn more about the parameters and additional options for this method [here](src/index.d.ts#L390) and [here](src/index.d.ts#L110).
 
 ### Proxy usage
 
@@ -318,7 +318,7 @@ plugin.useProxy('127.0.0.1:8080', {
 });
 ```
 
-You can learn more about the parameters and additional options for this method [here](src/index.d.ts#L402) and [here](src/index.d.ts#L131).
+You can learn more about the parameters and additional options for this method [here](src/index.d.ts#L418) and [here](src/index.d.ts#L131).
 
 The browser supports two types of proxies - **https** and **socks5**.
 It is better to always specify the proxy type in the address line - otherwise, **https** will be used by default.

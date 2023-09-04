@@ -137,7 +137,8 @@ export interface ProxyOptions {
   changeBrowserLanguage?: boolean;
 
   /**
-   * Change the geolocation of your browser to match the IP address of the proxy server. The location will be set at a point close to the longitude and latitude of the server.
+   * Change the geolocation of your browser to match the IP address of the proxy server.
+   * The location will be set at a point close to the longitude and latitude of the server.
    * If this option is disabled, the browser's request to access your geolocation will be rejected.
    * @default false
    */
@@ -162,6 +163,21 @@ export interface ProxyOptions {
    * @default true
    */
   changeWebRTC?: boolean;
+
+  /**
+   * The method that will be used to get information about the IP.
+   *
+   * By default, the internal `database` method is used - it is fast and always available.
+   * Even though the database is constantly updated, this method may not be the most accurate compared to others.
+   * So you can also use `ip-api.com` service - the free version has a limit of 45 requests per IP (unlike the full version).
+   */
+  ipInfoMethod?: string;
+
+  /**
+   * API key from the [ip-api.com](https://ip-api.com/) service (available after purchase).
+   * This parameter is used only if the method is set to `ip-api.com` value.
+   */
+  ipInfoKey?: string;
 }
 
 /**
