@@ -20,14 +20,22 @@ describe('plugin', () => {
   });
 
   it('should have public class members', () => {
-    for (const method of ['fetch', 'spawn', 'launch', 'useProxy', 'useFingerprint']) {
+    for (const method of [
+      'fetch',
+      'spawn',
+      'launch',
+      'useProxy',
+      'useProfile',
+      'useFingerprint',
+      'useBrowserVersion',
+    ]) {
       assert.equal(typeof plugin[method], 'function');
     }
     assert.equal(typeof plugin.versions, 'function');
     assert.equal(typeof plugin.version, 'string');
   });
 
-  for (const method of ['useProxy', 'useFingerprint']) {
+  for (const method of ['useProxy', 'useProfile', 'useFingerprint']) {
     const property = method.slice(3).toLowerCase();
 
     describe(`#${method}()`, () => {
