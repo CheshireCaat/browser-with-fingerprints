@@ -1,6 +1,7 @@
 const lock = new (require('async-lock'))();
 const { setViewport } = require('./browser');
 const { readFile, writeFile } = require('fs/promises');
+const { setTimeout: sleep } = require('timers/promises');
 
 exports.configure = async (cleanup, browser, bounds = {}, sync = () => {}) => {
   browser.process.once('exit', () => cleanup(browser));
@@ -33,5 +34,3 @@ exports.synchronize = async (id, pwd, bounds = {}, action = () => {}) => {
     }
   });
 };
-
-const sleep = (ms) => new Promise((done) => setTimeout(done, ms));
