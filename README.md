@@ -103,6 +103,24 @@ If possible, use it only in extreme cases. It is much more convenient to use the
 Annotations are described for all plugins methods directly in the library code via the **TypeScript** declarations, so when using it you will be able to see hints for all options and types.
 You can also find out about it directly [here](src/index.d.ts).
 
+## Configuring plugin
+
+At the moment, it is possible to change the working folder and timeout for requests to the engine, which is used when fetching, applying fingerprints, and so on:
+
+```js
+// Set the folder where the plugin engine will be installed:
+plugin.setWorkingFolder('./engine');
+
+// Set the timeout used when fetching fingerprints and so on:
+plugin.setRequestTimeout(5 * 60000);
+```
+
+The methods from the example above change the settings globally, that is, for all instances of the plugin.
+
+The default values are the `./data` directory for the working folder and `300000` milliseconds for the request timeout.
+
+The same result can be achieved using environment variables, however it is strongly recommended to use the described methods.
+
 ## Configuring browser
 
 In order to change the fingerprint and proxy for your browser, you should use special separate methods:
@@ -384,7 +402,7 @@ Please **note** that there are some restrictions at the moment:
 
 - Only **Windows** operating system is supported.
 - Parallel launch of browsers is synchronized between calls.
-- Working with **workers** is possible only when specifying separate `FINGERPRINT_CWD` for each worker.
+- Working with **workers** is possible only when specifying a separate working folder for each of them.
 
 Also, there is no guarantee that each of these items will be changed in the future.
 
