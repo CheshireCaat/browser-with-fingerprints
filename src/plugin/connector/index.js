@@ -3,9 +3,9 @@ const server = require('./server');
 const { reset } = require('./settings');
 const { notify } = require('./notifier');
 const lock = new (require('async-lock'))();
-const config = { timeout: env.FINGERPRINT_TIMEOUT };
 const debug = require('debug')('browser-with-fingerprints:connector');
-const client = new (require('bas-remote-node'))({ scriptName: 'FingerprintPluginV4', workingDir: env.FINGERPRINT_CWD });
+const config = { timeout: env.FINGERPRINT_TIMEOUT, restart: false, timer: null };
+const client = new (require('bas-remote-node'))({ scriptName: 'FingerprintPluginV5', workingDir: env.FINGERPRINT_CWD });
 
 server.listen().then(({ port }) => {
   Object.assign(client.options, {
@@ -15,9 +15,14 @@ server.listen().then(({ port }) => {
 });
 
 async function call(name, params = {}) {
-  let timer = null;
+  let timer = clearTimeout(config.timer);
   return await lock.acquire('client', async () => {
     try {
+      if (config.restart) {
+        debug('Restart the client');
+        config.restart = false;
+        await client.close();
+      }
       await client.start();
       reset(client._engine.exeDir, client._engine.zipDir);
       if (name === 'fetch') timer = notify(params.token);
@@ -35,8 +40,11 @@ async function call(name, params = {}) {
       if (error) throw new Error(error);
       return result.response ?? result;
     } finally {
+      config.timer = setTimeout(() => {
+        debug('Close the client');
+        return client.close();
+      }, 300_000).unref();
       clearTimeout(timer);
-      await client.close();
     }
   });
 }
@@ -54,9 +62,13 @@ client._engine.on('beforeDownload', () => {
 });
 
 exports.setEngineOptions = ({ folder = '', timeout = 0 } = {}) => {
+  if (folder) {
+    const restart = config.folder !== folder;
+    Object.assign(config, { restart });
+    client.setWorkingFolder(folder);
+  }
   folder && (config.folder = folder);
   timeout && (config.timeout = timeout);
-  folder && client.setWorkingFolder(folder);
 };
 
 exports.versions = (format = 'default') => call('versions', { format });
