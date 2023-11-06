@@ -4,7 +4,7 @@
   "homepage": "https://github.com/CheshireCaat/browser-with-fingerprints#readme",
   "repository": "CheshireCaat/browser-with-fingerprints",
   "author": "CheshireCaat",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CheshireCaat/browser-with-fingerprints/issues",
@@ -64,7 +64,7 @@
     "compare-versions": "6.1.0",
     "debug": "4.3.4",
     "dedent": "1.5.1",
-    "fast-glob": "3.3.1",
+    "fast-glob": "3.3.2",
     "once": "1.4.0",
     "proper-lockfile": "4.1.2"
   },

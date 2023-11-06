@@ -8,7 +8,7 @@ This package is the basis for other plugins and doesn't allow you to automate br
 
 **Warning:** plugin is still in beta stage, it means that bugs may happen, including critical.
 
-Current supported engine version - **116.0.5845.97**.
+Current supported engine version - **119.0.6045.106**.
 
 ## About
 
@@ -226,8 +226,8 @@ const fingerprint = await plugin.fetch('SERVICE_KEY', {
   tags: ['Microsoft Windows', 'Chrome'],
   // Fetch fingerprints only with a browser version higher than 115:
   minBrowserVersion: 115,
-  // Fetch fingerprints only with a browser version lower than 116:
-  maxBrowserVersion: 116,
+  // Fetch fingerprints only with a browser version lower than 119:
+  maxBrowserVersion: 119,
   // Fetch fingerprints only collected in the last 15 days:
   timeLimit: '15 days',
 });
