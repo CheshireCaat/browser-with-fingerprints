@@ -78,7 +78,7 @@ module.exports = class FingerprintPlugin {
 
     await cleaner.run(path).ignore(pid, id);
 
-    mutex.create(`BASProcess${pid}`);
+    new Promise((resolve) => resolve(mutex.create(`BASProcess${pid}`)));
 
     const browser = await (spawn ? launcher : options.launcher ?? this.launcher).launch({
       ...options,

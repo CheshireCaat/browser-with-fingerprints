@@ -8,7 +8,7 @@ This package is the basis for other plugins and doesn't allow you to automate br
 
 **Warning:** plugin is still in beta stage, it means that bugs may happen, including critical.
 
-Current supported engine version - **119.0.6045.106**.
+Current supported engine version - **121.0.6167.86**.
 
 ## About
 
@@ -457,4 +457,4 @@ You can define it in any way convenient for you, but by default variables are re
 
 ## License
 
-Copyright © 2023, [CheshireCaat](https://github.com/CheshireCaat). Released under the [MIT](LICENSE.md) license.
+Copyright © 2024, [CheshireCaat](https://github.com/CheshireCaat). Released under the [MIT](LICENSE.md) license.
