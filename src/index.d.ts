@@ -455,7 +455,7 @@ export declare class FingerprintPlugin {
    *
    * You don't have to use this method all the time. After receiving the fingerprint, you can safely save it to a file or database, and request it from there during the next launches.
    *
-   * For more information about fingerprints, please visit [this](https://fingerprints.bablosoft.com) website.
+   * For more information about fingerprints, please visit [this](https://fp.bablosoft.com) website.
    *
    * @remarks
    * **NOTE**: Please keep in mind that resizing the browser when using fingerprints can negatively affect anonymity.

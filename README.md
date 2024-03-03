@@ -2,7 +2,7 @@
 
 This is the repo for `browser-with-fingerprints`, a plugin for automation frameworks that allows you to change a browser fingerprint, generate a virtual identity and improve your browser's stealth.
 
-In order to achieve this, the [FingerprintSwitcher](https://fingerprints.bablosoft.com) service is used, which allows you to replace a list of important browser properties, and thus you will act like a completely new user.
+In order to achieve this, the [FingerprintSwitcher](https://fp.bablosoft.com) service is used, which allows you to replace a list of important browser properties, and thus you will act like a completely new user.
 
 This package is the basis for other plugins and doesn't allow you to automate browser actions directly. It's needed primarily for the implementation of other plugins for various frameworks.
 
@@ -25,7 +25,7 @@ This result cannot be achieved using only the replacement of various browser pro
 
 ![WebGL](https://github.com/CheshireCaat/browser-with-fingerprints/raw/master/assets/webgl.jpg)
 
-You can learn more by following this [link](https://fingerprints.bablosoft.com/#capabilities).
+You can learn more by following this [link](https://fp.bablosoft.com/#capabilities).
 
 ## Installation
 
@@ -274,7 +274,7 @@ const fingerprint = await plugin.fetch('', {
 
 In the free version, the [PerfectCanvas](https://wiki.bablosoft.com/doku.php?id=perfectcanvas) technology is also not available.
 There are other limitations when using the free version - for example, limiting the number of requests in a certain period of time.
-To see the differences and limits of different versions, visit [this](https://fingerprints.bablosoft.com/#pricing) website.
+To see the differences and limits of different versions, visit [this](https://fp.bablosoft.com/#pricing) website.
 
 You can buy a key [here](https://bablosoft.com/directbuy/FingerprintSwitcher/2) to avoid limitations.
 
@@ -371,12 +371,12 @@ It's better to replace such code with the `useProxy` method. This is much more c
 
 ### More info
 
-If you want to learn more about fingerprint substitution technology, explore the list of replaceable properties and various options, such as tags, get or configure your service key, use [this](https://fingerprints.bablosoft.com) link.
+If you want to learn more about fingerprint substitution technology, explore the list of replaceable properties and various options, such as tags, get or configure your service key, use [this](https://fp.bablosoft.com) link.
 There you can also get a test fingerprint and see ready-made values that can be applied to your browser.
 
 ## Architecture
 
-This plugin uses the [FingerprintSwitcher](https://fingerprints.bablosoft.com) service to get fingerprints.
+This plugin uses the [FingerprintSwitcher](https://fp.bablosoft.com) service to get fingerprints.
 The resulting fingerprints are used later directly when working with the browser and are applied in a special way using a custom configuration files.
 
 Also keep in mind that this package only work on the **Windows** operating system.
