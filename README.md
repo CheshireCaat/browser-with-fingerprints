@@ -8,7 +8,7 @@ This package is the basis for other plugins and doesn't allow you to automate br
 
 **Warning:** plugin is still in beta stage, it means that bugs may happen, including critical.
 
-Current supported engine version - **122.0.6261.58**.
+Current supported engine version - **123.0.6312.59**.
 
 ## About
 

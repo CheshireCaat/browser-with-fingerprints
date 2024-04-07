@@ -4,7 +4,7 @@
   "homepage": "https://github.com/CheshireCaat/browser-with-fingerprints#readme",
   "repository": "CheshireCaat/browser-with-fingerprints",
   "author": "CheshireCaat",
-  "version": "1.5.7",
+  "version": "1.5.8",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CheshireCaat/browser-with-fingerprints/issues",
@@ -71,7 +71,7 @@
   "devDependencies": {
     "@cheshire-caat/prettier-config": "^1.0.0",
     "dotenv": "^16.4.5",
-    "mocha": "^10.3.0"
+    "mocha": "^10.4.0"
   },
   "prettier": "@cheshire-caat/prettier-config"
 }
