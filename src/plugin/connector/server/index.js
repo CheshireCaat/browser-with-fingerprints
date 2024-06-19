@@ -1,5 +1,6 @@
 const net = require('net');
 const once = require('once');
+const debug = require('debug')('browser-with-fingerprints:connector:server');
 
 exports.listen = once(() => {
   let id = 0;
@@ -18,6 +19,8 @@ exports.listen = once(() => {
           socket.write(new Uint8Array([0x07, 0x00, 0x00, 0x00, 0x00]));
         }
       });
+
+      socket.on('error', (error) => debug(error));
     });
 
     server.on('error', ({ code }) => {
