@@ -2,9 +2,12 @@
   "name": "browser-with-fingerprints",
   "description": "A plugin that improves the stealth of automation libraries using fingerprints",
   "homepage": "https://github.com/CheshireCaat/browser-with-fingerprints#readme",
-  "repository": "CheshireCaat/browser-with-fingerprints",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CheshireCaat/browser-with-fingerprints.git"
+  },
   "author": "CheshireCaat",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CheshireCaat/browser-with-fingerprints/issues",
@@ -16,7 +19,10 @@
   "scripts": {
     "test": "mocha",
     "format": "npx prettier -w .",
-    "release": "npm test && npm run format && npm publish"
+    "release": "npm test && npm run format && npm publish",
+    "mutex:prebuild-x64": "prebuildify -t 14.19.1 --arch=x64 --napi --strip",
+    "mutex:prebuild-ia32": "prebuildify -t 14.19.1 --arch=ia32 --napi --strip",
+    "mutex:prebuild-all": "npm run mutex:prebuild-ia32 && npm run mutex:prebuild-x64 && node ./mutex/prebuild.js"
   },
   "keywords": [
     "browser-fingerprinting",
@@ -59,10 +65,10 @@
   ],
   "dependencies": {
     "async-lock": "1.4.1",
-    "bas-remote-node": "1.5.1",
-    "chrome-remote-interface": "0.33.0",
-    "compare-versions": "6.1.0",
-    "debug": "4.3.5",
+    "bas-remote-node": "1.5.2",
+    "chrome-remote-interface": "0.33.2",
+    "compare-versions": "6.1.1",
+    "debug": "4.3.6",
     "dedent": "1.5.3",
     "fast-glob": "3.3.2",
     "once": "1.4.0",
@@ -71,7 +77,9 @@
   "devDependencies": {
     "@cheshire-caat/prettier-config": "^1.0.0",
     "dotenv": "^16.4.5",
-    "mocha": "^10.4.0"
+    "mocha": "^10.7.0",
+    "napi-macros": "^2.2.2",
+    "node-gyp-build": "^4.8.1"
   },
   "prettier": "@cheshire-caat/prettier-config"
 }

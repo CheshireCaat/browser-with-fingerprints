@@ -1,13 +1,8 @@
-# Dependencies
 node_modules
-
-# Test artifacts
 test/browser
-
-# IDE artifacts
+prebuilds
 .vscode
-
-# Miscellaneous
 *.env
+build
 tools
 data
