@@ -24,12 +24,12 @@ describe('mutex', () => {
       assert.equal(typeof create, 'function');
     });
 
-    it('should properly create the named mutex', () => {
+    it('should properly create a named mutex', () => {
       assert.doesNotThrow(() => create('test'));
     });
 
-    it('should properly create the unnamed mutex', () => {
-      assert.doesNotThrow(() => create(undefined));
+    it('should throw an error when creating an unnamed mutex', () => {
+      assert.throws(() => create(undefined));
     });
   });
 
