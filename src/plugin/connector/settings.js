@@ -1,7 +1,6 @@
-const fs = require('fs');
-const once = require('once');
+const fs = require('fs/promises');
 
-exports.reset = once((path) => {
-  fs.writeFileSync(`${path}/worker_command_line.txt`, '--mock-connector');
-  fs.writeFileSync(`${path}/settings.ini`, 'RunProfileRemoverImmediately=true');
-});
+exports.reset = async (path) => {
+  await fs.writeFile(`${path}/worker_command_line.txt`, '--mock-connector');
+  await fs.writeFile(`${path}/settings.ini`, 'RunProfileRemoverImmediately=true');
+};
