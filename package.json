@@ -7,7 +7,7 @@
     "url": "git+https://github.com/CheshireCaat/browser-with-fingerprints.git"
   },
   "author": "CheshireCaat",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CheshireCaat/browser-with-fingerprints/issues",
@@ -77,7 +77,7 @@
   "devDependencies": {
     "@cheshire-caat/prettier-config": "^1.0.0",
     "dotenv": "^16.4.5",
-    "mocha": "^10.7.0",
+    "mocha": "^10.7.3",
     "napi-macros": "^2.2.2",
     "node-gyp-build": "^4.8.1"
   },

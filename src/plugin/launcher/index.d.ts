@@ -78,6 +78,12 @@ export interface Options {
    * [here](http://peter.sh/experiments/chromium-command-line-switches/).
    */
   args?: string[];
+
+  /**
+   * Service key for applying a fingerprint.
+   * @default ''
+   */
+  key?: string;
 }
 
 /**

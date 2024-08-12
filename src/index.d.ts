@@ -346,6 +346,8 @@ export declare class FingerprintPlugin {
    * **NOTE**: This method performs the fingerprint setup once. After launching the browser, the data cannot be changed.
    * In order to change fingerprint again, you'll need to restart the browser with different settings or launch a separate browser instance.
    *
+   * You must specify the service key to apply the fingerprint when launching the browser (if the fingerprint was obtained using a paid key).
+   *
    * @example
    * ```js
    * // Just for an example, you need to use the real value:
@@ -373,6 +375,8 @@ export declare class FingerprintPlugin {
    * @remarks
    * **NOTE**: This method performs the profile setup once. After launching the browser, the data cannot be changed.
    * In order to change profile again, you'll need to restart the browser with different settings or launch a separate browser instance.
+   *
+   * You must specify the service key to apply the fingerprint when launching the browser (if the fingerprint was obtained using a paid key).
    *
    * @example
    * ```js
@@ -460,6 +464,8 @@ export declare class FingerprintPlugin {
    * @remarks
    * **NOTE**: Please keep in mind that resizing the browser when using fingerprints can negatively affect anonymity.
    *
+   * You must specify the service key to apply the fingerprint when launching the browser (if the fingerprint was obtained using a paid key).
+   *
    * @example
    * An example of obtaining a fingerprint:
    *
@@ -493,6 +499,8 @@ export declare class FingerprintPlugin {
    * **NOTE**: This plugin only works with the `chromium` browser, which comes bundled with the plugin.
    * You will not be able to use other engines or change the path to the browser executable.
    * If you need to use the default browsers without fingerprint spoofing, there is no point in using this method.
+   *
+   * You must specify the service key to apply the fingerprint when launching the browser (if the fingerprint was obtained using a paid key).
    *
    * @example
    * An example of launching the browser in visible mode:
@@ -576,6 +584,8 @@ export declare class FingerprintPlugin {
    * // Use the latest available version:
    * plugin.version = 'default';
    * ```
+   *
+   * @deprecated Use the {@link FingerprintPlugin.useBrowserVersion} method.
    */
   version: string;
 }
@@ -588,14 +598,17 @@ export interface Version {
    * Browser architecture. Possible values - `x64` or `x86`.
    */
   architecture: 'x64' | 'x86';
+
   /**
    * Full browser version, for example - `115.0.5790.99`.
    */
   browser_version: string;
+
   /**
    * Full engine version, for example - `25.9.1`.
    */
   bas_version: string;
+
   /**
    * Internal identifier of the browser build.
    */

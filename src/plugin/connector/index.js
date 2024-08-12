@@ -5,7 +5,7 @@ const { notify } = require('./notifier');
 const lock = new (require('async-lock'))();
 const debug = require('debug')('browser-with-fingerprints:connector');
 const config = { timeout: env.FINGERPRINT_TIMEOUT, restart: false, timer: null };
-const client = new (require('bas-remote-node'))({ scriptName: 'FingerprintPluginV8', workingDir: env.FINGERPRINT_CWD });
+const client = new (require('bas-remote-node'))({ scriptName: 'FingerprintPluginV9', workingDir: env.FINGERPRINT_CWD });
 
 server.listen().then(({ port }) => {
   Object.assign(client.options, {
@@ -32,7 +32,7 @@ async function call(name, params = {}) {
         params?.parameters?.perfectCanvasRequest ? null : new Promise((_, reject) => {
           setTimeout(
             () => reject(new Error(`Timed out while calling the "${name}" method.`)),
-            config.timeout ?? 300000
+            config.timeout ?? 300_000
           ).unref();
         }),
       ].filter(Boolean));

@@ -25,12 +25,14 @@ exports.listen = once(() => {
 
     server.on('error', ({ code }) => {
       if (code === 'EADDRINUSE') {
-        setTimeout(() => server.listen(PORT, '127.0.0.1'), 1000).unref();
+        setTimeout(() => server.listen(PORT, HOST), 1000).unref();
       }
     });
 
-    server.listen(PORT, '127.0.0.1', () => resolve(server.address())).unref();
+    server.listen(PORT, HOST, () => resolve(server.address())).unref();
   });
 });
+
+const HOST = '127.0.0.1';
 
 const PORT = 0;

@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const mutex = require('./mutex');
 const cleaner = require('./cleaner');
 const launcher = require('./launcher');
@@ -74,6 +75,8 @@ module.exports = class FingerprintPlugin {
         },
         value: getProfilePath(options),
       },
+      pid: crypto.randomUUID(),
+      key: options.key,
     });
 
     await cleaner.run(path).ignore(pid, id);

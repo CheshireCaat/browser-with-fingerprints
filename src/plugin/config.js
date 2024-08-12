@@ -1,7 +1,7 @@
 const lock = new (require('async-lock'))();
 const { setViewport } = require('./browser');
+const { setTimeout } = require('timers/promises');
 const { readFile, writeFile } = require('fs/promises');
-const { setTimeout: sleep } = require('timers/promises');
 
 exports.configure = async (cleanup, browser, bounds = {}, sync = () => {}) => {
   browser.process.once('exit', () => cleanup(browser));
@@ -16,21 +16,22 @@ exports.configure = async (cleanup, browser, bounds = {}, sync = () => {}) => {
 };
 
 exports.synchronize = async (id, pwd, bounds = {}, action = () => {}) => {
-  const file = `${pwd}/s/${id}1.ini`;
+  const configPath = `${pwd}/s/${id}1.ini`;
 
   await lock.acquire(id, async () => {
-    let config = await readFile(file, 'utf8');
+    let configContent = await readFile(configPath, 'utf8');
 
     for (const reset of [true, false]) {
       if (!reset) await Promise.resolve(action());
 
       for (const key of ['availWidth', 'availHeight']) {
-        config = config.replace(new RegExp(`${key}=(.+)`), () => {
+        configContent = configContent.replace(new RegExp(`${key}=(.+)`), () => {
           return `${key}=${reset ? 'BAS_NOT_SET' : bounds[key]}`;
         });
       }
 
-      await writeFile(file, config).then(() => sleep(2000));
+      await writeFile(configPath, configContent);
+      await setTimeout(2000);
     }
   });
 };
