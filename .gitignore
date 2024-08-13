@@ -3,6 +3,7 @@ test/browser
 prebuilds
 .vscode
 *.env
+*.gyp
 build
 tools
 data
