@@ -128,7 +128,7 @@ export interface ProfileOptions {
 /**
  * Options related to the browser proxy configuration.
  */
-export interface ProxyOptions {
+export interface ProxyOptions extends IPExtractionOptions {
   /**
    * Change the browser language according to the country of the proxy server.
    * This setting will change the `Accept-Language` header as well as the `navigator.language` and `navigator.languages` javascript properties.
@@ -613,6 +613,46 @@ export interface Version {
    * Internal identifier of the browser build.
    */
   id: number;
+}
+
+/**
+ * Options related to the IP extraction.
+ */
+export interface IPExtractionOptions {
+  /**
+   * After receiving a response from the service URL, the IP address will be extracted from the response.
+   *
+   * This parameter specifies the method for extracting the IP address.
+   * The {@link ipExtractionParam} must also be specified in combination with this parameter.
+   *
+   * Depending on the method used, the param will be treated differently.
+   * For example, if the `regexp` method is used, the param must contain a regular expression, and so on.
+   *
+   * @default 'raw'
+   */
+  ipExtractionMethod?: 'raw' | 'xpath' | 'regexp' | 'jsonpath';
+
+  /**
+   * After receiving a response from the service URL, the IP address will be extracted from the response.
+   *
+   * This parameter specifies the param for extracting the IP address.
+   * The {@link ipExtractionMethod} must also be specified in combination with this parameter.
+   *
+   * Depending on the method used, the param will be treated differently.
+   * For example, if the `regexp` method is used, this param must contain a regular expression, and so on.
+   *
+   * @default ''
+   */
+  ipExtractionParam?: string;
+
+  /**
+   * This service URL is used to detect the external IP address.
+   *
+   * The URL will be queried through the currently installed proxy, and the response must contain the external IP address.
+   *
+   * @default ''
+   */
+  ipExtractionURL?: string;
 }
 
 /**
