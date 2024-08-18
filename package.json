@@ -19,7 +19,8 @@
   "scripts": {
     "test": "mocha",
     "format": "npx prettier -w .",
-    "release": "npm test && npm run format && npm publish",
+    "release": "npm test && npm run docs && npm run format && npm publish",
+    "docs": "npx typedoc --out docs src/index.d.ts --excludeNotDocumented",
     "mutex:prebuild-x64": "prebuildify -t 14.19.1 --arch=x64 --napi --strip",
     "mutex:prebuild-ia32": "prebuildify -t 14.19.1 --arch=ia32 --napi --strip",
     "mutex:prebuild-all": "npm run mutex:prebuild-ia32 && npm run mutex:prebuild-x64 && node ./mutex/prebuild.js"
@@ -78,7 +79,8 @@
     "@cheshire-caat/prettier-config": "^1.0.0",
     "dotenv": "^16.4.5",
     "mocha": "^10.7.3",
-    "napi-macros": "^2.2.2"
+    "napi-macros": "^2.2.2",
+    "typedoc": "^0.26.6"
   },
   "prettier": "@cheshire-caat/prettier-config"
 }

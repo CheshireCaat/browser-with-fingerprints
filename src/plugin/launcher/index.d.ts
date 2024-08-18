@@ -51,7 +51,7 @@ export interface Browser {
 /**
  * Launcher options that only apply to the browser when using the `spawn` method.
  */
-export interface Options {
+export interface LaunchOptions {
   /**
    * Specify custom debugging port. Pass `0` to discover a random port. Defaults to `0`.
    */
@@ -94,4 +94,4 @@ export interface Options {
  *
  * @internal
  */
-export declare function launch(options?: Options): Promise<Browser>;
+export declare function launch(options?: LaunchOptions): Promise<Browser>;

@@ -1,4 +1,4 @@
-import type { Browser, Options } from './plugin/launcher';
+import type { Browser, LaunchOptions as SpawnOptions } from './plugin/launcher';
 
 /**
  * Describes a time limit that can be used to filter fingerprints.
@@ -517,7 +517,7 @@ export declare class FingerprintPlugin {
    * @param options - Set of configurable options to set on the browser.
    * @returns Promise which resolves to a browser instance.
    */
-  spawn(options?: Options): Promise<Browser>;
+  spawn(options?: SpawnOptions): Promise<Browser>;
 
   /**
    * Change the request timeout that the plugin uses to work with the engine.
@@ -659,3 +659,8 @@ export interface IPExtractionOptions {
  * A default instance of the fingerprint plugin.
  */
 export declare const plugin: FingerprintPlugin;
+
+/**
+ * Re-export the types related to the default launcher.
+ */
+export { Browser, SpawnOptions };
