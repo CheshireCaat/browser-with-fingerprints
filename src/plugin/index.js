@@ -83,7 +83,7 @@ module.exports = class FingerprintPlugin {
 
     mutex.create(`BASProcess${pid}`);
 
-    const browser = await (spawn ? launcher : options.launcher ?? this.launcher).launch({
+    const browser = await (spawn ? launcher : (options.launcher ?? this.launcher)).launch({
       ...options,
       headless: false,
       userDataDir: null,

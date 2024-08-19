@@ -5,5 +5,4 @@ prebuilds
 *.env
 *.gyp
 build
-tools
 data
