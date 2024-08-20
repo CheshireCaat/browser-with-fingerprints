@@ -43,10 +43,11 @@ exports.setViewport = async (browser, { diff, width, height }) => {
  * @internal
  */
 exports.getViewport = async (cdp) => {
-  return await cdp.Runtime.evaluate({
+  const { result } = await cdp.Runtime.evaluate({
     expression: `({ height: window.innerHeight, width: window.innerWidth })`,
     returnByValue: true,
-  }).then(({ result }) => result.value);
+  });
+  return result.value;
 };
 
 /**

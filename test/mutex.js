@@ -29,7 +29,7 @@ describe('mutex', () => {
     });
 
     it('should throw an error when creating an unnamed mutex', () => {
-      assert.throws(() => create(undefined));
+      assert.throws(() => create());
     });
   });
 
