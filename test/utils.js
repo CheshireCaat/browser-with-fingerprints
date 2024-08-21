@@ -3,7 +3,7 @@ const assert = require('assert').strict;
 const { defaultArgs, getProfilePath, validateConfig, validateLauncher } = require('../src/plugin/utils');
 
 describe('utils', () => {
-  const DEFAULT_ARGS = ['--no-proxy-server', `--disable-features=NetworkServiceInProcess2`];
+  const DEFAULT_ARGS = ['--no-proxy-server', '--bas-disable-tab-hook', '--disable-features=NetworkServiceInProcess2'];
 
   describe('#defaultArgs()', () => {
     it('should add extra arguments if extensions or profile are passed', () => {
@@ -14,9 +14,9 @@ describe('utils', () => {
       });
 
       assert(args.includes('--user-data-dir=test'));
-      assert(args.includes(`--load-extension=path`));
-      assert(args.includes(`--load-extension=path,test`));
-      assert(args.includes(`--disable-extensions-except=path,test`));
+      assert(args.includes('--load-extension=path'));
+      assert(args.includes('--load-extension=path,test'));
+      assert(args.includes('--disable-extensions-except=path,test'));
     });
 
     [false, true].forEach((headless) => {
@@ -26,7 +26,7 @@ describe('utils', () => {
     });
 
     it('should always remove ignored arguments', () => {
-      ['kiosk', 'headless', 'start-maximized', 'start-fullscreen'].forEach((name) => {
+      ['kiosk', 'headless', 'user-data-dir', 'start-maximized', 'start-fullscreen'].forEach((name) => {
         for (const argument of [`--${name}`, `--${name}=value`]) {
           assert(!defaultArgs({ args: [argument] }).includes(argument));
         }
@@ -34,7 +34,10 @@ describe('utils', () => {
     });
 
     it('should always return default arguments', () => {
-      assert.deepEqual(defaultArgs().slice(0, DEFAULT_ARGS.length), DEFAULT_ARGS);
+      assert.deepEqual(
+        defaultArgs().filter((arg) => DEFAULT_ARGS.includes(arg)),
+        DEFAULT_ARGS
+      );
     });
   });
 

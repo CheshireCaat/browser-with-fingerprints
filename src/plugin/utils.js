@@ -1,7 +1,12 @@
 const path = require('path');
 
 exports.defaultArgs = ({ args = [], profile = '', devtools = false, headless = !devtools, extensions = [] } = {}) => {
-  const result = ['--no-proxy-server', '--disable-features=NetworkServiceInProcess2', `--user-data-dir=${profile}`];
+  const result = [
+    '--no-proxy-server',
+    '--bas-disable-tab-hook',
+    `--user-data-dir=${profile}`,
+    '--disable-features=NetworkServiceInProcess2',
+  ];
 
   const processed = args.reduce(
     (args, arg) => {
