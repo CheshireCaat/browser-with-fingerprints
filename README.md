@@ -8,7 +8,7 @@ This package is the basis for other plugins and doesn't allow you to automate br
 
 **Warning:** plugin is still in beta stage, it means that bugs may happen, including critical.
 
-Current supported engine version - **127.0.6533.73**.
+Current supported engine version - **128.0.6613.85**.
 
 ## About
 
@@ -54,6 +54,10 @@ These plugins are already configured to integrate with each specific library, an
 To launch the browser, the most compatible **API** is used, copying the options of the original libraries so that it's easy to add new code to your project. You can find detailed information in the corresponding repositories.
 
 When using plugins, don't forget about dependencies. Libraries do not install dependencies directly, they are listed as optional to make things easier for you. Also be aware of the possible need for additional packages or programs - for example, the **chromedriver** executable for the **selenium-webdriver** package, and so on.
+
+## Common problems
+
+You can find information about known issues related to updates, as well as ways to solve them in [this](./MIGRATION.md) guide.
 
 ## Launching the browser
 
@@ -139,7 +143,11 @@ You can also **chain** calls, since all these methods return the current plugin 
 ```js
 const { plugin } = require('browser-with-fingerprints');
 
-const fingerprint = await plugin.fetch('', {
+// Set the service key for the plugin.
+// Leave an empty string to use the free version.
+plugin.setServiceKey('');
+
+const fingerprint = await plugin.fetch({
   tags: ['Microsoft Windows', 'Chrome'],
 });
 
@@ -148,9 +156,9 @@ plugin.useProxy('127.0.0.1:8080').useFingerprint(fingerprint);
 
 Use these links to see a detailed description of the methods:
 
-- [This](src/index.d.ts#L364) one for the **useFingerprint** method (also see additional options [here](src/index.d.ts#L38)).
-- [This](src/index.d.ts#L394) one for the **useProfile** method (also see additional options [here](src/index.d.ts#L110)).
-- [This](src/index.d.ts#L422) one for the **useProxy** method (also see additional options [here](src/index.d.ts#L131)).
+- [This](src/index.d.ts#L420) one for the **useFingerprint** method (also see additional options [here](src/index.d.ts#L38)).
+- [This](src/index.d.ts#L450) one for the **useProfile** method (also see additional options [here](src/index.d.ts#L119)).
+- [This](src/index.d.ts#L478) one for the **useProxy** method (also see additional options [here](src/index.d.ts#L142)).
 
 The usage of these methods is very similar - each takes two parameters, the first of which is the configuration data itself, and the second is additional options.
 The fingerprint and proxy will not be changed unless the appropriate method is used. In this case, all settings related to browser fingerprinting will remain at their original values.
@@ -204,7 +212,11 @@ The second is additional options for applying a fingerprint, most of which are a
 ```js
 const { plugin } = require('browser-with-fingerprints');
 
-const fingerprint = await plugin.fetch('', {
+// Set the service key for the plugin.
+// Leave an empty string to use the free version.
+plugin.setServiceKey('');
+
+const fingerprint = await plugin.fetch({
   tags: ['Microsoft Windows', 'Chrome'],
 });
 
@@ -222,7 +234,11 @@ Pass the service key as the first argument and additional parameters as the seco
 ```js
 const { plugin } = require('browser-with-fingerprints');
 
-const fingerprint = await plugin.fetch('SERVICE_KEY', {
+// Set the service key for the plugin.
+// Leave an empty string to use the free version.
+plugin.setServiceKey('');
+
+const fingerprint = await plugin.fetch({
   tags: ['Microsoft Windows', 'Chrome'],
   // Fetch fingerprints only with a browser version higher than 115:
   minBrowserVersion: 115,
@@ -239,15 +255,19 @@ The key must match the one with which the fingerprint was obtained - it can only
 ```js
 const { plugin } = require('browser-with-fingerprints');
 
-const fingerprint = await plugin.fetch('SERVICE_KEY', {
+// Set the service key for the plugin.
+// Leave an empty string to use the free version.
+plugin.setServiceKey('');
+
+const fingerprint = await plugin.fetch({
   tags: ['Microsoft Windows', 'Chrome'],
 });
 plugin.useFingerprint(fingerprint);
 
-await plugin.spawn({ key: 'SERVICE_KEY' });
+await plugin.spawn();
 ```
 
-All possible settings for **fetch** method, as well as their descriptions, you can find [here](src/index.d.ts#L186).
+All possible settings for **fetch** method, as well as their descriptions, you can find [here](src/index.d.ts#L242).
 
 The special `current` value can be used to filter fingerprints by browser version - in this case, the version installed for the plugin will be used.
 It can be very convenient as the browser and fingerprint versions will be exactly the same and you don't have to enter the exact values in multiple places.
@@ -260,8 +280,12 @@ In this way, you can speed up the process of launching the browser with the para
 const { readFile, writeFile } = require('fs/promises');
 const { plugin } = require('browser-with-fingerprints');
 
+// Set the service key for the plugin.
+// Leave an empty string to use the free version.
+plugin.setServiceKey('');
+
 // Save the fingerprint to a file:
-const fingerprint = await plugin.fetch('', {
+const fingerprint = await plugin.fetch({
   tags: ['Microsoft Windows', 'Chrome'],
 });
 await writeFile('fingerprint.json', fingerprint);
@@ -270,7 +294,7 @@ await writeFile('fingerprint.json', fingerprint);
 plugin.useFingerprint(await readFile('fingerprint.json', 'utf8'));
 ```
 
-You can learn more about the options directly when adding these methods - just use the built-in [annotations](src/index.d.ts#L484).
+You can learn more about the options directly when adding these methods - just use the built-in [annotations](src/index.d.ts#L540).
 
 You can use any [tags](src/index.d.ts#L15), filters (e.g. [time](src/index.d.ts#L8) limit) and settings if you have a service key.
 
@@ -331,7 +355,7 @@ After launching a browser with your profile, the fingerprint and proxy data you 
 This setting itself is saved between browser launches, that is, it behaves in the same way as other similar methods.
 To run different profiles, you need to call this method again with different values for the profile directory.
 
-You can learn more about the parameters and additional options for this method [here](src/index.d.ts#L394) and [here](src/index.d.ts#L110).
+You can learn more about the parameters and additional options for this method [here](src/index.d.ts#L450) and [here](src/index.d.ts#L119).
 
 ### Proxy usage
 
@@ -350,7 +374,7 @@ plugin.useProxy('127.0.0.1:8080', {
 });
 ```
 
-You can learn more about the parameters and additional options for this method [here](src/index.d.ts#L422) and [here](src/index.d.ts#L131).
+You can learn more about the parameters and additional options for this method [here](src/index.d.ts#L478) and [here](src/index.d.ts#L142).
 
 The browser supports two types of proxies - **https** and **socks5**.
 It is better to always specify the proxy type in the address line - otherwise, **https** will be used by default.

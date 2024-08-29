@@ -1,3 +1,4 @@
+const dedent = require('dedent');
 const { env } = require('process');
 const server = require('./server');
 const { reset } = require('./settings');
@@ -5,7 +6,10 @@ const { notify } = require('./notifier');
 const lock = new (require('async-lock'))();
 const debug = require('debug')('browser-with-fingerprints:connector');
 const config = { timeout: env.FINGERPRINT_TIMEOUT, restart: false, timer: null };
-const client = new (require('bas-remote-node'))({ scriptName: 'FingerprintPluginV9', workingDir: env.FINGERPRINT_CWD });
+const client = new (require('bas-remote-node'))({
+  scriptName: 'FingerprintPluginV10',
+  workingDir: env.FINGERPRINT_CWD,
+});
 
 server.listen().then(({ port }) => {
   Object.assign(client.options, {
@@ -13,6 +17,17 @@ server.listen().then(({ port }) => {
   });
   debug(`PCAP server listening on ${port}`);
 });
+
+const prepareError = (message) => {
+  if (message.includes('key is missing')) {
+    return dedent`
+      ${message}
+      Due to the latest updates, it is necessary to specify the key not only when receiving it, but also when applying it.
+      To solve the problem, use the documentation at the link - https://github.com/CheshireCaat/browser-with-fingerprints#common-problems.
+    `;
+  }
+  return message;
+};
 
 async function call(name, params = {}) {
   let timer = clearTimeout(config.timer);
@@ -29,7 +44,7 @@ async function call(name, params = {}) {
       // prettier-ignore
       const { error, ...result } = await Promise.race([
         client.runFunction(`api_${name}`, params),
-        params?.parameters?.perfectCanvasRequest ? null : new Promise((_, reject) => {
+        params?.options?.perfectCanvasRequest ? null : new Promise((_, reject) => {
           setTimeout(
             () => reject(new Error(`Timed out while calling the "${name}" method.`)),
             config.timeout ?? 300_000
@@ -37,7 +52,9 @@ async function call(name, params = {}) {
         }),
       ].filter(Boolean));
 
-      if (error) throw new Error(error);
+      if (error) {
+        throw new Error(prepareError(error));
+      }
       return result.response ?? result;
     } finally {
       config.timer = setTimeout(() => {
@@ -73,6 +90,6 @@ exports.setEngineOptions = ({ folder = '', timeout = 0 } = {}) => {
 
 exports.versions = (format = 'default') => call('versions', { format });
 
-exports.fetch = (token, parameters, configuration) => call('fetch', { token, parameters, ...configuration });
+exports.fetch = (key, options, configuration) => call('fetch', { key, options, ...configuration });
 
 exports.setup = (proxy, fingerprint, configuration) => call('setup', { proxy, fingerprint, ...configuration });

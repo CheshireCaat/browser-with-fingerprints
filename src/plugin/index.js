@@ -63,6 +63,10 @@ module.exports = class FingerprintPlugin {
     setEngineOptions({ folder });
   }
 
+  setServiceKey(key = '') {
+    serviceKey = key;
+  }
+
   async #run(spawn, options = {}) {
     const { proxy, fingerprint } = this.setProxyFromArguments(options.args);
 
@@ -76,7 +80,7 @@ module.exports = class FingerprintPlugin {
         value: getProfilePath(options),
       },
       pid: crypto.randomUUID(),
-      key: options.key,
+      key: typeof options.key === 'string' ? options.key : serviceKey,
     });
 
     await cleaner.run(path).ignore(pid, id);
@@ -106,9 +110,9 @@ module.exports = class FingerprintPlugin {
     return await versions(format /* value */);
   }
 
-  async fetch(key, options = {}) {
-    const config = { version: this.version };
-    return await fetch(key, options, config);
+  async fetch(...parameters) {
+    const [key, options = {}] = parameters.length === 2 ? parameters : [serviceKey, parameters[0]];
+    return await fetch(key, options, { version: this.version });
   }
 
   async launch(options = {}) {
@@ -119,3 +123,5 @@ module.exports = class FingerprintPlugin {
     return await this.#run(true, options);
   }
 };
+
+let serviceKey = null;
