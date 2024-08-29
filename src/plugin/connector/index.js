@@ -40,7 +40,7 @@ async function call(name, params = {}) {
       }
       await client.start();
       await reset(client._engine.exeDir, client._engine.zipDir);
-      if (name === 'fetch') timer = notify(params.token);
+      if (name === 'fetch') timer = notify(params.key);
       // prettier-ignore
       const { error, ...result } = await Promise.race([
         client.runFunction(`api_${name}`, params),
