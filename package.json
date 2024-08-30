@@ -19,7 +19,7 @@
   "scripts": {
     "test": "mocha",
     "format": "npx prettier -w .",
-    "release": "npm test && npm run docs && npm run format && npm publish",
+    "release": "npm test && npm run format && npm publish",
     "mutex:prebuild-x64": "prebuildify -t 14.19.1 --arch=x64 --napi --strip",
     "mutex:prebuild-ia32": "prebuildify -t 14.19.1 --arch=ia32 --napi --strip",
     "mutex:prebuild-all": "npm run mutex:prebuild-ia32 && npm run mutex:prebuild-x64 && node ./mutex/prebuild.js"
