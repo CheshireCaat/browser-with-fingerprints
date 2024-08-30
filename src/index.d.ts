@@ -44,6 +44,7 @@ export interface FingerprintOptions {
    * The trade-off is higher system resource usage because you need to do more calculations to render the bigger picture.
    *
    * The **JavaScript** options related to pixel density, such as `devicePixelRatio`, will be replaced correctly whether this option is enabled or not.
+   *
    * @default true
    */
   emulateDeviceScaleFactor?: boolean;
@@ -52,12 +53,14 @@ export interface FingerprintOptions {
    * The **Chrome** browser has a Sensor API that allows you to read data from devices such as accelerometer, gyroscope and others. Data from these devices is only available on mobile platforms.
    *
    * After enabling this option, data for these devices will be generated and replaced automatically. Enable this option to emulate mobile fingerprints more accurately.
+   *
    * @default true
    */
   emulateSensorAPI?: boolean;
 
   /**
    * If this option is set to `true`, the **PerfectCanvas** replacement will be enabled. The fingerprint must contain the **PerfectCanvas** data in order for it to work.
+   *
    * @default true
    */
   usePerfectCanvas?: boolean;
@@ -67,12 +70,14 @@ export interface FingerprintOptions {
    * Therefore, it's recommended to download font pack with most popular fonts. This setting allows to use font pack if it's installed.
    *
    * More info about font pack and download link can be found [here](https://wiki.bablosoft.com/doku.php?id=fontpack).
+   *
    * @default true
    */
   useFontPack?: boolean;
 
   /**
    * If this option is set to `true`, API results that return element coordinates will be updated to protect against `ClientRects` fingerprinting.
+   *
    * @default false
    */
   safeElementSize?: boolean;
@@ -81,24 +86,28 @@ export interface FingerprintOptions {
    * If this option is set to `true`, the battery API will show a different value for each thread, which will prevent sites from identifying your real identity.
    *
    * In case the device from which the fingerprint was obtained does not have a battery API, it will always return 100% battery level.
+   *
    * @default true
    */
   safeBattery?: boolean;
 
   /**
    * If this option is set to `true`, canvas will be enabled, and noise will be added to all data returned from canvas.
+   *
    * @default true
    */
   safeCanvas?: boolean;
 
   /**
    * If this option is set to `true`, audio will be enabled, and noise will be added to the sound, and your hardware properties, such as the sample rate and number of channels will be changed.
+   *
    * @default true
    */
   safeAudio?: boolean;
 
   /**
    * If this option is set to `true`, **WebGL** will be enabled, and noise will be added to the **WebGL** canvas, and your hardware properties, such as the video card manufacturer and renderer will be changed.
+   *
    * @default true
    */
   safeWebGL?: boolean;
@@ -112,6 +121,7 @@ export interface ProfileOptions {
    * Always load a fingerprint from the profile folder.
    *
    * In case the profile folder already exists and contains fingerprint data, tell the plugin to apply the last fingerprint used for this profile.
+   *
    * @default true
    */
   loadFingerprint?: boolean;
@@ -120,6 +130,7 @@ export interface ProfileOptions {
    * Always load a proxy from the profile folder.
    *
    * In case the profile folder already exists and contains proxy data, tell the plugin to apply the last proxy used for this profile.
+   *
    * @default true
    */
   loadProxy?: boolean;
@@ -128,10 +139,11 @@ export interface ProfileOptions {
 /**
  * Options related to the browser proxy configuration.
  */
-export interface ProxyOptions extends IPExtractionOptions {
+export interface ProxyOptions {
   /**
    * Change the browser language according to the country of the proxy server.
    * This setting will change the `Accept-Language` header as well as the `navigator.language` and `navigator.languages` javascript properties.
+   *
    * @default true
    */
   changeBrowserLanguage?: boolean;
@@ -140,29 +152,68 @@ export interface ProxyOptions extends IPExtractionOptions {
    * Change the geolocation of your browser to match the IP address of the proxy server.
    * The location will be set at a point close to the longitude and latitude of the server.
    * If this option is disabled, the browser's request to access your geolocation will be rejected.
+   *
    * @default false
    */
   changeGeolocation?: boolean;
 
   /**
-   * Determine the IP address of the proxy server by requesting an external service.
-   * This option can be used if the IP address that you use to connect the proxy server does not match the IP address that is visible to the site (external IP address).
-   * @default true
-   */
-  detectExternalIP?: boolean;
-
-  /**
    * Change your browser's timezone to match the IP address of the proxy server.
    * For example, if the proxy server is located in the United Kingdom, then the browser's time zone offset will be `UTC+00:00`.
+   *
    * @default true
    */
   changeTimezone?: boolean;
 
   /**
    * Replace the IP address provided by **WebRTC** with the IP address of the proxy server.
+   *
    * @default true
    */
   changeWebRTC?: boolean;
+
+  /**
+   * After receiving a response from the service URL, the IP address will be extracted from the response.
+   *
+   * This parameter specifies the method for extracting the IP address.
+   * The {@link ipExtractionParam} must also be specified in combination with this parameter.
+   *
+   * Depending on the method used, the param will be treated differently.
+   * For example, if the `regexp` method is used, the param must contain a regular expression, and so on.
+   *
+   * @default 'raw'
+   */
+  ipExtractionMethod?: 'raw' | 'xpath' | 'regexp' | 'jsonpath';
+
+  /**
+   * After receiving a response from the service URL, the IP address will be extracted from the response.
+   *
+   * This parameter specifies the param for extracting the IP address.
+   * The {@link ipExtractionMethod} must also be specified in combination with this parameter.
+   *
+   * Depending on the method used, the param will be treated differently.
+   * For example, if the `regexp` method is used, this param must contain a regular expression, and so on.
+   *
+   * @default ''
+   */
+  ipExtractionParam?: string;
+
+  /**
+   * This service URL is used to detect the external IP address.
+   *
+   * The URL will be queried through the currently installed proxy, and the response must contain the external IP address.
+   *
+   * @default ''
+   */
+  ipExtractionURL?: string;
+
+  /**
+   * Determine the IP address of the proxy server by requesting an external service.
+   * This option can be used if the IP address that you use to connect the proxy server does not match the IP address that is visible to the site (external IP address).
+   *
+   * @default true
+   */
+  detectExternalIP?: boolean;
 
   /**
    * The method that will be used to get information about the IP.
@@ -170,12 +221,17 @@ export interface ProxyOptions extends IPExtractionOptions {
    * By default, the internal `database` method is used - it is fast and always available.
    * Even though the database is constantly updated, this method may not be the most accurate compared to others.
    * So you can also use `ip-api.com` service - the free version has a limit of 45 requests per IP (unlike the full version).
+   *
+   * @default 'database'
    */
-  ipInfoMethod?: string;
+  ipInfoMethod?: 'database' | 'ip-api.com';
 
   /**
    * API key from the [ip-api.com](https://ip-api.com/) service (available after purchase).
+   *
    * This parameter is used only if the method is set to `ip-api.com` value.
+   *
+   * @default '''
    */
   ipInfoKey?: string;
 }
@@ -482,6 +538,7 @@ export declare class FingerprintPlugin {
    * @returns Promise which resolves to a fingerprint string.
    */
   fetch(key: string, options?: FetchOptions): Promise<string>;
+  fetch(options?: FetchOptions): Promise<string>;
 
   /**
    * Launches a browser instance with given arguments and options when specified.
@@ -520,74 +577,55 @@ export declare class FingerprintPlugin {
   spawn(options?: SpawnOptions): Promise<Browser>;
 
   /**
-   * Change the request timeout that the plugin uses to work with the engine.
-   * This method is an alternative to using the `FINGERPRINT_TIMEOUT` environment variable.
+   * Set the request timeout that the plugin uses to work with the engine.
    *
-   * You can read a bit more about these settings [here](https://github.com/CheshireCaat/browser-with-fingerprints#testing).
+   * You can read a bit more about these settings [here](https://github.com/CheshireCaat/browser-with-fingerprints#configuring-plugin).
    *
    * @remarks
-   * **NOTE**: This action changes the configuration for all instances of the plugin, that is, it works globally, just like environment variables.
+   * **NOTE**: This action changes the configuration for all instances of the plugin, that is, it works globally.
    *
    * @example
    * ```js
    * plugin.setRequestTimeout(300000);
    * ```
    *
-   * @param timeout - The selected request timeout.
+   * @param timeout - The request timeout that the plugin engine will use.
    */
   setRequestTimeout(timeout: number): void;
 
   /**
-   * Change the working folder that the plugin uses to work with the engine.
-   * This method is an alternative to using the `FINGERPRINT_CWD` environment variable.
+   * Set the working folder that the plugin uses to work with the engine.
    *
-   * You can read a bit more about these settings [here](https://github.com/CheshireCaat/browser-with-fingerprints#testing).
+   * You can read a bit more about these settings [here](https://github.com/CheshireCaat/browser-with-fingerprints#configuring-plugin).
    *
    * @remarks
-   * **NOTE**: This action changes the configuration for all instances of the plugin, that is, it works globally, just like environment variables.
+   * **NOTE**: This action changes the configuration for all instances of the plugin, that is, it works globally.
    *
    * @example
    * ```js
    * plugin.setWorkingFolder('data');
    * ```
    *
-   * @param folder - The selected working folder.
+   * @param folder - The working folder that the plugin engine will use.
    */
   setWorkingFolder(folder: string): void;
 
   /**
-   * Get or set the current browser version used by the plugin instance.
+   * Set the fingerprint service key for all plugin methods that require it.
    *
-   * Initially it is set to `default`, which means that the latest available version will be used.
-   * The same behavior can be achieved by setting this property to an empty string or a zero identifier.
-   * Also you can use the `random` value to select a random version, or use the version identifier instead of the version string.
-   *
-   * In order to get a list of available versions, use the `versions` method - the return values (version numbers and identifiers) can be used for this property.
+   * An empty value can be used here, in which case the free version of fingerprint service will be used for the plugin.
    *
    * @remarks
-   * **NOTE**: Please keep in mind that this property only affects a specific instance of the plugin, not the entire library.
+   * **NOTE**: This action changes the configuration for all instances of the plugin, that is, it works globally.
    *
-   * @example
+   *  @example
    * ```js
-   * // Use a specific version based on the full version string:
-   * plugin.version = '115.0.5790.99';
-   *
-   * // Use a specific version based on the major version string:
-   * plugin.version = '115';
-   *
-   * // Use a specific version based on the version identifier:
-   * plugin.version = '1';
-   *
-   * // Use a random version from all available:
-   * plugin.version = 'random';
-   *
-   * // Use the latest available version:
-   * plugin.version = 'default';
+   * plugin.setServiceKey('key');
    * ```
    *
-   * @deprecated Use the {@link FingerprintPlugin.useBrowserVersion} method.
+   * @param key - The service key for obtaining and applying a fingerprint.
    */
-  version: string;
+  setServiceKey(key: string): void;
 }
 
 /**
@@ -613,46 +651,6 @@ export interface Version {
    * Internal identifier of the browser build.
    */
   id: number;
-}
-
-/**
- * Options related to the IP extraction.
- */
-export interface IPExtractionOptions {
-  /**
-   * After receiving a response from the service URL, the IP address will be extracted from the response.
-   *
-   * This parameter specifies the method for extracting the IP address.
-   * The {@link ipExtractionParam} must also be specified in combination with this parameter.
-   *
-   * Depending on the method used, the param will be treated differently.
-   * For example, if the `regexp` method is used, the param must contain a regular expression, and so on.
-   *
-   * @default 'raw'
-   */
-  ipExtractionMethod?: 'raw' | 'xpath' | 'regexp' | 'jsonpath';
-
-  /**
-   * After receiving a response from the service URL, the IP address will be extracted from the response.
-   *
-   * This parameter specifies the param for extracting the IP address.
-   * The {@link ipExtractionMethod} must also be specified in combination with this parameter.
-   *
-   * Depending on the method used, the param will be treated differently.
-   * For example, if the `regexp` method is used, this param must contain a regular expression, and so on.
-   *
-   * @default ''
-   */
-  ipExtractionParam?: string;
-
-  /**
-   * This service URL is used to detect the external IP address.
-   *
-   * The URL will be queried through the currently installed proxy, and the response must contain the external IP address.
-   *
-   * @default ''
-   */
-  ipExtractionURL?: string;
 }
 
 /**

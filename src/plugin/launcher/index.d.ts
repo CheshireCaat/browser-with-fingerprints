@@ -64,6 +64,7 @@ export interface LaunchOptions {
 
   /**
    * Whether to run browser in headless mode.
+   *
    * @default true
    */
   headless?: boolean;
@@ -81,6 +82,7 @@ export interface LaunchOptions {
 
   /**
    * Service key for applying a fingerprint.
+   *
    * @default ''
    */
   key?: string;
