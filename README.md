@@ -306,7 +306,7 @@ For a free version you won't be able to use other tags than the default ones, as
 // Leave an empty string to use the free version.
 plugin.setServiceKey('');
 
-const fingerprint = await plugin.fetch('', {
+const fingerprint = await plugin.fetch({
   // You can only use these tags with the free version:
   tags: ['Microsoft Windows', 'Chrome'],
   // You also cannot use such filters in the free version:
