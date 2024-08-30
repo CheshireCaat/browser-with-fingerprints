@@ -143,7 +143,7 @@ You can also **chain** calls, since all these methods return the current plugin 
 ```js
 const { plugin } = require('browser-with-fingerprints');
 
-// Set the service key for the plugin.
+// Set the service key for the plugin (you can buy it here https://bablosoft.com/directbuy/FingerprintSwitcher/2).
 // Leave an empty string to use the free version.
 plugin.setServiceKey('');
 
@@ -212,7 +212,7 @@ The second is additional options for applying a fingerprint, most of which are a
 ```js
 const { plugin } = require('browser-with-fingerprints');
 
-// Set the service key for the plugin.
+// Set the service key for the plugin (you can buy it here https://bablosoft.com/directbuy/FingerprintSwitcher/2).
 // Leave an empty string to use the free version.
 plugin.setServiceKey('');
 
@@ -234,7 +234,7 @@ Pass the service key as the first argument and additional parameters as the seco
 ```js
 const { plugin } = require('browser-with-fingerprints');
 
-// Set the service key for the plugin.
+// Set the service key for the plugin (you can buy it here https://bablosoft.com/directbuy/FingerprintSwitcher/2).
 // Leave an empty string to use the free version.
 plugin.setServiceKey('');
 
@@ -255,7 +255,7 @@ The key must match the one with which the fingerprint was obtained - it can only
 ```js
 const { plugin } = require('browser-with-fingerprints');
 
-// Set the service key for the plugin.
+// Set the service key for the plugin (you can buy it here https://bablosoft.com/directbuy/FingerprintSwitcher/2).
 // Leave an empty string to use the free version.
 plugin.setServiceKey('');
 
@@ -280,7 +280,7 @@ In this way, you can speed up the process of launching the browser with the para
 const { readFile, writeFile } = require('fs/promises');
 const { plugin } = require('browser-with-fingerprints');
 
-// Set the service key for the plugin.
+// Set the service key for the plugin (you can buy it here https://bablosoft.com/directbuy/FingerprintSwitcher/2).
 // Leave an empty string to use the free version.
 plugin.setServiceKey('');
 
@@ -298,10 +298,14 @@ You can learn more about the options directly when adding these methods - just u
 
 You can use any [tags](src/index.d.ts#L15), filters (e.g. [time](src/index.d.ts#L8) limit) and settings if you have a service key.
 
-If you specify an empty string as the first argument, the free version will be used.
+If you specify an empty string as the first argument for the `fetch` or the `setServiceKey` method, the free version will be used.
 For a free version you won't be able to use other tags than the default ones, as well as some other filters:
 
 ```js
+// Set the service key for the plugin (you can buy it here https://bablosoft.com/directbuy/FingerprintSwitcher/2).
+// Leave an empty string to use the free version.
+plugin.setServiceKey('');
+
 const fingerprint = await plugin.fetch('', {
   // You can only use these tags with the free version:
   tags: ['Microsoft Windows', 'Chrome'],
@@ -326,6 +330,11 @@ The second parameter is additional options that are primarily responsible for lo
 const path = require('path');
 const { plugin } = require('browser-with-fingerprints');
 
+// Set the service key for the plugin (you can buy it here https://bablosoft.com/directbuy/FingerprintSwitcher/2).
+// Leave an empty string to use the free version.
+plugin.setServiceKey('');
+
+// The key may be required if the fingerprint will be used from the profile.
 plugin.useProfile(path.resolve('./profile'), {
   // Don't load fingerprint from profile folder:
   loadFingerprint: false,

@@ -1,4 +1,4 @@
-# Migration Guide
+# Migration guide
 
 This document contains instructions for migrating and updating to the latest versions of the engine and describes solutions to the most common problems.
 
@@ -55,8 +55,9 @@ main();
 const { plugin } = require('browser-with-fingerprints');
 
 async function main() {
-  // Set the service key globally:
-  plugin.setServiceKey('SERVICE_KEY');
+  // Set the service key for the plugin (you can buy it here https://bablosoft.com/directbuy/FingerprintSwitcher/2).
+  // Leave an empty string to use the free version.
+  plugin.setServiceKey('');
 
   // Optionally omit key parameter if you do not need an override:
   const fingerprint = await plugin.fetch({
@@ -65,7 +66,7 @@ async function main() {
 
   plugin.useFingerprint(fingerprint);
 
-  // Remove the key option if you do not need an override:
+  // Omit the key option if you do not need an override:
   await plugin.launch({ headless: false });
 }
 
