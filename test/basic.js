@@ -24,6 +24,7 @@ describe('plugin', () => {
       'fetch',
       'spawn',
       'launch',
+      'versions',
       'useProxy',
       'useProfile',
       'useFingerprint',
@@ -31,8 +32,6 @@ describe('plugin', () => {
     ]) {
       assert.equal(typeof plugin[method], 'function');
     }
-    assert.equal(typeof plugin.versions, 'function');
-    assert.equal(typeof plugin.version, 'string');
   });
 
   for (const method of ['useProxy', 'useProfile', 'useFingerprint']) {

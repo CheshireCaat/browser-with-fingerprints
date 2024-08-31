@@ -526,7 +526,7 @@ export declare class FingerprintPlugin {
    * An example of obtaining a fingerprint:
    *
    * ```js
-   * const result = await plugin.fetch('FINGERPRINT_KEY', {
+   * const result = await plugin.fetch({
    *   tags: ['Desktop', 'Chrome'],
    *   minBrowserVersion: 115,
    *   timeLimit: '15 days',
