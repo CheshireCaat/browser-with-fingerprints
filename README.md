@@ -25,7 +25,7 @@ This result cannot be achieved using only the replacement of various browser pro
 
 ![WebGL](https://github.com/CheshireCaat/browser-with-fingerprints/raw/master/assets/webgl.jpg)
 
-You can learn more by following this [link](https://fp.bablosoft.com/#capabilities).
+You can learn more by following [this](https://fp.bablosoft.com/#capabilities) link.
 
 ## Installation
 
@@ -53,7 +53,8 @@ These plugins are already configured to integrate with each specific library, an
 
 To launch the browser, the most compatible **API** is used, copying the options of the original libraries so that it's easy to add new code to your project. You can find detailed information in the corresponding repositories.
 
-When using plugins, don't forget about dependencies. Libraries do not install dependencies directly, they are listed as optional to make things easier for you. Also be aware of the possible need for additional packages or programs - for example, the **chromedriver** executable for the **selenium-webdriver** package, and so on.
+When using plugins, don't forget about dependencies. Libraries do not install dependencies directly, they are listed as optional to make things easier for you.
+Also, keep in mind the potential need for additional packages or programs - for example, the **chromedriver** executable for the **selenium-webdriver** package, and so on.
 
 ## Common problems
 

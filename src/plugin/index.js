@@ -83,7 +83,7 @@ module.exports = class FingerprintPlugin {
       key: typeof options.key === 'string' ? options.key : serviceKey,
     });
 
-    await cleaner.run(path).ignore(pid, id);
+    await cleaner.watch(pwd).ignore(pwd, pid, id);
 
     mutex.create(`BASProcess${pid}`);
 
@@ -97,7 +97,7 @@ module.exports = class FingerprintPlugin {
     });
 
     await (spawn ? configure : this.configure.bind(this))(
-      () => cleaner.include(pid, id),
+      () => cleaner.include(pwd, pid, id),
       browser,
       bounds,
       synchronize.bind(null, id, pwd, bounds)
