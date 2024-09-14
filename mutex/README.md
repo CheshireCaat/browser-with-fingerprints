@@ -38,7 +38,10 @@ First, create a **binding.gyp** file in the root directory of the project:
         ]
       ]
     }
-  ]
+  ],
+  "variables": {
+    "openssl_fips": ""
+  }
 }
 ```
 

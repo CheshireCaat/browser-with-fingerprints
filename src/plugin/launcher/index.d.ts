@@ -85,7 +85,7 @@ export interface LaunchOptions {
    *
    * @default ''
    */
-  key?: string;
+  // key?: string;
 }
 
 /**
