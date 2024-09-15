@@ -3,7 +3,7 @@ const mutex = require('./mutex');
 const cleaner = require('./cleaner');
 const launcher = require('./launcher');
 const { configure, synchronize } = require('./config');
-const { setup, fetch, versions, setEngineOptions } = require('./connector');
+const { close, setup, fetch, versions, setEngineOptions } = require('./connector');
 const { defaultArgs, getProfilePath, validateConfig, validateLauncher } = require('./utils');
 
 module.exports = class FingerprintPlugin {
@@ -15,6 +15,7 @@ module.exports = class FingerprintPlugin {
   constructor(launcher) {
     this.launcher = launcher;
     this.version = 'default';
+    this.close = close;
   }
 
   useFingerprint(value = '', options = {}) {

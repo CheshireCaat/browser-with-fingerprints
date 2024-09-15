@@ -87,9 +87,11 @@ exports.setEngineOptions = ({ folder = '', timeout = 0 } = {}) => {
     Object.assign(config, { restart });
     client.setWorkingFolder(folder);
   }
-  folder && (config.folder = folder);
   timeout && (config.timeout = timeout);
+  folder && (config.folder = folder);
 };
+
+exports.close = () => lock.acquire('client', () => client.close());
 
 exports.versions = (format = 'default') => call('versions', { format });
 
