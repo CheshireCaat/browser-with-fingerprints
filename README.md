@@ -25,7 +25,7 @@ This result cannot be achieved using only the replacement of various browser pro
 
 ![WebGL](https://github.com/CheshireCaat/browser-with-fingerprints/raw/master/assets/webgl.jpg)
 
-You can learn more by following this [link](https://fp.bablosoft.com/#capabilities).
+You can learn more by following [this](https://fp.bablosoft.com/#capabilities) link.
 
 ## Installation
 
@@ -53,7 +53,8 @@ These plugins are already configured to integrate with each specific library, an
 
 To launch the browser, the most compatible **API** is used, copying the options of the original libraries so that it's easy to add new code to your project. You can find detailed information in the corresponding repositories.
 
-When using plugins, don't forget about dependencies. Libraries do not install dependencies directly, they are listed as optional to make things easier for you. Also be aware of the possible need for additional packages or programs - for example, the **chromedriver** executable for the **selenium-webdriver** package, and so on.
+When using plugins, don't forget about dependencies. Libraries do not install dependencies directly, they are listed as optional to make things easier for you.
+Also, keep in mind the potential need for additional packages or programs - for example, the **chromedriver** executable for the **selenium-webdriver** package, and so on.
 
 ## Common problems
 
@@ -109,9 +110,12 @@ You can also find out about it directly [here](src/index.d.ts).
 
 ## Configuring plugin
 
-At the moment, it is possible to change the working folder and timeout for requests to the engine, which is used when fetching, applying fingerprints, and so on:
+At the moment, it is possible to change the service key, working folder and timeout for requests to the engine, which is used when fetching, applying fingerprints, and so on:
 
 ```js
+// Set the fingerprint service key for all plugin methods that require it.
+plugin.setServiceKey('SERVICE_KEY');
+
 // Set the folder where the plugin engine will be installed:
 plugin.setWorkingFolder('./engine');
 
@@ -123,7 +127,7 @@ The methods from the example above change the settings globally, that is, for al
 
 The default values are the `./data` directory for the working folder and `300000` milliseconds for the request timeout.
 
-The same result can be achieved using environment variables, however it is strongly recommended to use the described methods.
+An empty string is used for the fingerprint service key by default, which means that the free version of the service will be used.
 
 ## Configuring browser
 
@@ -229,7 +233,7 @@ plugin.useFingerprint(fingerprint, {
 ```
 
 In order to obtain fingerprints you should use the **fetch** plugin method.
-Pass the service key as the first argument and additional parameters as the second, if necessary:
+Pass the service key as the first argument for the **serviceKey** and additional parameters for the **fetch**, if necessary:
 
 ```js
 const { plugin } = require('browser-with-fingerprints');
@@ -249,18 +253,17 @@ const fingerprint = await plugin.fetch({
 });
 ```
 
-**Warning:** according to the latest engine and service updates, now it's also necessary to specify the service key for applying the fingerprint.
-The key must match the one with which the fingerprint was obtained - it can only be omitted if the free version was used (an empty string for the key):
+In order to use filters and many other settings from the example above, you will need a premium key, the same applies to tags that differ from the default ones:
 
 ```js
 const { plugin } = require('browser-with-fingerprints');
 
 // Set the service key for the plugin (you can buy it here https://bablosoft.com/directbuy/FingerprintSwitcher/2).
-// Leave an empty string to use the free version.
-plugin.setServiceKey('');
+plugin.setServiceKey('SERVICE_KEY');
 
+// In order to use custom tags you need the premium key:
 const fingerprint = await plugin.fetch({
-  tags: ['Microsoft Windows', 'Chrome'],
+  tags: ['Android', 'Chrome'],
 });
 plugin.useFingerprint(fingerprint);
 
@@ -306,7 +309,7 @@ For a free version you won't be able to use other tags than the default ones, as
 // Leave an empty string to use the free version.
 plugin.setServiceKey('');
 
-const fingerprint = await plugin.fetch('', {
+const fingerprint = await plugin.fetch({
   // You can only use these tags with the free version:
   tags: ['Microsoft Windows', 'Chrome'],
   // You also cannot use such filters in the free version:

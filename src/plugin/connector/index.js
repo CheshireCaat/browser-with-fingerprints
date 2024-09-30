@@ -1,14 +1,17 @@
 const dedent = require('dedent');
-const { env } = require('process');
 const server = require('./server');
 const { reset } = require('./settings');
 const { notify } = require('./notifier');
 const lock = new (require('async-lock'))();
+const RemoteClient = require('bas-remote-node');
 const debug = require('debug')('browser-with-fingerprints:connector');
-const config = { timeout: env.FINGERPRINT_TIMEOUT, restart: false, timer: null };
-const client = new (require('bas-remote-node'))({
-  scriptName: 'FingerprintPluginV10',
-  workingDir: env.FINGERPRINT_CWD,
+
+const SCRIPT_VERSION = 10;
+const DEFAULT_TIMEOUT = 300_000;
+const config = { timeout: process.env.FINGERPRINT_TIMEOUT, restart: false, timer: null };
+const client = new RemoteClient({
+  scriptName: `FingerprintPluginV${SCRIPT_VERSION}`,
+  workingDir: process.env.FINGERPRINT_CWD,
 });
 
 server.listen().then(({ port }) => {
@@ -47,7 +50,7 @@ async function call(name, params = {}) {
         params?.options?.perfectCanvasRequest ? null : new Promise((_, reject) => {
           setTimeout(
             () => reject(new Error(`Timed out while calling the "${name}" method.`)),
-            config.timeout ?? 300_000
+            config.timeout ?? DEFAULT_TIMEOUT
           ).unref();
         }),
       ].filter(Boolean));
@@ -60,7 +63,7 @@ async function call(name, params = {}) {
       config.timer = setTimeout(() => {
         debug('Close the client');
         return client.close();
-      }, 300_000).unref();
+      }, DEFAULT_TIMEOUT).unref();
       clearTimeout(timer);
     }
   });
@@ -84,9 +87,11 @@ exports.setEngineOptions = ({ folder = '', timeout = 0 } = {}) => {
     Object.assign(config, { restart });
     client.setWorkingFolder(folder);
   }
-  folder && (config.folder = folder);
   timeout && (config.timeout = timeout);
+  folder && (config.folder = folder);
 };
+
+exports.close = () => lock.acquire('client', () => client.close());
 
 exports.versions = (format = 'default') => call('versions', { format });
 

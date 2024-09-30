@@ -526,7 +526,7 @@ export declare class FingerprintPlugin {
    * An example of obtaining a fingerprint:
    *
    * ```js
-   * const result = await plugin.fetch('FINGERPRINT_KEY', {
+   * const result = await plugin.fetch({
    *   tags: ['Desktop', 'Chrome'],
    *   minBrowserVersion: 115,
    *   timeLimit: '15 days',
@@ -537,8 +537,8 @@ export declare class FingerprintPlugin {
    * @param options - Set of configurable options for getting a browser fingerprint.
    * @returns Promise which resolves to a fingerprint string.
    */
-  fetch(key: string, options?: FetchOptions): Promise<string>;
   fetch(options?: FetchOptions): Promise<string>;
+  /** @deprecated */ fetch(key: string, options?: FetchOptions): Promise<string>;
 
   /**
    * Launches a browser instance with given arguments and options when specified.

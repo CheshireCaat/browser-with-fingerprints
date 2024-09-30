@@ -57,7 +57,7 @@ const { plugin } = require('browser-with-fingerprints');
 async function main() {
   // Set the service key for the plugin (you can buy it here https://bablosoft.com/directbuy/FingerprintSwitcher/2).
   // Leave an empty string to use the free version.
-  plugin.setServiceKey('');
+  plugin.setServiceKey('SERVICE_KEY');
 
   // Optionally omit key parameter if you do not need an override:
   const fingerprint = await plugin.fetch({

@@ -3,7 +3,7 @@ const mutex = require('./mutex');
 const cleaner = require('./cleaner');
 const launcher = require('./launcher');
 const { configure, synchronize } = require('./config');
-const { setup, fetch, versions, setEngineOptions } = require('./connector');
+const { close, setup, fetch, versions, setEngineOptions } = require('./connector');
 const { defaultArgs, getProfilePath, validateConfig, validateLauncher } = require('./utils');
 
 module.exports = class FingerprintPlugin {
@@ -15,6 +15,7 @@ module.exports = class FingerprintPlugin {
   constructor(launcher) {
     this.launcher = launcher;
     this.version = 'default';
+    this.close = close;
   }
 
   useFingerprint(value = '', options = {}) {
@@ -67,27 +68,24 @@ module.exports = class FingerprintPlugin {
     serviceKey = key;
   }
 
-  async #run(spawn, options = {}) {
+  async #launch(useDefaultLauncher, options = {}) {
     const { proxy, fingerprint } = this.setProxyFromArguments(options.args);
 
     const { id, pid, pwd, path, bounds, ...config } = await setup(proxy, fingerprint, {
       version: this.version,
       profile: this.profile ?? {
-        options: {
-          loadProxy: true,
-          loadFingerprint: true,
-        },
         value: getProfilePath(options),
+        options: { loadProxy: true, loadFingerprint: true },
       },
       pid: crypto.randomUUID(),
       key: typeof options.key === 'string' ? options.key : serviceKey,
     });
 
-    await cleaner.run(path).ignore(pid, id);
+    await cleaner.watch(pwd).ignore(pwd, pid, id);
 
     mutex.create(`BASProcess${pid}`);
 
-    const browser = await (spawn ? launcher : (options.launcher ?? this.launcher)).launch({
+    const browser = await (useDefaultLauncher ? launcher : (options.launcher ?? this.launcher)).launch({
       ...options,
       headless: false,
       userDataDir: null,
@@ -96,8 +94,8 @@ module.exports = class FingerprintPlugin {
       args: [`--parent-process-id=${pid}`, `--unique-process-id=${id}`, ...defaultArgs({ ...options, ...config })],
     });
 
-    await (spawn ? configure : this.configure.bind(this))(
-      () => cleaner.include(pid, id),
+    await (useDefaultLauncher ? configure : this.configure.bind(this))(
+      () => cleaner.include(pwd, pid, id),
       browser,
       bounds,
       synchronize.bind(null, id, pwd, bounds)
@@ -107,20 +105,25 @@ module.exports = class FingerprintPlugin {
   }
 
   async versions(format = 'default') {
-    return await versions(format /* value */);
+    return await versions(format);
   }
 
   async fetch(...parameters) {
     const [key, options = {}] = parameters.length === 2 ? parameters : [serviceKey, parameters[0]];
+    if (parameters.length === 2) {
+      console.warn(
+        'Warning: the "fetch" method signature with two parameters is deprecated. Please use the new syntax for options together with the "setServiceKey" method usage instead.'
+      );
+    }
     return await fetch(key, options, { version: this.version });
   }
 
   async launch(options = {}) {
-    return await this.#run(false, options);
+    return await this.#launch(false, options);
   }
 
   async spawn(options = {}) {
-    return await this.#run(true, options);
+    return await this.#launch(true, options);
   }
 };
 

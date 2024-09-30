@@ -15,5 +15,5 @@ NAPI_METHOD(create) {
 }
 
 NAPI_INIT() {
-  NAPI_EXPORT_FUNCTION(create)
+  NAPI_EXPORT_FUNCTION(create);
 }

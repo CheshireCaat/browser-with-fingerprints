@@ -8,15 +8,13 @@ describe('plugin', () => {
 
   describe('#fetch()', () => {
     [false, true].forEach((premium) => {
-      const key = premium ? process.env.FINGERPRINT_KEY : '';
+      plugin.setServiceKey(premium ? process.env.FINGERPRINT_KEY : '');
 
       it(`should obtain a fingerprint ${premium ? 'with' : 'without'} a service key`, async () => {
-        if (key == null) assert.fail('The service key is not specified.');
-
         let result = null;
 
         await assert.doesNotReject(
-          async () => (result = await plugin.fetch(key, { tags: ['Microsoft Windows', 'Chrome'] }))
+          async () => (result = await plugin.fetch({ tags: ['Microsoft Windows', 'Chrome'] }))
         );
 
         assert.notEqual(result, null);
@@ -27,7 +25,7 @@ describe('plugin', () => {
 
     it('should throw an error if an unsupported fingerprint tag is passed', async () => {
       await assert.rejects(() => {
-        return plugin.fetch('', { tags: ['Microsoft Windows', 'Chrome', 'Foo'] });
+        return plugin.fetch({ tags: ['Microsoft Windows', 'Chrome', 'Foo'] });
       }, /The "Foo" fingerprint tag is not supported in this plugin./);
     });
 
@@ -35,7 +33,7 @@ describe('plugin', () => {
       plugin.setRequestTimeout(100);
 
       await assert.rejects(() => {
-        return plugin.fetch('', { tags: ['Microsoft Windows', 'Chrome'] });
+        return plugin.fetch({ tags: ['Microsoft Windows', 'Chrome'] });
       }, /Timed out while calling the "fetch" method./);
     });
 
