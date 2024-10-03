@@ -14,6 +14,8 @@ const CWD = path.join(process.cwd(), 'data');
 
 const ARCH = process.arch.includes('32') ? '32' : '64';
 
+const PROJECT_PATH = path.resolve(__dirname, '../../../project.xml');
+
 module.exports = class RemoteEngine extends EventEmitter {
   #cwd = null;
   get cwd() {
@@ -85,7 +87,7 @@ module.exports = class RemoteEngine extends EventEmitter {
       await extract(zipPath, { dir: scriptDir });
     }
 
-    await fs.copyFile(path.resolve('./project.xml'), path.join(scriptDir, 'project.xml'));
+    await fs.copyFile(PROJECT_PATH, path.join(scriptDir, 'project.xml'));
     await fs.writeFile(path.join(scriptDir, 'worker_command_line.txt'), '--mock-connector');
     await fs.writeFile(path.join(scriptDir, 'settings.ini'), 'RunProfileRemoverImmediately=true');
 
@@ -102,7 +104,7 @@ module.exports = class RemoteEngine extends EventEmitter {
   }
 
   async #updateMeta() {
-    const project = await fs.readFile(path.resolve('./project.xml'), 'utf8');
+    const project = await fs.readFile(PROJECT_PATH, 'utf8');
     const version = project.match(/<EngineVersion>(\d+.\d+.\d+)<\/EngineVersion>/)[1];
     const url = `http://bablosoft.com/distr/FastExecuteScript${ARCH}/${version}/FastExecuteScript.x${ARCH}.zip.meta.json`;
 
