@@ -2,6 +2,7 @@ const fg = require('fast-glob');
 const path = require('path').posix;
 const { rm } = require('fs/promises');
 const lock = require('proper-lockfile');
+const debug = require('debug')('browser-with-fingerprints:cleaner');
 
 const CLEANUP_INTERVAL = 15000;
 
@@ -22,7 +23,11 @@ class SettingsCleaner {
     for (const item of [`t/${pid}`, `s/${id}.ini`, `s/${id}1.ini`]) {
       const itemPath = path.join(folder, item);
       try {
-        await lock[shouldLock ? 'lock' : 'unlock'](itemPath);
+        await lock[shouldLock ? 'lock' : 'unlock'](itemPath, {
+          onCompromised: () => {
+            debug(`The lock file at path ${itemPath} was not updated.`);
+          },
+        });
       } catch (err) {
         if (err.code !== 'ENOENT') throw err;
       }
