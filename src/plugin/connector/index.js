@@ -1,24 +1,27 @@
 const dedent = require('dedent');
 const server = require('./server');
-const { reset } = require('./settings');
-const { notify } = require('./notifier');
+const { notify } = require('./utils');
+const RemoteEngine = require('./engine');
 const lock = new (require('async-lock'))();
-const RemoteClient = require('bas-remote-node');
 const debug = require('debug')('browser-with-fingerprints:connector');
 
-const SCRIPT_VERSION = 10;
 const DEFAULT_TIMEOUT = 300_000;
-const config = { timeout: process.env.FINGERPRINT_TIMEOUT, restart: false, timer: null };
-const client = new RemoteClient({
-  scriptName: `FingerprintPluginV${SCRIPT_VERSION}`,
-  workingDir: process.env.FINGERPRINT_CWD,
+const engine = new RemoteEngine({
+  timeout: process.env.FINGERPRINT_TIMEOUT,
+  cwd: process.env.FINGERPRINT_CWD,
+});
+
+engine.on('beforeExtract', () => {
+  console.log('The browser is installing - this may take some time.');
+});
+
+engine.on('beforeDownload', () => {
+  console.log('The browser is downloading - this may take some time.');
 });
 
 server.listen().then(({ port }) => {
-  Object.assign(client.options, {
-    args: [`--mock-pcap-port=${port}`],
-  });
   debug(`PCAP server listening on ${port}`);
+  engine.args = [`--mock-pcap-port=${port}`];
 });
 
 const prepareError = (message) => {
@@ -33,24 +36,17 @@ const prepareError = (message) => {
 };
 
 async function call(name, params = {}) {
-  let timer = clearTimeout(config.timer);
+  let timer = null;
   return await lock.acquire('client', async () => {
     try {
-      if (config.restart) {
-        debug('Restart the client');
-        config.restart = false;
-        await client.close();
-      }
-      await client.start();
-      await reset(client._engine.exeDir, client._engine.zipDir);
       if (name === 'fetch') timer = notify(params.key);
       // prettier-ignore
       const { error, ...result } = await Promise.race([
-        client.runFunction(`api_${name}`, params),
+        engine.runFunction(name, params),
         params?.options?.perfectCanvasRequest ? null : new Promise((_, reject) => {
           setTimeout(
             () => reject(new Error(`Timed out while calling the "${name}" method.`)),
-            config.timeout ?? DEFAULT_TIMEOUT
+            engine.timeout ?? DEFAULT_TIMEOUT
           ).unref();
         }),
       ].filter(Boolean));
@@ -60,38 +56,15 @@ async function call(name, params = {}) {
       }
       return result.response ?? result;
     } finally {
-      config.timer = setTimeout(() => {
-        debug('Close the client');
-        return client.close();
-      }, DEFAULT_TIMEOUT).unref();
       clearTimeout(timer);
     }
   });
 }
 
-client.on('messageReceived', (evt) => {
-  evt.type === 'log' && console.log(evt.data.text.split(' : ')[1]);
-});
-
-client._engine.on('beforeExtract', () => {
-  console.log('The browser is installing - this may take some time.');
-});
-
-client._engine.on('beforeDownload', () => {
-  console.log('The browser is downloading - this may take some time.');
-});
-
 exports.setEngineOptions = ({ folder = '', timeout = 0 } = {}) => {
-  if (folder) {
-    const restart = config.folder !== folder;
-    Object.assign(config, { restart });
-    client.setWorkingFolder(folder);
-  }
-  timeout && (config.timeout = timeout);
-  folder && (config.folder = folder);
+  timeout && (engine.timeout = timeout);
+  folder && (engine.cwd = folder);
 };
-
-exports.close = () => lock.acquire('client', () => client.close());
 
 exports.versions = (format = 'default') => call('versions', { format });
 
