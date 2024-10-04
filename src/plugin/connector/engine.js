@@ -4,10 +4,10 @@ const { kill } = require('process');
 const axios = require('axios').default;
 const extract = require('extract-zip');
 const EventEmitter = require('events');
-const { createHash } = require('crypto');
 const { execFile } = require('child_process');
 const { pipeline } = require('stream/promises');
 const { InvalidEngineError } = require('./errors');
+const { createHash, randomUUID } = require('crypto');
 const { createReadStream, createWriteStream } = require('fs');
 
 const CWD = path.join(process.cwd(), 'data');
@@ -55,7 +55,7 @@ module.exports = class RemoteEngine extends EventEmitter {
       }
     }
 
-    const requestPath = path.join(requestDir, `${process.pid}_${crypto.randomUUID()}.json`);
+    const requestPath = path.join(requestDir, `${process.pid}_${randomUUID()}.json`);
     await fs.writeFile(requestPath, JSON.stringify({ name, params }));
 
     await new Promise((resolve) => process.on('close', resolve));
