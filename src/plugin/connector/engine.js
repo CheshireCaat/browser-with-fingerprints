@@ -118,6 +118,7 @@ module.exports = class RemoteEngine extends EventEmitter {
         version,
       }));
 
+      await fs.mkdir(path.dirname(metaPath), { recursive: true });
       await fs.writeFile(metaPath, JSON.stringify(this.#meta));
     }
   }
