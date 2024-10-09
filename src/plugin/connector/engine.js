@@ -96,7 +96,7 @@ module.exports = class RemoteEngine extends EventEmitter {
       ['--silent', ...this.args],
       { cwd: scriptDir },
       (error) => {
-        if (error && error.code && error.code > 1) {
+        if (error) {
           throw new InvalidEngineError(`Unable to start engine process (code: ${error.code})`);
         }
       }
