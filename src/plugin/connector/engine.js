@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs/promises');
 const { kill } = require('process');
+const chokidar = require('chokidar');
 const axios = require('axios').default;
 const extract = require('extract-zip');
 const EventEmitter = require('events');
@@ -9,6 +10,8 @@ const { pipeline } = require('stream/promises');
 const { InvalidEngineError } = require('./errors');
 const { createHash, randomUUID } = require('crypto');
 const { createReadStream, createWriteStream } = require('fs');
+
+const CLOSE_TIMEOUT = 60000;
 
 const CWD = path.join(process.cwd(), 'data');
 
@@ -47,7 +50,9 @@ module.exports = class RemoteEngine extends EventEmitter {
 
     for (const requestName of await fs.readdir(requestDir)) {
       try {
-        kill(requestName.split('_')[0], 0);
+        const pid = +requestName.split('_')[0];
+        if (pid === process.pid) continue;
+        kill(pid, 0);
       } catch (err) {
         if (err.code === 'ESRCH') {
           await fs.unlink(path.join(requestDir, requestName));
@@ -58,9 +63,19 @@ module.exports = class RemoteEngine extends EventEmitter {
     const requestPath = path.join(requestDir, `${process.pid}_${randomUUID()}.json`);
     await fs.writeFile(requestPath, JSON.stringify({ name, params }));
 
-    await new Promise((resolve) => process.on('close', resolve));
-    const response = await fs.readFile(requestPath, 'utf8');
-    await fs.unlink(requestPath);
+    const requestWatcher = chokidar.watch(requestPath, {
+      awaitWriteFinish: true,
+    });
+    const response = await new Promise((resolve) => {
+      requestWatcher.on('change', async () => {
+        const response = await fs.readFile(requestPath, 'utf8');
+        await fs.unlink(requestPath);
+        resolve(response);
+      });
+      process.once('close', () => setTimeout(resolve, CLOSE_TIMEOUT));
+    });
+
+    await requestWatcher.close();
     return JSON.parse(response);
   }
 
