@@ -7,7 +7,7 @@
     "url": "git+https://github.com/CheshireCaat/browser-with-fingerprints.git"
   },
   "author": "CheshireCaat",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/CheshireCaat/browser-with-fingerprints/issues",
@@ -66,7 +66,7 @@
   ],
   "dependencies": {
     "async-lock": "1.4.1",
-    "axios": "1.7.7",
+    "axios": "1.7.8",
     "chokidar": "^4.0.1",
     "chrome-remote-interface": "0.33.2",
     "compare-versions": "6.1.1",
@@ -80,9 +80,9 @@
   "devDependencies": {
     "@cheshire-caat/prettier-config": "^1.0.0",
     "dotenv": "^16.4.5",
-    "mocha": "^10.7.3",
+    "mocha": "^10.8.2",
     "napi-macros": "^2.2.2",
-    "prettier": "3.3.3"
+    "prettier": "3.4.1"
   },
   "prettier": "@cheshire-caat/prettier-config"
 }
