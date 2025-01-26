@@ -837,7 +837,7 @@
      <CompileType>NoProtection</CompileType>
      <ScriptVersion>1.0.0</ScriptVersion>
      <AvailableLanguages>en,ru</AvailableLanguages>
-     <EngineVersion>28.1.2</EngineVersion>
+     <EngineVersion>28.3.0</EngineVersion>
      <SettingsWorker>EnableWidevine=true
 EnableSafeBrowsing=true
 EnableVariations=true
@@ -845,12 +845,9 @@ EnableComponents=true
 AutostartDebug=false
 SaveBrowserLog=false
 ProfilesCaching=true
-ToolboxHeight=700
 MaxBrowserStartSimultaneously=3
 MinFreeMemoryToStartBrowser=300
 MinUnusedCpu=10
-ScenarioWidth=792
-Zoom=100
 IsMaximized=false
 Restart=true
 UseHumanLikeMouseMoves=false
@@ -876,7 +873,7 @@ Detector=false
      <ChromeCommandLine>--disk-cache-size=1
 --disable-gpu-program-cache
 --disable-gpu-shader-disk-cache
---disable-features=GpuProcessHighPriorityWin,GpuUseDisplayThreadPriority,CookieDeprecationFacilitatedTesting
+--disable-features=GpuProcessHighPriorityWin,GpuUseDisplayThreadPriority,CookieDeprecationFacilitatedTesting,OptimizationGuideModelDownloading
 --lang=en
 --disable-auto-reload</ChromeCommandLine>
      <ModulesMetaJson>{
