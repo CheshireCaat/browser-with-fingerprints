@@ -18,6 +18,7 @@
       /*Dat:eyJzIjoiaWdub3JlZXJyb3JzIiwidiI6MSwiZiI6W10sInV3IjoiMCIsInV0IjoiMCIsInV0byI6IjAiLCJ1bSI6IjAiLCJ1ZSI6IjAiLCJ1c3AiOiIwIiwiZCI6W119*/
       _call(function()
       {
+      _set_action_info({ name: "Ignore Errors" });
       _on_fail(function(){
       VAR_LAST_ERROR = _result()
       VAR_ERROR_ID = ScriptWorker.GetCurrentAction()
@@ -316,6 +317,7 @@
       /*Dat:eyJzIjoiaWdub3JlZXJyb3JzIiwidiI6MSwiZiI6W10sInV3IjoiMCIsInV0IjoiMCIsInV0byI6IjAiLCJ1bSI6IjAiLCJ1ZSI6IjAiLCJ1c3AiOiIwIiwiZCI6W119*/
       _call(function()
       {
+      _set_action_info({ name: "Ignore Errors" });
       _on_fail(function(){
       VAR_LAST_ERROR = _result()
       VAR_ERROR_ID = ScriptWorker.GetCurrentAction()
@@ -384,8 +386,7 @@
          section_end()!
 
          section_start("", 527418314)!
-         /*Dat:eyJzIjoicHJveHkiLCJ2IjoxLCJmIjpbXSwidXciOiIwIiwidXQiOiIwIiwidXRvIjoiMCIsInVtIjoiMCIsInVlIjoiMCIsInVzcCI6IjAiLCJkIjpbeyJpZCI6IlByb3h5VGV4dCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV1dIiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiUHJveHlUeXBlIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiIoW1tQUk9YWV1dLmxlbmd0aCA/IFwiYXV0b1wiIDogXCJzb2NrXCIpIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IlByb3h5TG9naW4iLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6IiIsImNsYXNzIjoic3RyaW5nIiwiaXNfZGVmIjp0cnVlfSx7ImlkIjoiUHJveHlQYXNzd29yZCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiIiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOnRydWV9LHsiaWQiOiJDaGFuZ2VUaW1lem9uZSIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uY2hhbmdlVGltZXpvbmUiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiQ2hhbmdlR2VvbG9jYXRpb24iLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6IltbUFJPWFlfT1BUSU9OU11dLmNoYW5nZUdlb2xvY2F0aW9uIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IkNoYW5nZVdlYnJ0Y0lwIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5jaGFuZ2VXZWJSVEMiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiQ2hhbmdlQnJvd3Nlckxhbmd1YWdlIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5jaGFuZ2VCcm93c2VyTGFuZ3VhZ2UiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiRGV0ZWN0RXh0ZXJuYWxJcCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uZGV0ZWN0RXh0ZXJuYWxJUCIsImNsYXNzIjoiZXhwcmVzc2lvbiIsImlzX2RlZiI6ZmFsc2V9LHsiaWQiOiJTZXJ2aWNlVVJMIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5pcEV4dHJhY3Rpb25VUkwiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiSXBFeHRyYWN0aW9uTWV0aG9kIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5pcEV4dHJhY3Rpb25NZXRob2QiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiSXBFeHRyYWN0aW9uUGFyYW0iLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6IltbUFJPWFlfT1BUSU9OU11dLmlwRXh0cmFjdGlvblBhcmFtIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IklwSW5mb01ldGhvZCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uaXBJbmZvTWV0aG9kIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IklwQXBpS2V5IiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5pcEluZm9LZXkiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiRnVuY3Rpb25OYW1lIiwidHlwZSI6InRleHQiLCJkYXRhIjoiIn0seyJpZCI6IlRhcmdldFVybCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiKiIsImNsYXNzIjoic3RyaW5nIiwiaXNfZGVmIjp0cnVlfSx7ImlkIjoiVGFyZ2V0VGFiTnVtYmVyIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiIqIiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOnRydWV9XX0=*/
-         /*Browser*/
+         /*Dat:eyJzIjoicHJveHkiLCJ2IjoxLCJmIjpbXSwidXciOiIwIiwidXQiOiIwIiwidXRvIjoiMCIsInVtIjoiMCIsInVlIjoiMCIsInVzcCI6IjAiLCJkIjpbeyJpZCI6IlByb3h5VGV4dCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV1dIiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiUHJveHlUeXBlIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiIoW1tQUk9YWV1dLmxlbmd0aCA/IFwiYXV0b1wiIDogXCJzb2NrXCIpIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IlByb3h5TG9naW4iLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6IiIsImNsYXNzIjoic3RyaW5nIiwiaXNfZGVmIjp0cnVlfSx7ImlkIjoiUHJveHlQYXNzd29yZCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiIiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOnRydWV9LHsiaWQiOiJDaGFuZ2VUaW1lem9uZSIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uY2hhbmdlVGltZXpvbmUiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiQ2hhbmdlR2VvbG9jYXRpb24iLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6IltbUFJPWFlfT1BUSU9OU11dLmNoYW5nZUdlb2xvY2F0aW9uIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IkNoYW5nZUJyb3dzZXJMYW5ndWFnZSIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uY2hhbmdlQnJvd3Nlckxhbmd1YWdlIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IkNoYW5nZVdlYnJ0Y0lwIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5jaGFuZ2VXZWJSVEMiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiUHVibGljSVB2NCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiYXV0byIsImNsYXNzIjoic3RyaW5nIiwiaXNfZGVmIjp0cnVlfSx7ImlkIjoiUHVibGljSVB2NiIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiYXV0byIsImNsYXNzIjoic3RyaW5nIiwiaXNfZGVmIjp0cnVlfSx7ImlkIjoiUHJpdmF0ZUlQdjQiLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6ImxvY2FsIiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOnRydWV9LHsiaWQiOiJQcml2YXRlSVB2NiIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoibG9jYWwiLCJjbGFzcyI6InN0cmluZyIsImlzX2RlZiI6dHJ1ZX0seyJpZCI6IkRldGVjdEV4dGVybmFsSXAiLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6IltbUFJPWFlfT1BUSU9OU11dLmRldGVjdEV4dGVybmFsSVAiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiU2VydmljZVVSTCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uaXBFeHRyYWN0aW9uVVJMIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IklwRXh0cmFjdGlvbk1ldGhvZCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uaXBFeHRyYWN0aW9uTWV0aG9kIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IklwRXh0cmFjdGlvblBhcmFtIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5pcEV4dHJhY3Rpb25QYXJhbSIsImNsYXNzIjoiZXhwcmVzc2lvbiIsImlzX2RlZiI6ZmFsc2V9LHsiaWQiOiJEZXRlY3RFeHRlcm5hbElwVjYiLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6InRydWUiLCJjbGFzcyI6InN0cmluZyIsImlzX2RlZiI6dHJ1ZX0seyJpZCI6IlNlcnZpY2VVUkxWNiIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiIiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOnRydWV9LHsiaWQiOiJJcEV4dHJhY3Rpb25NZXRob2RWNiIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoicmF3IiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOnRydWV9LHsiaWQiOiJJcEV4dHJhY3Rpb25QYXJhbVY2IiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiIiLCJjbGFzcyI6InN0cmluZyIsImlzX2RlZiI6dHJ1ZX0seyJpZCI6IklwSW5mb01ldGhvZCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uaXBJbmZvTWV0aG9kIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IklwQXBpS2V5IiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5pcEluZm9LZXkiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiRnVuY3Rpb25OYW1lIiwidHlwZSI6InRleHQiLCJkYXRhIjoiIn0seyJpZCI6IlRhcmdldFVybCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiKiIsImNsYXNzIjoic3RyaW5nIiwiaXNfZGVmIjp0cnVlfSx7ImlkIjoiVGFyZ2V0VGFiTnVtYmVyIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiIqIiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOnRydWV9XX0=*/
          var hash = proxy_parse(VAR_PROXY)
          if((VAR_PROXY.length ? "auto" : "sock") != "auto" ){
          hash["IsHttp"] = (VAR_PROXY.length ? "auto" : "sock") == "http"
@@ -408,7 +409,9 @@
          hash["Port"] = hash["Port"].toString()
          hash["DetectExternalIp"] = VAR_PROXY_OPTIONS.detectExternalIP == "true";
          hash["ChangeGeolocation"] = VAR_PROXY_OPTIONS.changeGeolocation == "true";
-         hash["ChangeWebrtcIp"] = VAR_PROXY_OPTIONS.changeWebRTC == "true";
+         hash["ChangeWebrtcIp"] = VAR_PROXY_OPTIONS.changeWebRTC;
+         if(hash["ChangeWebrtcIp"] == "true"){hash["ChangeWebrtcIp"] = "replace"};
+         if(hash["ChangeWebrtcIp"] == "false"){hash["ChangeWebrtcIp"] = "ignore"}
          hash["ChangeTimezone"] = VAR_PROXY_OPTIONS.changeTimezone == "true";
          hash["ChangeBrowserLanguage"] = VAR_PROXY_OPTIONS.changeBrowserLanguage == "true";
          hash["ip_info_method"] = VAR_PROXY_OPTIONS.ipInfoMethod;
@@ -420,13 +423,21 @@
          hash["ServiceURL"] = VAR_PROXY_OPTIONS.ipExtractionURL;
          hash["IpExtractionParam"] = VAR_PROXY_OPTIONS.ipExtractionParam;
          hash["IpExtractionMethod"] = VAR_PROXY_OPTIONS.ipExtractionMethod;
+         hash["PublicIPv4"] = "auto";
+         hash["PublicIPv6"] = "auto";
+         hash["PrivateIPv4"] = "local";
+         hash["PrivateIPv6"] = "local";
+         hash["DetectExternalIpV6"] = "true" == "true";
+         hash["ServiceURLV6"] = "";
+         hash["IpExtractionMethodV6"] = "raw";
+         hash["IpExtractionParamV6"] = "";
          native("filesystem", "writefile", JSON.stringify({path: _get_profile() + "/proxy.txt",value: JSON.stringify(hash),base64:false,append:false}))
          hash["Port"] = PortNumber
          }
          }
          set_proxy(hash["server"], hash["Port"], hash["IsHttp"], hash["name"], hash["password"])!
          sleep(1000)!
-         set_proxy_extended(VAR_PROXY_OPTIONS.detectExternalIP == "true", VAR_PROXY_OPTIONS.changeGeolocation == "true", VAR_PROXY_OPTIONS.changeWebRTC == "true", VAR_PROXY_OPTIONS.changeTimezone == "true", VAR_PROXY_OPTIONS.changeBrowserLanguage == "true", VAR_PROXY_OPTIONS.ipInfoMethod, VAR_PROXY_OPTIONS.ipInfoKey, null, VAR_PROXY_OPTIONS.ipExtractionURL, VAR_PROXY_OPTIONS.ipExtractionMethod, VAR_PROXY_OPTIONS.ipExtractionParam)!
+         set_proxy_extended(VAR_PROXY_OPTIONS.detectExternalIP == "true", VAR_PROXY_OPTIONS.changeGeolocation == "true", VAR_PROXY_OPTIONS.changeWebRTC, VAR_PROXY_OPTIONS.changeTimezone == "true", VAR_PROXY_OPTIONS.changeBrowserLanguage == "true", VAR_PROXY_OPTIONS.ipInfoMethod, VAR_PROXY_OPTIONS.ipInfoKey, null, VAR_PROXY_OPTIONS.ipExtractionURL, VAR_PROXY_OPTIONS.ipExtractionMethod, VAR_PROXY_OPTIONS.ipExtractionParam, "auto", "auto", "local", "local", "true" == "true", "", "raw", "")!
          sleep(1000)!
          section_end()!
 
@@ -549,6 +560,7 @@
       /*Dat:eyJzIjoiaWdub3JlZXJyb3JzIiwidiI6MSwiZiI6W10sInV3IjoiMCIsInV0IjoiMCIsInV0byI6IjAiLCJ1bSI6IjAiLCJ1ZSI6IjAiLCJ1c3AiOiIwIiwiZCI6W119*/
       _call(function()
       {
+      _set_action_info({ name: "Ignore Errors" });
       _on_fail(function(){
       VAR_LAST_ERROR = _result()
       VAR_ERROR_ID = ScriptWorker.GetCurrentAction()
