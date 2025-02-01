@@ -1,19 +1,22 @@
 const path = require('path');
 const fs = require('fs/promises');
+const package = require('../package.json');
 
 (async function () {
-  for (const arch of ['ia32', 'x64']) {
-    try {
-      await fs.rename(
-        path.resolve(`./prebuilds/win32-${arch}/browser-with-fingerprints.node`),
-        path.resolve(`./src/plugin/mutex/win32-${arch}/mutex.node`)
-      );
-    } catch {
-      // prebuild already moved or not found
+  for (const platform of package.os) {
+    for (const arch of package.cpu) {
+      const target = `${platform}-${arch}`;
+      try {
+        await fs.rename(
+          path.resolve(`./prebuilds/${target}/${package.name}.node`),
+          path.resolve(`./src/plugin/mutex/${target}/mutex.node`)
+        );
+      } catch {
+        console.log(`Prebuilds for "${target}" target already processed or not found.`);
+      }
     }
   }
 
-  await fs.rm(path.resolve('./build'), { recursive: true, force: true });
-
   await fs.rm(path.resolve('./prebuilds'), { recursive: true, force: true });
+  await fs.rm(path.resolve('./build'), { recursive: true, force: true });
 })();
