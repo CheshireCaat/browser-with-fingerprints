@@ -168,9 +168,9 @@ export interface ProxyOptions {
   /**
    * Replace the IP address provided by **WebRTC** with the IP address of the proxy server.
    *
-   * @default true
+   * @default 'replace'
    */
-  changeWebRTC?: boolean;
+  changeWebRTC?: 'enable' | 'disable' | 'replace';
 
   /**
    * After receiving a response from the service URL, the IP address will be extracted from the response.
