@@ -14,10 +14,9 @@ export type Time = '*' | '15 days' | '30 days' | '60 days';
  */
 export type Tag =
   | '*'
-  | 'Mobile'
   | 'Desktop'
+  | 'Mobile'
   | 'Microsoft Windows'
-  | 'Microsoft Windows Phone'
   | 'Apple Mac'
   | 'Android'
   | 'Linux'
