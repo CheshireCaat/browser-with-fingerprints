@@ -507,4 +507,4 @@ You can define it in any way convenient for you, but by default variables are re
 
 ## License
 
-Copyright © 205, [CheshireCaat](https://github.com/CheshireCaat). Released under the [MIT](LICENSE.md) license.
+Copyright © 2025, [CheshireCaat](https://github.com/CheshireCaat). Released under the [MIT](LICENSE.md) license.
