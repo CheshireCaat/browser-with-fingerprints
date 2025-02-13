@@ -35,7 +35,7 @@ const prepareError = (message) => {
   return message;
 };
 
-async function call(name, params = {}) {
+exports.api = async (name, params = {}) => {
   let timer = null;
   return await lock.acquire('client', async () => {
     try {
@@ -59,15 +59,9 @@ async function call(name, params = {}) {
       clearTimeout(timer);
     }
   });
-}
+};
 
 exports.setEngineOptions = ({ folder = '', timeout = 0 } = {}) => {
   timeout && (engine.timeout = timeout);
   folder && (engine.cwd = folder);
 };
-
-exports.versions = (format = 'default') => call('versions', { format });
-
-exports.fetch = (key, options, configuration) => call('fetch', { key, options, ...configuration });
-
-exports.setup = (proxy, fingerprint, configuration) => call('setup', { proxy, fingerprint, ...configuration });

@@ -38,7 +38,7 @@ class SettingsCleaner {
     for (const folder of this.#folders) {
       const pattern = path.join(folder, `{${['t', 's']}}`, '*');
 
-      for (const { stats, path } of await fg(pattern, { stats: true, onlyFiles: false, onlyDirectories: false })) {
+      for (const { path, stats } of await fg(pattern, { stats: true, onlyFiles: false, onlyDirectories: false })) {
         if (Date.now() - stats.mtime > CLEANUP_INTERVAL && !(await lock.check(path))) {
           await rm(path, { recursive: true });
         }
@@ -52,7 +52,8 @@ class SettingsCleaner {
     }
 
     if (!this.#timer) {
-      this.#timer = (this.#cleanup(), setInterval(() => this.#cleanup(), CLEANUP_INTERVAL).unref());
+      this.#cleanup();
+      this.#timer = setInterval(() => this.#cleanup(), CLEANUP_INTERVAL).unref();
     }
 
     return this;

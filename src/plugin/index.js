@@ -3,7 +3,7 @@ const mutex = require('./mutex');
 const cleaner = require('./cleaner');
 const launcher = require('./launcher');
 const { configure, synchronize } = require('./config');
-const { setup, fetch, versions, setEngineOptions } = require('./connector');
+const { api, setEngineOptions } = require('./connector');
 const { defaultArgs, getProfilePath, validateConfig, validateLauncher } = require('./utils');
 
 module.exports = class FingerprintPlugin {
@@ -70,7 +70,9 @@ module.exports = class FingerprintPlugin {
   async #launch(useDefaultLauncher, options = {}) {
     const { proxy, fingerprint } = this.setProxyFromArguments(options.args);
 
-    const { id, pid, pwd, path, bounds, ...config } = await setup(proxy, fingerprint, {
+    const { id, pid, pwd, path, bounds, ...config } = await api('setup', {
+      proxy,
+      fingerprint,
       version: this.version,
       profile: this.profile ?? {
         value: getProfilePath(options),
@@ -104,7 +106,7 @@ module.exports = class FingerprintPlugin {
   }
 
   async versions(format = 'default') {
-    return await versions(format);
+    return await api('versions', { format });
   }
 
   async fetch(...parameters) {
@@ -114,7 +116,7 @@ module.exports = class FingerprintPlugin {
         'Warning: the "fetch" method signature with two parameters is deprecated. Please use the new syntax for options together with the "setServiceKey" method usage instead.'
       );
     }
-    return await fetch(key, options, { version: this.version });
+    return await api('fetch', { key, options, version: this.version });
   }
 
   async launch(options = {}) {

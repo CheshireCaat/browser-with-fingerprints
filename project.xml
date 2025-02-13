@@ -162,7 +162,7 @@
       section_end()!
 
       section_start("", 412051908)!
-      /*Dat:eyJzIjoiY3VzdG9tIiwidiI6MSwiZiI6W10sInV3IjoiMCIsInV0IjoiMCIsInV0byI6IjAiLCJ1bSI6IjAiLCJ1ZSI6IjAiLCJ1c3AiOiIwIiwiZCI6W3siaWQiOiJDb2RlIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJjb25zdCBkZWZhdWx0cyA9ICh7XHJcbiAgICBcInNldHVwLmZpbmdlcnByaW50XCI6IHtcclxuICAgICAgICBlbXVsYXRlRGV2aWNlU2NhbGVGYWN0b3I6IHRydWUsXHJcbiAgICAgICAgZW11bGF0ZVNlbnNvckFQSTogdHJ1ZSxcclxuICAgICAgICB1c2VQZXJmZWN0Q2FudmFzOiB0cnVlLFxyXG4gICAgICAgIHNhZmVFbGVtZW50U2l6ZTogZmFsc2UsXHJcbiAgICAgICAgdXNlRm9udFBhY2s6IHRydWUsXHJcbiAgICAgICAgc2FmZUJhdHRlcnk6IHRydWUsXHJcbiAgICAgICAgc2FmZUNhbnZhczogdHJ1ZSxcclxuICAgICAgICBzYWZlQXVkaW86IHRydWUsXHJcbiAgICAgICAgc2FmZVdlYkdMOiB0cnVlLFxyXG4gICAgfSxcclxuICAgIFwic2V0dXAucHJvZmlsZVwiOiB7XHJcbiAgICAgICAgbG9hZEZpbmdlcnByaW50OiB0cnVlLFxyXG4gICAgICAgIGxvYWRQcm94eTogdHJ1ZSxcclxuICAgIH0sXHJcbiAgICBcInNldHVwLnByb3h5XCI6IHtcclxuICAgICAgICBjaGFuZ2VCcm93c2VyTGFuZ3VhZ2U6IHRydWUsXHJcbiAgICAgICAgY2hhbmdlR2VvbG9jYXRpb246IGZhbHNlLFxyXG4gICAgICAgIGlwSW5mb01ldGhvZDogXCJkYXRhYmFzZVwiLFxyXG4gICAgICAgIGRldGVjdEV4dGVybmFsSVA6IHRydWUsXHJcbiAgICAgICAgY2hhbmdlVGltZXpvbmU6IHRydWUsXHJcbiAgICAgICAgY2hhbmdlV2ViUlRDOiB0cnVlLFxyXG4gICAgICAgIGlwSW5mb0tleTogXCJcIixcclxuICAgICAgICBpcEV4dHJhY3Rpb25NZXRob2Q6IFwicmF3XCIsXHJcbiAgICAgICAgaXBFeHRyYWN0aW9uUGFyYW06IFwiXCIsXHJcbiAgICAgICAgaXBFeHRyYWN0aW9uVVJMOiBcIlwiLFxyXG4gICAgfSxcclxuICAgIFwiZmV0Y2hcIjoge1xyXG4gICAgICAgIGVuYWJsZVByZWNvbXB1dGVkRmluZ2VycHJpbnRzOiB0cnVlLFxyXG4gICAgICAgIGR5bmFtaWNQZXJmZWN0Q2FudmFzOiB0cnVlLFxyXG4gICAgICAgIGVuYWJsZUN1c3RvbVNlcnZlcjogZmFsc2UsXHJcbiAgICAgICAgcGVyZmVjdENhbnZhc0xvZ3M6IGZhbHNlLFxyXG4gICAgICAgIHBlcmZlY3RDYW52YXNSZXF1ZXN0OiBcIlwiLFxyXG4gICAgICAgIG1heEJyb3dzZXJWZXJzaW9uOiBcIipcIixcclxuICAgICAgICBtaW5Ccm93c2VyVmVyc2lvbjogXCIqXCIsXHJcbiAgICAgICAgdGltZUxpbWl0OiBcIipcIixcclxuICAgICAgICBtYXhIZWlnaHQ6IFwiKlwiLFxyXG4gICAgICAgIG1pbkhlaWdodDogXCIqXCIsXHJcbiAgICAgICAgbWF4V2lkdGg6IFwiKlwiLFxyXG4gICAgICAgIG1pbldpZHRoOiBcIipcIixcclxuICAgICAgICB0YWdzOiBbXSxcclxuICAgIH0sXHJcbn0pW3R5cGVdO1xyXG5cclxuT2JqZWN0LmtleXMoZGVmYXVsdHMpLmZvckVhY2goZnVuY3Rpb24gKGtleSkge1xyXG4gICAgb3B0aW9uc1trZXldID0gKG9wdGlvbnNba2V5XSA9PSBudWxsID8gZGVmYXVsdHNba2V5XSA6IG9wdGlvbnNba2V5XSkgKyBcIlwiO1xyXG59KTtcclxuIiwiY2xhc3MiOiJleHByZXNzaW9uIn1dfQ==*/
+      /*Dat:eyJzIjoiY3VzdG9tIiwidiI6MSwiZiI6W10sInV3IjoiMCIsInV0IjoiMCIsInV0byI6IjAiLCJ1bSI6IjAiLCJ1ZSI6IjAiLCJ1c3AiOiIwIiwiZCI6W3siaWQiOiJDb2RlIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJjb25zdCBkZWZhdWx0cyA9ICh7XHJcbiAgICBcInNldHVwLmZpbmdlcnByaW50XCI6IHtcclxuICAgICAgICBlbXVsYXRlRGV2aWNlU2NhbGVGYWN0b3I6IHRydWUsXHJcbiAgICAgICAgZW11bGF0ZVNlbnNvckFQSTogdHJ1ZSxcclxuICAgICAgICB1c2VQZXJmZWN0Q2FudmFzOiB0cnVlLFxyXG4gICAgICAgIHNhZmVFbGVtZW50U2l6ZTogZmFsc2UsXHJcbiAgICAgICAgdXNlRm9udFBhY2s6IHRydWUsXHJcbiAgICAgICAgc2FmZUJhdHRlcnk6IHRydWUsXHJcbiAgICAgICAgc2FmZUNhbnZhczogdHJ1ZSxcclxuICAgICAgICBzYWZlQXVkaW86IHRydWUsXHJcbiAgICAgICAgc2FmZVdlYkdMOiB0cnVlLFxyXG4gICAgfSxcclxuICAgIFwic2V0dXAucHJvZmlsZVwiOiB7XHJcbiAgICAgICAgbG9hZEZpbmdlcnByaW50OiB0cnVlLFxyXG4gICAgICAgIGxvYWRQcm94eTogdHJ1ZSxcclxuICAgIH0sXHJcbiAgICBcInNldHVwLnByb3h5XCI6IHtcclxuICAgICAgICBjaGFuZ2VCcm93c2VyTGFuZ3VhZ2U6IHRydWUsXHJcbiAgICAgICAgY2hhbmdlR2VvbG9jYXRpb246IGZhbHNlLFxyXG4gICAgICAgIGNoYW5nZVRpbWV6b25lOiB0cnVlLFxyXG4gICAgICAgIGNoYW5nZVdlYlJUQzogdHJ1ZSxcclxuICAgICAgICBwdWJsaWNJUHY0OiBcImF1dG9cIixcclxuICAgICAgICBwdWJsaWNJUHY2OiBcImF1dG9cIixcclxuICAgICAgICBwcml2YXRlSVB2NDogXCJsb2NhbFwiLFxyXG4gICAgICAgIHByaXZhdGVJUHY2OiBcImxvY2FsXCIsXHJcbiAgICAgICAgaXBFeHRyYWN0aW9uTWV0aG9kOiB7IHY0OiBcInJhd1wiLCB2NjogXCJyYXdcIiB9LFxyXG4gICAgICAgIGlwRXh0cmFjdGlvblBhcmFtOiB7IHY0OiBcIlwiLCB2NjogXCJcIiB9LFxyXG4gICAgICAgIGlwRXh0cmFjdGlvblVSTDogeyB2NDogXCJcIiwgdjY6IFwiXCIgfSxcclxuICAgICAgICBkZXRlY3RFeHRlcm5hbElQOiB7IHY0OiB0cnVlLCB2NjogdHJ1ZSB9LFxyXG4gICAgICAgIGlwSW5mb01ldGhvZDogXCJkYXRhYmFzZVwiLFxyXG4gICAgICAgIGlwSW5mb0tleTogXCJcIixcclxuICAgIH0sXHJcbiAgICBcImZldGNoXCI6IHtcclxuICAgICAgICBlbmFibGVQcmVjb21wdXRlZEZpbmdlcnByaW50czogdHJ1ZSxcclxuICAgICAgICBkeW5hbWljUGVyZmVjdENhbnZhczogdHJ1ZSxcclxuICAgICAgICBlbmFibGVDdXN0b21TZXJ2ZXI6IGZhbHNlLFxyXG4gICAgICAgIHBlcmZlY3RDYW52YXNMb2dzOiBmYWxzZSxcclxuICAgICAgICBwZXJmZWN0Q2FudmFzUmVxdWVzdDogXCJcIixcclxuICAgICAgICBtYXhCcm93c2VyVmVyc2lvbjogXCIqXCIsXHJcbiAgICAgICAgbWluQnJvd3NlclZlcnNpb246IFwiKlwiLFxyXG4gICAgICAgIHRpbWVMaW1pdDogXCIqXCIsXHJcbiAgICAgICAgbWF4SGVpZ2h0OiBcIipcIixcclxuICAgICAgICBtaW5IZWlnaHQ6IFwiKlwiLFxyXG4gICAgICAgIG1heFdpZHRoOiBcIipcIixcclxuICAgICAgICBtaW5XaWR0aDogXCIqXCIsXHJcbiAgICAgICAgdGFnczogW10sXHJcbiAgICB9LFxyXG59KVt0eXBlXTtcclxuXHJcbk9iamVjdC5rZXlzKGRlZmF1bHRzKS5mb3JFYWNoKGZ1bmN0aW9uIChrZXkpIHtcclxuICAgIHZhciB2YWx1ZSA9IG9wdGlvbnNba2V5XTtcclxuXHJcbiAgICBpZiAoXHJcbiAgICAgICAgdHlwZSA9PT0gXCJzZXR1cC5wcm94eVwiICYmXHJcbiAgICAgICAgW1wiaXBFeHRyYWN0aW9uTWV0aG9kXCIsIFwiaXBFeHRyYWN0aW9uUGFyYW1cIiwgXCJpcEV4dHJhY3Rpb25VUkxcIiwgXCJkZXRlY3RFeHRlcm5hbElQXCJdLmluZGV4T2Yoa2V5KSA+PSAwXHJcbiAgICApIHtcclxuICAgICAgICBvcHRpb25zW2tleV0gPSB7IHY0OiBkZWZhdWx0c1trZXldLnY0LCB2NjogZGVmYXVsdHNba2V5XS52NiB9O1xyXG5cclxuICAgICAgICBPYmplY3Qua2V5cyhvcHRpb25zW2tleV0pLmZvckVhY2goZnVuY3Rpb24gKHZlcnNpb25LZXkpIHtcclxuICAgICAgICAgICAgaWYgKHZhbHVlICE9IG51bGwgJiYgdHlwZW9mIHZhbHVlID09PSBcIm9iamVjdFwiICYmIHR5cGVvZiB2YWx1ZVt2ZXJzaW9uS2V5XSA9PT0gdHlwZW9mIG9wdGlvbnNba2V5XVt2ZXJzaW9uS2V5XSkge1xyXG4gICAgICAgICAgICAgICAgb3B0aW9uc1trZXldW3ZlcnNpb25LZXldID0gdmFsdWVbdmVyc2lvbktleV07XHJcbiAgICAgICAgICAgIH0gZWxzZSBpZiAodHlwZW9mIHZhbHVlID09PSB0eXBlb2Ygb3B0aW9uc1trZXldW3ZlcnNpb25LZXldKSB7XHJcbiAgICAgICAgICAgICAgICBvcHRpb25zW2tleV1bdmVyc2lvbktleV0gPSB2YWx1ZTtcclxuICAgICAgICAgICAgfVxyXG4gICAgICAgIH0pO1xyXG4gICAgfSBlbHNlIHtcclxuICAgICAgICBvcHRpb25zW2tleV0gPSAodmFsdWUgPT0gbnVsbCA/IGRlZmF1bHRzW2tleV0gOiB2YWx1ZSkgKyBcIlwiO1xyXG4gICAgfVxyXG59KTtcclxuIiwiY2xhc3MiOiJleHByZXNzaW9uIn1dfQ==*/
       const defaults = ({
       "setup.fingerprint": {
       emulateDeviceScaleFactor: true,
@@ -182,14 +182,18 @@
       "setup.proxy": {
       changeBrowserLanguage: true,
       changeGeolocation: false,
-      ipInfoMethod: "database",
-      detectExternalIP: true,
       changeTimezone: true,
       changeWebRTC: true,
+      publicIPv4: "auto",
+      publicIPv6: "auto",
+      privateIPv4: "local",
+      privateIPv6: "local",
+      ipExtractionMethod: { v4: "raw", v6: "raw" },
+      ipExtractionParam: { v4: "", v6: "" },
+      ipExtractionURL: { v4: "", v6: "" },
+      detectExternalIP: { v4: true, v6: true },
+      ipInfoMethod: "database",
       ipInfoKey: "",
-      ipExtractionMethod: "raw",
-      ipExtractionParam: "",
-      ipExtractionURL: "",
       },
       "fetch": {
       enablePrecomputedFingerprints: true,
@@ -208,7 +212,22 @@
       },
       })[type];
       Object.keys(defaults).forEach(function (key) {
-      options[key] = (options[key] == null ? defaults[key] : options[key]) + "";
+      var value = options[key];
+      if (
+      type === "setup.proxy" &&
+      ["ipExtractionMethod", "ipExtractionParam", "ipExtractionURL", "detectExternalIP"].indexOf(key) >= 0
+      ) {
+      options[key] = { v4: defaults[key].v4, v6: defaults[key].v6 };
+      Object.keys(options[key]).forEach(function (versionKey) {
+      if (value != null && typeof value === "object" && typeof value[versionKey] === typeof options[key][versionKey]) {
+      options[key][versionKey] = value[versionKey];
+      } else if (typeof value === typeof options[key][versionKey]) {
+      options[key][versionKey] = value;
+      }
+      });
+      } else {
+      options[key] = (value == null ? defaults[key] : value) + "";
+      }
       });
       section_end()!
 
@@ -386,7 +405,7 @@
          section_end()!
 
          section_start("", 527418314)!
-         /*Dat:eyJzIjoicHJveHkiLCJ2IjoxLCJmIjpbXSwidXciOiIwIiwidXQiOiIwIiwidXRvIjoiMCIsInVtIjoiMCIsInVlIjoiMCIsInVzcCI6IjAiLCJkIjpbeyJpZCI6IlByb3h5VGV4dCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV1dIiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiUHJveHlUeXBlIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiIoW1tQUk9YWV1dLmxlbmd0aCA/IFwiYXV0b1wiIDogXCJzb2NrXCIpIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IlByb3h5TG9naW4iLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6IiIsImNsYXNzIjoic3RyaW5nIiwiaXNfZGVmIjp0cnVlfSx7ImlkIjoiUHJveHlQYXNzd29yZCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiIiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOnRydWV9LHsiaWQiOiJDaGFuZ2VUaW1lem9uZSIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uY2hhbmdlVGltZXpvbmUiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiQ2hhbmdlR2VvbG9jYXRpb24iLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6IltbUFJPWFlfT1BUSU9OU11dLmNoYW5nZUdlb2xvY2F0aW9uIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IkNoYW5nZUJyb3dzZXJMYW5ndWFnZSIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uY2hhbmdlQnJvd3Nlckxhbmd1YWdlIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IkNoYW5nZVdlYnJ0Y0lwIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5jaGFuZ2VXZWJSVEMiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiUHVibGljSVB2NCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiYXV0byIsImNsYXNzIjoic3RyaW5nIiwiaXNfZGVmIjp0cnVlfSx7ImlkIjoiUHVibGljSVB2NiIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiYXV0byIsImNsYXNzIjoic3RyaW5nIiwiaXNfZGVmIjp0cnVlfSx7ImlkIjoiUHJpdmF0ZUlQdjQiLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6ImxvY2FsIiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOnRydWV9LHsiaWQiOiJQcml2YXRlSVB2NiIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoibG9jYWwiLCJjbGFzcyI6InN0cmluZyIsImlzX2RlZiI6dHJ1ZX0seyJpZCI6IkRldGVjdEV4dGVybmFsSXAiLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6IltbUFJPWFlfT1BUSU9OU11dLmRldGVjdEV4dGVybmFsSVAiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiU2VydmljZVVSTCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uaXBFeHRyYWN0aW9uVVJMIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IklwRXh0cmFjdGlvbk1ldGhvZCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uaXBFeHRyYWN0aW9uTWV0aG9kIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IklwRXh0cmFjdGlvblBhcmFtIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5pcEV4dHJhY3Rpb25QYXJhbSIsImNsYXNzIjoiZXhwcmVzc2lvbiIsImlzX2RlZiI6ZmFsc2V9LHsiaWQiOiJEZXRlY3RFeHRlcm5hbElwVjYiLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6InRydWUiLCJjbGFzcyI6InN0cmluZyIsImlzX2RlZiI6dHJ1ZX0seyJpZCI6IlNlcnZpY2VVUkxWNiIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiIiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOnRydWV9LHsiaWQiOiJJcEV4dHJhY3Rpb25NZXRob2RWNiIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoicmF3IiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOnRydWV9LHsiaWQiOiJJcEV4dHJhY3Rpb25QYXJhbVY2IiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiIiLCJjbGFzcyI6InN0cmluZyIsImlzX2RlZiI6dHJ1ZX0seyJpZCI6IklwSW5mb01ldGhvZCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uaXBJbmZvTWV0aG9kIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IklwQXBpS2V5IiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5pcEluZm9LZXkiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiRnVuY3Rpb25OYW1lIiwidHlwZSI6InRleHQiLCJkYXRhIjoiIn0seyJpZCI6IlRhcmdldFVybCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiKiIsImNsYXNzIjoic3RyaW5nIiwiaXNfZGVmIjp0cnVlfSx7ImlkIjoiVGFyZ2V0VGFiTnVtYmVyIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiIqIiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOnRydWV9XX0=*/
+         /*Dat:eyJzIjoicHJveHkiLCJ2IjoxLCJmIjpbXSwidXciOiIwIiwidXQiOiIwIiwidXRvIjoiMCIsInVtIjoiMCIsInVlIjoiMCIsInVzcCI6IjAiLCJkIjpbeyJpZCI6IlByb3h5VGV4dCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV1dIiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiUHJveHlUeXBlIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiIoW1tQUk9YWV1dLmxlbmd0aCA/IFwiYXV0b1wiIDogXCJzb2NrXCIpIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IlByb3h5TG9naW4iLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6IiIsImNsYXNzIjoic3RyaW5nIiwiaXNfZGVmIjp0cnVlfSx7ImlkIjoiUHJveHlQYXNzd29yZCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiIiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOnRydWV9LHsiaWQiOiJDaGFuZ2VUaW1lem9uZSIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uY2hhbmdlVGltZXpvbmUiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiQ2hhbmdlR2VvbG9jYXRpb24iLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6IltbUFJPWFlfT1BUSU9OU11dLmNoYW5nZUdlb2xvY2F0aW9uIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IkNoYW5nZUJyb3dzZXJMYW5ndWFnZSIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uY2hhbmdlQnJvd3Nlckxhbmd1YWdlIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IkNoYW5nZVdlYnJ0Y0lwIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5jaGFuZ2VXZWJSVEMiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiUHVibGljSVB2NCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0ucHVibGljSVB2NCIsImNsYXNzIjoiZXhwcmVzc2lvbiIsImlzX2RlZiI6ZmFsc2V9LHsiaWQiOiJQdWJsaWNJUHY2IiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5wdWJsaWNJUHY2IiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IlByaXZhdGVJUHY0IiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5wcml2YXRlSVB2NCIsImNsYXNzIjoiZXhwcmVzc2lvbiIsImlzX2RlZiI6ZmFsc2V9LHsiaWQiOiJQcml2YXRlSVB2NiIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0ucHJpdmF0ZUlQdjYiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiRGV0ZWN0RXh0ZXJuYWxJcCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uZGV0ZWN0RXh0ZXJuYWxJUC52NCIsImNsYXNzIjoiZXhwcmVzc2lvbiIsImlzX2RlZiI6ZmFsc2V9LHsiaWQiOiJTZXJ2aWNlVVJMIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5pcEV4dHJhY3Rpb25VUkwudjQiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiSXBFeHRyYWN0aW9uTWV0aG9kIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5pcEV4dHJhY3Rpb25NZXRob2QudjQiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiSXBFeHRyYWN0aW9uUGFyYW0iLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6IltbUFJPWFlfT1BUSU9OU11dLmlwRXh0cmFjdGlvblBhcmFtLnY0IiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IkRldGVjdEV4dGVybmFsSXBWNiIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uZGV0ZWN0RXh0ZXJuYWxJUC52NiIsImNsYXNzIjoiZXhwcmVzc2lvbiIsImlzX2RlZiI6ZmFsc2V9LHsiaWQiOiJTZXJ2aWNlVVJMVjYiLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6IltbUFJPWFlfT1BUSU9OU11dLmlwRXh0cmFjdGlvblVSTC52NiIsImNsYXNzIjoiZXhwcmVzc2lvbiIsImlzX2RlZiI6ZmFsc2V9LHsiaWQiOiJJcEV4dHJhY3Rpb25NZXRob2RWNiIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uaXBFeHRyYWN0aW9uTWV0aG9kLnY2IiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IklwRXh0cmFjdGlvblBhcmFtVjYiLCJ0eXBlIjoiY29uc3RyIiwiZGF0YSI6IltbUFJPWFlfT1BUSU9OU11dLmlwRXh0cmFjdGlvblBhcmFtLnY2IiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IklwSW5mb01ldGhvZCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiW1tQUk9YWV9PUFRJT05TXV0uaXBJbmZvTWV0aG9kIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX0seyJpZCI6IklwQXBpS2V5IiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbW1BST1hZX09QVElPTlNdXS5pcEluZm9LZXkiLCJjbGFzcyI6ImV4cHJlc3Npb24iLCJpc19kZWYiOmZhbHNlfSx7ImlkIjoiRnVuY3Rpb25OYW1lIiwidHlwZSI6InRleHQiLCJkYXRhIjoiIn0seyJpZCI6IlRhcmdldFVybCIsInR5cGUiOiJjb25zdHIiLCJkYXRhIjoiKiIsImNsYXNzIjoic3RyaW5nIiwiaXNfZGVmIjp0cnVlfSx7ImlkIjoiVGFyZ2V0VGFiTnVtYmVyIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiIqIiwiY2xhc3MiOiJzdHJpbmciLCJpc19kZWYiOnRydWV9XX0=*/
          var hash = proxy_parse(VAR_PROXY)
          if((VAR_PROXY.length ? "auto" : "sock") != "auto" ){
          hash["IsHttp"] = (VAR_PROXY.length ? "auto" : "sock") == "http"
@@ -407,7 +426,7 @@
          {
          var PortNumber = hash["Port"]
          hash["Port"] = hash["Port"].toString()
-         hash["DetectExternalIp"] = VAR_PROXY_OPTIONS.detectExternalIP == "true";
+         hash["DetectExternalIp"] = VAR_PROXY_OPTIONS.detectExternalIP.v4 == "true";
          hash["ChangeGeolocation"] = VAR_PROXY_OPTIONS.changeGeolocation == "true";
          hash["ChangeWebrtcIp"] = VAR_PROXY_OPTIONS.changeWebRTC;
          if(hash["ChangeWebrtcIp"] == "true"){hash["ChangeWebrtcIp"] = "replace"};
@@ -420,24 +439,24 @@
          hash["ip_info_method"] = "database"
          }
          hash["ip_api_key"] = VAR_PROXY_OPTIONS.ipInfoKey;
-         hash["ServiceURL"] = VAR_PROXY_OPTIONS.ipExtractionURL;
-         hash["IpExtractionParam"] = VAR_PROXY_OPTIONS.ipExtractionParam;
-         hash["IpExtractionMethod"] = VAR_PROXY_OPTIONS.ipExtractionMethod;
-         hash["PublicIPv4"] = "auto";
-         hash["PublicIPv6"] = "auto";
-         hash["PrivateIPv4"] = "local";
-         hash["PrivateIPv6"] = "local";
-         hash["DetectExternalIpV6"] = "true" == "true";
-         hash["ServiceURLV6"] = "";
-         hash["IpExtractionMethodV6"] = "raw";
-         hash["IpExtractionParamV6"] = "";
+         hash["ServiceURL"] = VAR_PROXY_OPTIONS.ipExtractionURL.v4;
+         hash["IpExtractionParam"] = VAR_PROXY_OPTIONS.ipExtractionParam.v4;
+         hash["IpExtractionMethod"] = VAR_PROXY_OPTIONS.ipExtractionMethod.v4;
+         hash["PublicIPv4"] = VAR_PROXY_OPTIONS.publicIPv4;
+         hash["PublicIPv6"] = VAR_PROXY_OPTIONS.publicIPv6;
+         hash["PrivateIPv4"] = VAR_PROXY_OPTIONS.privateIPv4;
+         hash["PrivateIPv6"] = VAR_PROXY_OPTIONS.privateIPv6;
+         hash["DetectExternalIpV6"] = VAR_PROXY_OPTIONS.detectExternalIP.v6 == "true";
+         hash["ServiceURLV6"] = VAR_PROXY_OPTIONS.ipExtractionURL.v6;
+         hash["IpExtractionMethodV6"] = VAR_PROXY_OPTIONS.ipExtractionMethod.v6;
+         hash["IpExtractionParamV6"] = VAR_PROXY_OPTIONS.ipExtractionParam.v6;
          native("filesystem", "writefile", JSON.stringify({path: _get_profile() + "/proxy.txt",value: JSON.stringify(hash),base64:false,append:false}))
          hash["Port"] = PortNumber
          }
          }
          set_proxy(hash["server"], hash["Port"], hash["IsHttp"], hash["name"], hash["password"])!
          sleep(1000)!
-         set_proxy_extended(VAR_PROXY_OPTIONS.detectExternalIP == "true", VAR_PROXY_OPTIONS.changeGeolocation == "true", VAR_PROXY_OPTIONS.changeWebRTC, VAR_PROXY_OPTIONS.changeTimezone == "true", VAR_PROXY_OPTIONS.changeBrowserLanguage == "true", VAR_PROXY_OPTIONS.ipInfoMethod, VAR_PROXY_OPTIONS.ipInfoKey, null, VAR_PROXY_OPTIONS.ipExtractionURL, VAR_PROXY_OPTIONS.ipExtractionMethod, VAR_PROXY_OPTIONS.ipExtractionParam, "auto", "auto", "local", "local", "true" == "true", "", "raw", "")!
+         set_proxy_extended(VAR_PROXY_OPTIONS.detectExternalIP.v4 == "true", VAR_PROXY_OPTIONS.changeGeolocation == "true", VAR_PROXY_OPTIONS.changeWebRTC, VAR_PROXY_OPTIONS.changeTimezone == "true", VAR_PROXY_OPTIONS.changeBrowserLanguage == "true", VAR_PROXY_OPTIONS.ipInfoMethod, VAR_PROXY_OPTIONS.ipInfoKey, null, VAR_PROXY_OPTIONS.ipExtractionURL.v4, VAR_PROXY_OPTIONS.ipExtractionMethod.v4, VAR_PROXY_OPTIONS.ipExtractionParam.v4, VAR_PROXY_OPTIONS.publicIPv4, VAR_PROXY_OPTIONS.publicIPv6, VAR_PROXY_OPTIONS.privateIPv4, VAR_PROXY_OPTIONS.privateIPv6, VAR_PROXY_OPTIONS.detectExternalIP.v6 == "true", VAR_PROXY_OPTIONS.ipExtractionURL.v6, VAR_PROXY_OPTIONS.ipExtractionMethod.v6, VAR_PROXY_OPTIONS.ipExtractionParam.v6)!
          sleep(1000)!
          section_end()!
 
@@ -575,8 +594,8 @@
          section_end()!
 
          section_start("", 49285649)!
-         /*Dat:eyJzIjoic2V0dmFyaWFibGUiLCJ2IjoxLCJmIjpbXSwidXciOiIwIiwidXQiOiIwIiwidXRvIjoiMCIsInVtIjoiMCIsInVlIjoiMCIsInVzcCI6IjAiLCJkIjpbeyJpZCI6IlNldFZhcmlhYmxlTmFtZSIsInR5cGUiOiJ2YXIiLCJkYXRhIjoiRklOR0VSUFJJTlRfVEFHUyIsImlzX2RlZiI6ZmFsc2V9LHsiaWQiOiJTZXRWYXJpYWJsZVZhbHVlIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbXCIqXCIsIFwiTW9iaWxlXCIsIFwiRGVza3RvcFwiLCBcIk1pY3Jvc29mdCBXaW5kb3dzXCIsIFwiTWljcm9zb2Z0IFdpbmRvd3MgUGhvbmVcIiwgXCJBcHBsZSBNYWNcIiwgXCJBbmRyb2lkXCIsIFwiTGludXhcIiwgXCJpUGFkXCIsIFwiaVBob25lXCIsIFwiRWRnZVwiLCBcIkNocm9tZVwiLCBcIlNhZmFyaVwiLCBcIkZpcmVmb3hcIiwgXCJZYUJyb3dzZXJcIiwgXCJXaW5kb3dzIDdcIiwgXCJXaW5kb3dzIDhcIiwgXCJXaW5kb3dzIDEwXCJdIiwiY2xhc3MiOiJleHByZXNzaW9uIiwiaXNfZGVmIjpmYWxzZX1dfQ==*/
-         VAR_FINGERPRINT_TAGS = ["*", "Mobile", "Desktop", "Microsoft Windows", "Microsoft Windows Phone", "Apple Mac", "Android", "Linux", "iPad", "iPhone", "Edge", "Chrome", "Safari", "Firefox", "YaBrowser", "Windows 7", "Windows 8", "Windows 10"]
+         /*Dat:eyJzIjoic2V0dmFyaWFibGUiLCJ2IjoxLCJmIjpbXSwidXciOiIwIiwidXQiOiIwIiwidXRvIjoiMCIsInVtIjoiMCIsInVlIjoiMCIsInVzcCI6IjAiLCJkIjpbeyJpZCI6IlNldFZhcmlhYmxlTmFtZSIsInR5cGUiOiJ2YXIiLCJkYXRhIjoiRklOR0VSUFJJTlRfVEFHUyIsImlzX2RlZiI6ZmFsc2V9LHsiaWQiOiJTZXRWYXJpYWJsZVZhbHVlIiwidHlwZSI6ImNvbnN0ciIsImRhdGEiOiJbXCIqXCIsIFwiRGVza3RvcFwiLCBcIk1vYmlsZVwiLCBcIk1pY3Jvc29mdCBXaW5kb3dzXCIsIFwiQXBwbGUgTWFjXCIsIFwiQW5kcm9pZFwiLCBcIkxpbnV4XCIsIFwiaVBhZFwiLCBcImlQaG9uZVwiLCBcIkVkZ2VcIiwgXCJDaHJvbWVcIiwgXCJTYWZhcmlcIiwgXCJGaXJlZm94XCIsIFwiWWFCcm93c2VyXCIsIFwiV2luZG93cyA3XCIsIFwiV2luZG93cyA4XCIsIFwiV2luZG93cyAxMFwiXSIsImNsYXNzIjoiZXhwcmVzc2lvbiIsImlzX2RlZiI6ZmFsc2V9XX0=*/
+         VAR_FINGERPRINT_TAGS = ["*", "Desktop", "Mobile", "Microsoft Windows", "Apple Mac", "Android", "Linux", "iPad", "iPhone", "Edge", "Chrome", "Safari", "Firefox", "YaBrowser", "Windows 7", "Windows 8", "Windows 10"]
          section_end()!
 
          section_start("", 664786048)!

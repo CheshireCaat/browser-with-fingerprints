@@ -1,363 +1,38 @@
 import type { Browser, LaunchOptions as SpawnOptions } from './plugin/launcher';
+import type { FingerprintOptions } from './types/fingerprint';
+import type { ProfileOptions } from './types/profile';
+import type { ProxyOptions } from './types/proxy';
+import type { FetchOptions } from './types/fetch';
+
+export type * from './types/fingerprint';
+export type * from './types/profile';
+export type * from './types/proxy';
+export type * from './types/fetch';
+export type { Browser, SpawnOptions };
 
 /**
- * Describes a time limit that can be used to filter fingerprints.
- *
- * The `*` option means that no time filter will be applied.
+ * Describes an object that provides complete information about the available browser version.
  */
-export type Time = '*' | '15 days' | '30 days' | '60 days';
-
-/**
- * Describes a tag value that can be used to filter fingerprints.
- *
- * The `*` option means that no tag filter will be applied.
- */
-export type Tag =
-  | '*'
-  | 'Desktop'
-  | 'Mobile'
-  | 'Microsoft Windows'
-  | 'Apple Mac'
-  | 'Android'
-  | 'Linux'
-  | 'iPad'
-  | 'iPhone'
-  | 'Edge'
-  | 'Chrome'
-  | 'Safari'
-  | 'Firefox'
-  | 'YaBrowser'
-  | 'Windows 7'
-  | 'Windows 8'
-  | 'Windows 10';
-
-/**
- * Options related to the browser fingerprint configuration.
- */
-export interface FingerprintOptions {
+export interface Version {
   /**
-   * Allows you to better emulate devices with higher pixel density.
-   *
-   * If this option is enabled, emulation will be done in the most natural way.
-   * It means that the browser will render the page at a higher resolution, just like on a real device.
-   * The trade-off is higher system resource usage because you need to do more calculations to render the bigger picture.
-   *
-   * The **JavaScript** options related to pixel density, such as `devicePixelRatio`, will be replaced correctly whether this option is enabled or not.
-   *
-   * @default true
+   * Browser architecture. Possible values - `x64` or `x86`.
    */
-  emulateDeviceScaleFactor?: boolean;
+  architecture: 'x64' | 'x86';
 
   /**
-   * The **Chrome** browser has a Sensor API that allows you to read data from devices such as accelerometer, gyroscope and others. Data from these devices is only available on mobile platforms.
-   *
-   * After enabling this option, data for these devices will be generated and replaced automatically. Enable this option to emulate mobile fingerprints more accurately.
-   *
-   * @default true
+   * Full browser version, for example - `115.0.5790.99`.
    */
-  emulateSensorAPI?: boolean;
+  browser_version: string;
 
   /**
-   * If this option is set to `true`, the **PerfectCanvas** replacement will be enabled. The fingerprint must contain the **PerfectCanvas** data in order for it to work.
-   *
-   * @default true
+   * Full engine version, for example - `25.9.1`.
    */
-  usePerfectCanvas?: boolean;
+  bas_version: string;
 
   /**
-   * By default browser searches for fonts only in system font folder. This may lead to inconsistencies during fingerprint emulation if target fingerprint has more fonts than local system.
-   * Therefore, it's recommended to download font pack with most popular fonts. This setting allows to use font pack if it's installed.
-   *
-   * More info about font pack and download link can be found [here](https://wiki.bablosoft.com/doku.php?id=fontpack).
-   *
-   * @default true
+   * Internal identifier of the browser build.
    */
-  useFontPack?: boolean;
-
-  /**
-   * If this option is set to `true`, API results that return element coordinates will be updated to protect against `ClientRects` fingerprinting.
-   *
-   * @default false
-   */
-  safeElementSize?: boolean;
-
-  /**
-   * If this option is set to `true`, the battery API will show a different value for each thread, which will prevent sites from identifying your real identity.
-   *
-   * In case the device from which the fingerprint was obtained does not have a battery API, it will always return 100% battery level.
-   *
-   * @default true
-   */
-  safeBattery?: boolean;
-
-  /**
-   * If this option is set to `true`, canvas will be enabled, and noise will be added to all data returned from canvas.
-   *
-   * @default true
-   */
-  safeCanvas?: boolean;
-
-  /**
-   * If this option is set to `true`, audio will be enabled, and noise will be added to the sound, and your hardware properties, such as the sample rate and number of channels will be changed.
-   *
-   * @default true
-   */
-  safeAudio?: boolean;
-
-  /**
-   * If this option is set to `true`, **WebGL** will be enabled, and noise will be added to the **WebGL** canvas, and your hardware properties, such as the video card manufacturer and renderer will be changed.
-   *
-   * @default true
-   */
-  safeWebGL?: boolean;
-}
-
-/**
- * Options related to the browser profile configuration.
- */
-export interface ProfileOptions {
-  /**
-   * Always load a fingerprint from the profile folder.
-   *
-   * In case the profile folder already exists and contains fingerprint data, tell the plugin to apply the last fingerprint used for this profile.
-   *
-   * @default true
-   */
-  loadFingerprint?: boolean;
-
-  /**
-   * Always load a proxy from the profile folder.
-   *
-   * In case the profile folder already exists and contains proxy data, tell the plugin to apply the last proxy used for this profile.
-   *
-   * @default true
-   */
-  loadProxy?: boolean;
-}
-
-/**
- * Options related to the browser proxy configuration.
- */
-export interface ProxyOptions {
-  /**
-   * Change the browser language according to the country of the proxy server.
-   * This setting will change the `Accept-Language` header as well as the `navigator.language` and `navigator.languages` javascript properties.
-   *
-   * @default true
-   */
-  changeBrowserLanguage?: boolean;
-
-  /**
-   * Change the geolocation of your browser to match the IP address of the proxy server.
-   * The location will be set at a point close to the longitude and latitude of the server.
-   * If this option is disabled, the browser's request to access your geolocation will be rejected.
-   *
-   * @default false
-   */
-  changeGeolocation?: boolean;
-
-  /**
-   * Change your browser's timezone to match the IP address of the proxy server.
-   * For example, if the proxy server is located in the United Kingdom, then the browser's time zone offset will be `UTC+00:00`.
-   *
-   * @default true
-   */
-  changeTimezone?: boolean;
-
-  /**
-   * Replace the IP address provided by **WebRTC** with the IP address of the proxy server.
-   *
-   * @default 'replace'
-   */
-  changeWebRTC?: 'enable' | 'disable' | 'replace';
-
-  /**
-   * After receiving a response from the service URL, the IP address will be extracted from the response.
-   *
-   * This parameter specifies the method for extracting the IP address.
-   * The {@link ipExtractionParam} must also be specified in combination with this parameter.
-   *
-   * Depending on the method used, the param will be treated differently.
-   * For example, if the `regexp` method is used, the param must contain a regular expression, and so on.
-   *
-   * @default 'raw'
-   */
-  ipExtractionMethod?: 'raw' | 'xpath' | 'regexp' | 'jsonpath';
-
-  /**
-   * After receiving a response from the service URL, the IP address will be extracted from the response.
-   *
-   * This parameter specifies the param for extracting the IP address.
-   * The {@link ipExtractionMethod} must also be specified in combination with this parameter.
-   *
-   * Depending on the method used, the param will be treated differently.
-   * For example, if the `regexp` method is used, this param must contain a regular expression, and so on.
-   *
-   * @default ''
-   */
-  ipExtractionParam?: string;
-
-  /**
-   * This service URL is used to detect the external IP address.
-   *
-   * The URL will be queried through the currently installed proxy, and the response must contain the external IP address.
-   *
-   * @default ''
-   */
-  ipExtractionURL?: string;
-
-  /**
-   * Determine the IP address of the proxy server by requesting an external service.
-   * This option can be used if the IP address that you use to connect the proxy server does not match the IP address that is visible to the site (external IP address).
-   *
-   * @default true
-   */
-  detectExternalIP?: boolean;
-
-  /**
-   * The method that will be used to get information about the IP.
-   *
-   * By default, the internal `database` method is used - it is fast and always available.
-   * Even though the database is constantly updated, this method may not be the most accurate compared to others.
-   * So you can also use `ip-api.com` service - the free version has a limit of 45 requests per IP (unlike the full version).
-   *
-   * @default 'database'
-   */
-  ipInfoMethod?: 'database' | 'ip-api.com';
-
-  /**
-   * API key from the [ip-api.com](https://ip-api.com/) service (available after purchase).
-   *
-   * This parameter is used only if the method is set to `ip-api.com` value.
-   *
-   * @default '''
-   */
-  ipInfoKey?: string;
-}
-
-/**
- * Fetch options related to the browser fingerprint.
- */
-export interface FetchOptions {
-  /**
-   * In case the fingerprint with the specified **PerfectCanvas** request is not in the static database, the canvas data will be rendered in real time from the machines that are currently connected.
-   *
-   * This is the default behavior, but sometimes you can avoid static database queries and use dynamic rendering instantly.
-   * In order to do that, set this option to `false`.
-   *
-   * This option has no effect if the **PerfectCanvas** request is not specified or if the custom servers are used.
-   *
-   * @default true
-   */
-  enablePrecomputedFingerprints?: boolean;
-
-  /**
-   * This option is only useful if the custom server feature is enabled in your account. Otherwise, it will always throw an error.
-   *
-   * If you have this option enabled, the fingerprint will be received only from the custom server. It's also compatible with the **PerfectCanvas**.
-   *
-   * @default false
-   */
-  enableCustomServer?: boolean;
-
-  /**
-   * In case the fingerprint with the specified **PerfectCanvas** request is not in the static database, the canvas data will be rendered in real time from the machines that are currently connected.
-   *
-   * This is the default behavior, but sometimes you can avoid dynamic rendering to save time or for another reason.
-   * In order to do this, set this option to `false`.
-   *
-   * This option has no effect if the **PerfectCanvas** request is not specified.
-   *
-   * @default true
-   */
-  dynamicPerfectCanvas?: boolean;
-
-  /**
-   * The **PerfectCanvas** request contains all the data required to render canvas on the remote machine.
-   *
-   * In order to obtain a request, use the `CanvasInspector` application, see the wiki for more information and download links.
-   * The **PerfectCanvas** request data is obtained once for the site, not for each fingerprint request.
-   */
-  perfectCanvasRequest?: string;
-
-  /**
-   * Is it necessary to add logs when getting fingerprints with the **PerfectCanvas**.
-   * @default false
-   */
-  perfectCanvasLogs?: boolean;
-
-  /**
-   * Select only those fingerprints that have a specific browser version.
-   * It's recommended to use this option together with an explicit browser name.
-   *
-   * For example, you can choose fingerprints for the **Chrome** browser with a version lower than `115`.
-   * You can also select the exact version by setting this option to the same value as for `minBrowserVersion`.
-   *
-   * The preferred option is to use the `current` value - this way the filter will use the current browser version installed for the plugin.
-   * It can be very convenient, as the maximum versions of the browser and fingerprint will be exactly the same.
-   *
-   * If this option is not specified, a fingerprint with no maximum version limit will be selected.
-   */
-  maxBrowserVersion?: number | 'current';
-
-  /**
-   * Select only those fingerprints that have a specific browser version.
-   * It's recommended to use this option together with an explicit browser name.
-   *
-   * For example, you can choose fingerprints for the **Chrome** browser with a version higher than `115`.
-   * You can also select the exact version by setting this option to the same value as for `maxBrowserVersion`.
-   *
-   * The preferred option is to use the `current` value - this way the filter will use the current browser version installed for the plugin.
-   * It can be very convenient, as the minimum versions of the browser and fingerprint will be exactly the same.
-   *
-   * If this option is not specified, a fingerprint with no minimum version limit will be selected.
-   */
-  minBrowserVersion?: number | 'current';
-
-  /**
-   * Select only those fingerprints whose maximum browser height matches the specified one.
-   *
-   * If this option is not specified, a fingerprint without a maximum height limit will be selected.
-   */
-  maxHeight?: number;
-
-  /**
-   * Select only those fingerprints whose minimum browser height matches the specified one.
-   *
-   * If this option is not specified, a fingerprint without a minimum height limit will be selected.
-   */
-  minHeight?: number;
-
-  /**
-   * Select only those fingerprints whose maximum browser width matches the specified one.
-   *
-   * If this option is not specified, a fingerprint without a maximum width limit will be selected.
-   */
-  maxWidth?: number;
-
-  /**
-   * Select only those fingerprints whose minimum browser width matches the specified one.
-   *
-   * If this option is not specified, a fingerprint without a minimum width limit will be selected.
-   */
-  minWidth?: number;
-
-  /**
-   * Select only those fingerprints whose date of addition matches the specified one.
-   *
-   * If this option is not specified, a fingerprint without an addition date limit will be selected.
-   */
-  timeLimit?: Time;
-
-  /**
-   * Select the system and device for which you want to get a fingerprint.
-   *
-   * Multiple tags can be combined together, in which case the service will only return
-   * fingerprints that match all of the specified tags.
-   *
-   * If this option is not specified, a fingerprint will be obtained for any of the possible tags.
-   */
-  tags?: Tag[];
+  id: number;
 }
 
 /**
@@ -537,7 +212,6 @@ export declare class FingerprintPlugin {
    * @returns Promise which resolves to a fingerprint string.
    */
   fetch(options?: FetchOptions): Promise<string>;
-  /** @deprecated */ fetch(key: string, options?: FetchOptions): Promise<string>;
 
   /**
    * Launches a browser instance with given arguments and options when specified.
@@ -628,36 +302,6 @@ export declare class FingerprintPlugin {
 }
 
 /**
- * Describes an object that provides complete information about the available browser version.
- */
-export interface Version {
-  /**
-   * Browser architecture. Possible values - `x64` or `x86`.
-   */
-  architecture: 'x64' | 'x86';
-
-  /**
-   * Full browser version, for example - `115.0.5790.99`.
-   */
-  browser_version: string;
-
-  /**
-   * Full engine version, for example - `25.9.1`.
-   */
-  bas_version: string;
-
-  /**
-   * Internal identifier of the browser build.
-   */
-  id: number;
-}
-
-/**
  * A default instance of the fingerprint plugin.
  */
 export declare const plugin: FingerprintPlugin;
-
-/**
- * Re-export the types related to the default launcher.
- */
-export { Browser, SpawnOptions };
