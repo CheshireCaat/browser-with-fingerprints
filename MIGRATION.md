@@ -22,8 +22,8 @@ To adapt to these changes, follow these steps:
 
 2. **Modify method calls**:
 
-   - Optionally, you can remove the key from the `fetch` method by passing options as the first parameter.
-   - Similarly, you can omit the service `key` option from the `launch` and `spawn` plugin methods.
+   - You should remove the key from the `fetch` method by passing options as the first parameter.
+   - Similarly, you should remove the service `key` option from the `launch` and `spawn` plugin methods.
 
 ### Code example
 
@@ -75,4 +75,4 @@ main();
 
 ### Additional notes
 
-You can still pass the key directly to the `fetch`, `spawn`, and `launch` methods. If you do, the provided key will be used for that specific call, overriding the key set by the `setServiceKey` method.
+The key should not be passed directly to the `fetch`, `spawn` and `launch` methods, it currently overrides the global parameter for specific calls, but this feature will be removed in the future.
