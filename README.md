@@ -10,6 +10,8 @@ This package is the basis for other plugins and doesn't allow you to automate br
 
 Current supported engine version - **131.0.6778.70**.
 
+**IMPORTANT NOTE:** plugin only work on **Windows** operating system, it cannot be installed and used on **Linux**, **macOS** and other systems!
+
 ## About
 
 This library allows you to change browser fingerprint and use any automation framework with enhanced anonymity.
