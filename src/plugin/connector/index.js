@@ -36,17 +36,20 @@ const prepareError = (message) => {
 };
 
 exports.api = async (name, params = {}) => {
-  let timer = null;
+  let notifyTimer = null;
+  let requestTimer = null;
   return await lock.acquire('client', async () => {
     try {
-      if (name === 'fetch') timer = notify(params.key);
+      const timeout = engine.timeout ?? DEFAULT_TIMEOUT;
+      if (name === 'fetch') notifyTimer = notify(params.key);
+      debug(`Calling the "${name}" function (timeout set to ${timeout}ms)`);
       // prettier-ignore
       const { error, ...result } = await Promise.race([
         engine.runFunction(name, params),
         params?.options?.perfectCanvasRequest ? null : new Promise((_, reject) => {
-          setTimeout(
+          requestTimer = setTimeout(
             () => reject(new Error(`Timed out while calling the "${name}" method.`)),
-            engine.timeout ?? DEFAULT_TIMEOUT
+            timeout
           ).unref();
         }),
       ].filter(Boolean));
@@ -56,7 +59,8 @@ exports.api = async (name, params = {}) => {
       }
       return result.response ?? result;
     } finally {
-      clearTimeout(timer);
+      clearTimeout(notifyTimer);
+      clearTimeout(requestTimer);
     }
   });
 };

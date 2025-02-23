@@ -10,6 +10,7 @@ const { pipeline } = require('stream/promises');
 const { InvalidEngineError } = require('./errors');
 const { createHash, randomUUID } = require('crypto');
 const { createReadStream, createWriteStream } = require('fs');
+const debug = require('debug')('browser-with-fingerprints:connector:engine');
 
 const CLOSE_TIMEOUT = 60000;
 
@@ -55,24 +56,40 @@ module.exports = class RemoteEngine extends EventEmitter {
         kill(pid, 0);
       } catch (err) {
         if (err.code === 'ESRCH') {
+          debug(`Delete unused request file - ${requestName}`);
           await fs.unlink(path.join(requestDir, requestName));
         }
       }
     }
 
     const requestPath = path.join(requestDir, `${process.pid}_${randomUUID()}.json`);
+    debug(`Create new request file for the "${name}" function  - ${requestPath}`);
     await fs.writeFile(requestPath, JSON.stringify({ name, params }));
 
     const requestWatcher = chokidar.watch(requestPath, {
       awaitWriteFinish: true,
     });
     const response = await new Promise((resolve) => {
+      let closeTimer = null;
+      const closeHandler = () => {
+        closeTimer = setTimeout(() => {
+          debug('Engine process was closed during request');
+          resolve();
+        }, CLOSE_TIMEOUT);
+      };
+
       requestWatcher.on('change', async () => {
         const response = await fs.readFile(requestPath, 'utf8');
+        debug('Function result was successfully obtained');
+
+        if (closeTimer) clearTimeout(closeTimer);
+        process.off('close', closeHandler);
+
         await fs.unlink(requestPath);
         resolve(response);
       });
-      process.once('close', () => setTimeout(resolve, CLOSE_TIMEOUT));
+
+      process.once('close', closeHandler);
     });
 
     await requestWatcher.close();
@@ -121,12 +138,15 @@ module.exports = class RemoteEngine extends EventEmitter {
   async #updateMeta() {
     const project = await fs.readFile(PROJECT_PATH, 'utf8');
     const version = project.match(/<EngineVersion>(\d+.\d+.\d+)<\/EngineVersion>/)[1];
+    debug(`Update metadata for the engine project (arch - ${ARCH}, version - ${version})`);
     const url = `http://bablosoft.com/distr/FastExecuteScript${ARCH}/${version}/FastExecuteScript.x${ARCH}.zip.meta.json`;
 
     const metaPath = path.join(this.#cwd, `${version}_${ARCH}.json`);
     if (await exists(metaPath)) {
+      debug(`Use cached metadata from ${metaPath}`);
       this.#meta = JSON.parse(await fs.readFile(metaPath, 'utf8'));
     } else {
+      debug(`Request actual metadata from ${url}`);
       this.#meta = await axios.get(url).then(({ data }) => ({
         checksum: data.Checksum,
         url: data.Url,
