@@ -1,9 +1,10 @@
+const path = require('path');
 const crypto = require('crypto');
 const mutex = require('./mutex');
 const cleaner = require('./cleaner');
 const launcher = require('./launcher');
+const { api, engine } = require('./connector');
 const { configure, synchronize } = require('./config');
-const { api, setEngineOptions } = require('./connector');
 const { defaultArgs, getProfilePath, validateConfig, validateLauncher } = require('./utils');
 
 module.exports = class FingerprintPlugin {
@@ -55,12 +56,16 @@ module.exports = class FingerprintPlugin {
     return this;
   }
 
-  setRequestTimeout(timeout = 0) {
-    setEngineOptions({ timeout });
+  setRequestTimeout(timeout) {
+    engine.setRequestTimeout(timeout || 0);
   }
 
-  setWorkingFolder(folder = '') {
-    setEngineOptions({ folder });
+  setEngineTimeout(timeout) {
+    engine.setEngineTimeout(timeout || 0);
+  }
+
+  setWorkingFolder(folder) {
+    engine.setCwd(path.resolve(folder));
   }
 
   setServiceKey(key = '') {

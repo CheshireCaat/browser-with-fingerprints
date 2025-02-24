@@ -1,8 +1,8 @@
 const net = require('net');
 const once = require('once');
-const debug = require('debug')('browser-with-fingerprints:connector:server');
+const debug = require('debug')('browser-with-fingerprints:connector:pcapServer');
 
-exports.listen = once(() => {
+exports.listen = once((port = 0, host = '127.0.0.1') => {
   let id = 0;
 
   return new Promise((resolve) => {
@@ -25,14 +25,10 @@ exports.listen = once(() => {
 
     server.on('error', ({ code }) => {
       if (code === 'EADDRINUSE') {
-        setTimeout(() => server.listen(PORT, HOST), 1000).unref();
+        setTimeout(() => server.listen(port, host), 1000).unref();
       }
     });
 
-    server.listen(PORT, HOST, () => resolve(server.address())).unref();
+    server.listen(port, host, () => resolve(server.address().port)).unref();
   });
 });
-
-const HOST = '127.0.0.1';
-
-const PORT = 0;

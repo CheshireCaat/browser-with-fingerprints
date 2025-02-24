@@ -62,6 +62,25 @@ Also, keep in mind the potential need for additional packages or programs - for 
 
 You can find information about known issues related to updates, as well as ways to solve them in [this](./MIGRATION.md) guide.
 
+### Engine errors
+
+If you encounter errors while installing or downloading the engine, use the following recommendations:
+
+1. Do not install the engine folder into the profile folder, otherwise the entire procedure will be performed every time you launch.
+2. Increase the timeout using the **setEngineTimeout** method, or at least disable it by passing `0` as a parameter.
+3. Some ISPs may block domains for engine downloading, check this option as well.
+4. You can try to download and move the engine to the desired folder manually.
+
+### Request errors
+
+If you encounter errors while executing plugin methods, use the following recommendations:
+
+1. Check that your antivirus or built-in defender does not block or delete engine files.
+2. Some ISPs may block domains for fingerprinting and IP address detection, check this option as well.
+3. Increase the timeout using the **setRequestTimeout** method, or at least disable it by passing `0` as a parameter.
+
+If the recommendations do not help or the problem is not described in this section, open a new issue, having first checked (including in other repositories) for the presence of similar tickets.
+
 ## Launching the browser
 
 You can launch the browser in two different ways. There are two methods for this - **launch** and **spawn**.
@@ -123,6 +142,9 @@ plugin.setWorkingFolder('./engine');
 
 // Set the timeout used when fetching fingerprints and so on:
 plugin.setRequestTimeout(5 * 60000);
+
+// Set the timeout used when installing/downloading engine:
+plugin.setEngineTimeout(10 * 60000);
 ```
 
 The methods from the example above change the settings globally, that is, for all instances of the plugin.

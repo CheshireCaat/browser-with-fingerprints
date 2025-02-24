@@ -5,14 +5,16 @@ const chokidar = require('chokidar');
 const axios = require('axios').default;
 const extract = require('extract-zip');
 const EventEmitter = require('events');
-const { execFile } = require('child_process');
 const { pipeline } = require('stream/promises');
-const { InvalidEngineError } = require('./errors');
 const { createHash, randomUUID } = require('crypto');
+const { execFile, ChildProcess } = require('child_process');
 const { createReadStream, createWriteStream } = require('fs');
 const debug = require('debug')('browser-with-fingerprints:connector:engine');
+const { InvalidEngineError, EngineTimeoutError, RequestTimeoutError } = require('../errors');
 
-const CLOSE_TIMEOUT = 60000;
+const CLOSE_TIMEOUT = 60_000;
+
+const DEFAULT_TIMEOUT = 300_000;
 
 const CWD = path.join(process.cwd(), 'data');
 
@@ -21,30 +23,42 @@ const ARCH = process.arch.includes('32') ? '32' : '64';
 const PROJECT_PATH = path.resolve(__dirname, '../../../project.xml');
 
 module.exports = class RemoteEngine extends EventEmitter {
-  #cwd = null;
-  get cwd() {
-    return this.#cwd;
-  }
-
   #meta = null;
-  get meta() {
-    return this.#meta;
+
+  #cwd = null;
+  setCwd(value) {
+    this.#cwd = path.resolve(value || CWD);
   }
 
-  set cwd(cwd = CWD) {
-    this.#cwd = path.resolve(cwd);
+  #args = null;
+  setArgs(value) {
+    this.#args = Array.isArray(value) ? value : [];
+  }
+
+  #engineTimeout = 0;
+  setEngineTimeout(value) {
+    const timeout = +value || 0;
+    this.#engineTimeout = timeout >= 0 ? timeout : DEFAULT_TIMEOUT;
+  }
+
+  #requestTimeout = 0;
+  setRequestTimeout(value) {
+    const timeout = +value || 0;
+    this.#requestTimeout = timeout >= 0 ? timeout : DEFAULT_TIMEOUT;
   }
 
   constructor(options = {}) {
     super();
-    this.cwd = options.cwd;
-    this.args = options.args;
-    this.timeout = options.timeout;
+    this.setCwd(options.cwd);
+    this.setArgs(options.args);
+    this.setEngineTimeout(options.engineTimeout);
+    this.setRequestTimeout(options.requestTimeout);
   }
 
-  async runFunction(name, params = {}) {
+  async runFunction(name, params, { engineTimeout = this.#engineTimeout, requestTimeout = this.#requestTimeout } = {}) {
     if (!this.#meta) await this.#updateMeta();
-    const process = await this.#startProcess();
+    const process = await this.#startProcess(engineTimeout);
+    debug(`Calling the "${name}" method (timeout set to ${requestTimeout}ms)`);
 
     const requestDir = path.join(path.dirname(process.spawnfile), 'r');
     await fs.mkdir(requestDir, { recursive: true });
@@ -69,8 +83,17 @@ module.exports = class RemoteEngine extends EventEmitter {
     const requestWatcher = chokidar.watch(requestPath, {
       awaitWriteFinish: true,
     });
-    const response = await new Promise((resolve) => {
+    const response = await new Promise((resolve, reject) => {
       let closeTimer = null;
+      let requestTimer = null;
+
+      if (requestTimeout) {
+        requestTimer = setTimeout(
+          () => reject(new RequestTimeoutError(`Timed out while calling the "${name}" method.`)),
+          requestTimeout
+        ).unref();
+      }
+
       const closeHandler = () => {
         closeTimer = setTimeout(() => {
           debug('Engine process was closed during request');
@@ -82,6 +105,7 @@ module.exports = class RemoteEngine extends EventEmitter {
         const response = await fs.readFile(requestPath, 'utf8');
         debug('Function result was successfully obtained');
 
+        if (requestTimer) clearTimeout(requestTimer);
         if (closeTimer) clearTimeout(closeTimer);
         process.off('close', closeHandler);
 
@@ -96,7 +120,7 @@ module.exports = class RemoteEngine extends EventEmitter {
     return JSON.parse(response);
   }
 
-  async #startProcess() {
+  async #startProcessInternal() {
     const scriptDir = path.join(this.#cwd, 'script', this.#meta.version);
     const engineDir = path.join(this.#cwd, 'engine', this.#meta.version);
     const zipPath = path.join(engineDir, `FastExecuteScript.x${ARCH}.zip`);
@@ -104,6 +128,7 @@ module.exports = class RemoteEngine extends EventEmitter {
     if (this.#meta && (await exists(zipPath))) {
       if (this.#meta.checksum !== (await checksum(zipPath))) {
         await fs.rm(engineDir, { recursive: true });
+        debug('Broken engine was removed (invalid checksum)');
       }
     }
 
@@ -111,21 +136,24 @@ module.exports = class RemoteEngine extends EventEmitter {
       this.emit('beforeDownload');
       await fs.mkdir(engineDir, { recursive: true });
       await download(this.#meta.url, zipPath);
+      debug('Engine was successfully downloaded');
     }
 
     if (!(await exists(scriptDir))) {
       this.emit('beforeExtract');
       await fs.mkdir(scriptDir, { recursive: true });
       await extract(zipPath, { dir: scriptDir });
+      debug('Engine was successfully extracted');
     }
 
     await fs.copyFile(PROJECT_PATH, path.join(scriptDir, 'project.xml'));
     await fs.writeFile(path.join(scriptDir, 'worker_command_line.txt'), '--mock-connector');
     await fs.writeFile(path.join(scriptDir, 'settings.ini'), 'RunProfileRemoverImmediately=true');
 
+    debug(`Launching engine process (cwd - ${scriptDir})`);
     return execFile(
       path.join(scriptDir, 'FastExecuteScript.exe'),
-      ['--silent', ...this.args],
+      ['--silent', ...this.#args],
       { cwd: scriptDir },
       (error) => {
         if (error) {
@@ -133,6 +161,25 @@ module.exports = class RemoteEngine extends EventEmitter {
         }
       }
     );
+  }
+
+  async #startProcess(timeout) {
+    if (!timeout) return await this.#startProcessInternal();
+
+    let timer = null;
+    /** @type {ChildProcess} */
+    const process = await Promise.race([
+      this.#startProcessInternal(),
+      new Promise((_, reject) => {
+        timer = setTimeout(
+          () => reject(new EngineTimeoutError('Timed out while initializing the plugin engine.')),
+          timeout
+        ).unref();
+      }),
+    ]);
+
+    clearTimeout(timer);
+    return process;
   }
 
   async #updateMeta() {

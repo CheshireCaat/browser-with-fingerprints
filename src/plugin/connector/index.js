@@ -1,14 +1,14 @@
-const dedent = require('dedent');
-const server = require('./server');
 const { notify } = require('./utils');
 const RemoteEngine = require('./engine');
+const pcapServer = require('./pcapServer');
 const lock = new (require('async-lock'))();
+const { PluginError, MissingKeyError } = require('../errors');
 const debug = require('debug')('browser-with-fingerprints:connector');
 
-const DEFAULT_TIMEOUT = 300_000;
 const engine = new RemoteEngine({
-  timeout: process.env.FINGERPRINT_TIMEOUT,
   cwd: process.env.FINGERPRINT_CWD,
+  engineTimeout: process.env.FINGERPRINT_TIMEOUT,
+  requestTimeout: process.env.FINGERPRINT_TIMEOUT,
 });
 
 engine.on('beforeExtract', () => {
@@ -19,53 +19,30 @@ engine.on('beforeDownload', () => {
   console.log('The browser is downloading - this may take some time.');
 });
 
-server.listen().then(({ port }) => {
+pcapServer.listen().then((port) => {
   debug(`PCAP server listening on ${port}`);
-  engine.args = [`--mock-pcap-port=${port}`];
+  engine.setArgs([`--mock-pcap-port=${port}`]);
 });
-
-const prepareError = (message) => {
-  if (message.includes('key is missing')) {
-    return dedent`
-      ${message}
-      Due to the latest updates, it is necessary to specify the key not only when receiving it, but also when applying it.
-      To solve the problem, use the documentation at the link - https://github.com/CheshireCaat/browser-with-fingerprints#common-problems.
-    `;
-  }
-  return message;
-};
 
 exports.api = async (name, params = {}) => {
   let notifyTimer = null;
-  let requestTimer = null;
+
   return await lock.acquire('client', async () => {
     try {
-      const timeout = engine.timeout ?? DEFAULT_TIMEOUT;
       if (name === 'fetch') notifyTimer = notify(params.key);
-      debug(`Calling the "${name}" function (timeout set to ${timeout}ms)`);
-      // prettier-ignore
-      const { error, ...result } = await Promise.race([
-        engine.runFunction(name, params),
-        params?.options?.perfectCanvasRequest ? null : new Promise((_, reject) => {
-          requestTimer = setTimeout(
-            () => reject(new Error(`Timed out while calling the "${name}" method.`)),
-            timeout
-          ).unref();
-        }),
-      ].filter(Boolean));
+      const { error, ...result } = await engine.runFunction(name, params, {
+        requestTimeout: params?.options?.perfectCanvasRequest ? 0 : engine.requestTimeout,
+      });
 
       if (error) {
-        throw new Error(prepareError(error));
+        throw error.includes('key is missing') ? new MissingKeyError(error) : new PluginError(error);
       }
+
       return result.response ?? result;
     } finally {
       clearTimeout(notifyTimer);
-      clearTimeout(requestTimer);
     }
   });
 };
 
-exports.setEngineOptions = ({ folder = '', timeout = 0 } = {}) => {
-  timeout && (engine.timeout = timeout);
-  folder && (engine.cwd = folder);
-};
+exports.engine = engine;

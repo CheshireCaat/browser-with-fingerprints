@@ -250,16 +250,16 @@ export declare class FingerprintPlugin {
   spawn(options?: SpawnOptions): Promise<Browser>;
 
   /**
-   * Set the request timeout that the plugin uses to work with the engine.
+   * Set the timeout that the plugin uses when executing requests (pass `0` to disable it).
    *
    * You can read a bit more about these settings [here](https://github.com/CheshireCaat/browser-with-fingerprints#configuring-plugin).
    *
    * @remarks
-   * **NOTE**: This action changes the configuration for all instances of the plugin, that is, it works globally.
+   * **NOTE**: This action changes the configuration for all instances of the plugin, that is, it works globally in the context of the current process.
    *
    * @example
    * ```js
-   * plugin.setRequestTimeout(300000);
+   * plugin.setRequestTimeout(300_000);
    * ```
    *
    * @param timeout - The request timeout that the plugin engine will use.
@@ -267,12 +267,29 @@ export declare class FingerprintPlugin {
   setRequestTimeout(timeout: number): void;
 
   /**
+   * Set the timeout that the plugin uses when fetching engine (pass `0` to disable it).
+   *
+   * You can read a bit more about these settings [here](https://github.com/CheshireCaat/browser-with-fingerprints#configuring-plugin).
+   *
+   * @remarks
+   * **NOTE**: This action changes the configuration for all instances of the plugin, that is, it works globally in the context of the current process.
+   *
+   * @example
+   * ```js
+   * plugin.setEngineTimeout(600_000);
+   * ```
+   *
+   * @param timeout - The engine timeout that the plugin engine will use.
+   */
+  setEngineTimeout(timeout: number): void;
+
+  /**
    * Set the working folder that the plugin uses to work with the engine.
    *
    * You can read a bit more about these settings [here](https://github.com/CheshireCaat/browser-with-fingerprints#configuring-plugin).
    *
    * @remarks
-   * **NOTE**: This action changes the configuration for all instances of the plugin, that is, it works globally.
+   * **NOTE**: This action changes the configuration for all instances of the plugin, that is, it works globally in the context of the current process.
    *
    * @example
    * ```js
@@ -289,7 +306,7 @@ export declare class FingerprintPlugin {
    * An empty value can be used here, in which case the free version of fingerprint service will be used for the plugin.
    *
    * @remarks
-   * **NOTE**: This action changes the configuration for all instances of the plugin, that is, it works globally.
+   * **NOTE**: This action changes the configuration for all instances of the plugin, that is, it works globally in the context of the current process.
    *
    *  @example
    * ```js
