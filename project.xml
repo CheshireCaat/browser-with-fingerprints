@@ -868,7 +868,7 @@
      <CompileType>NoProtection</CompileType>
      <ScriptVersion>1.0.0</ScriptVersion>
      <AvailableLanguages>en,ru</AvailableLanguages>
-     <EngineVersion>28.3.0</EngineVersion>
+     <EngineVersion>28.4.0</EngineVersion>
      <SettingsWorker>EnableWidevine=true
 EnableSafeBrowsing=true
 EnableVariations=true
@@ -901,10 +901,8 @@ WebglRenderer=&quot;&quot;
 WebglVendor=&quot;&quot;
 Detector=false
 </SettingsWorker>
-     <ChromeCommandLine>--disk-cache-size=1
---disable-gpu-program-cache
---disable-gpu-shader-disk-cache
---disable-features=GpuProcessHighPriorityWin,GpuUseDisplayThreadPriority,CookieDeprecationFacilitatedTesting,OptimizationGuideModelDownloading
+     <ChromeCommandLine>--disk-cache-size=5000000
+--disable-features=CookieDeprecationFacilitatedTesting,OptimizationGuideModelDownloading
 --lang=en
 --disable-auto-reload</ChromeCommandLine>
      <ModulesMetaJson>{
