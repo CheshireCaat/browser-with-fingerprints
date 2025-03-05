@@ -58,7 +58,7 @@ export interface ProxyOptions {
   changeWebRTC?: 'enable' | 'disable' | 'replace';
 
   /**
-   * Set a public IPv4 address that can be obtained via the **WebRTC**.
+   * Set a public **IPv4** address that can be obtained via the **WebRTC**.
    *
    * This option is only used if the {@link changeWebRTC} option is set to `replace`.
    *
@@ -69,7 +69,7 @@ export interface ProxyOptions {
   publicIPv4?: PublicIPReplacement;
 
   /**
-   * Set a public IPv6 address that can be obtained via the **WebRTC**.
+   * Set a public **IPv6** address that can be obtained via the **WebRTC**.
    *
    * This option is only used if the {@link changeWebRTC} option is set to `replace`.
    *
@@ -80,7 +80,7 @@ export interface ProxyOptions {
   publicIPv6?: PublicIPReplacement;
 
   /**
-   * Set a private IPv4 address that can be obtained via the **WebRTC**.
+   * Set a private **IPv4** address that can be obtained via the **WebRTC**.
    *
    * This option is only used if the {@link changeWebRTC} option is set to `replace`.
    *
@@ -89,7 +89,7 @@ export interface ProxyOptions {
   privateIPv4?: PrivateIPReplacement | 'private class a' | 'private class b' | 'private class c';
 
   /**
-   * Set a private IPv6 address that can be obtained via the **WebRTC**.
+   * Set a private **IPv6** address that can be obtained via the **WebRTC**.
    *
    * This option is only used if the {@link changeWebRTC} option is set to `replace`.
    *
@@ -106,7 +106,7 @@ export interface ProxyOptions {
    * Depending on the method used, the param will be treated differently.
    * For example, if the `regexp` method is used, the param must contain a regular expression, and so on.
    *
-   * By default this parameter affects both IPv4** and IPv6 address types, if you need to configure each type separately, use object notation.
+   * By default this parameter affects both **IPv4** and **IPv6** address types, if you need to configure each type separately, use object notation.
    *
    * @default 'raw'
    */
@@ -121,7 +121,7 @@ export interface ProxyOptions {
    * Depending on the method used, the param will be treated differently.
    * For example, if the `regexp` method is used, this param must contain a regular expression, and so on.
    *
-   * By default this parameter affects both IPv4** and IPv6 address types, if you need to configure each type separately, use object notation.
+   * By default this parameter affects both **IPv4** and **IPv6** address types, if you need to configure each type separately, use object notation.
    *
    * @default ''
    */
@@ -132,7 +132,7 @@ export interface ProxyOptions {
    *
    * The URL will be queried through the currently installed proxy, and the response must contain the external IP address.
    *
-   * By default this parameter affects both IPv4** and IPv6 address types, if you need to configure each type separately, use object notation.
+   * By default this parameter affects both **IPv4** and **IPv6** address types, if you need to configure each type separately, use object notation.
    *
    * @default ''
    */
@@ -143,7 +143,7 @@ export interface ProxyOptions {
    *
    * This option can be used if the IP address that you use to connect the proxy server does not match the IP address that is visible to the site (external IP address).
    *
-   * By default this parameter affects both IPv4** and IPv6 address types, if you need to configure each type separately, use object notation.
+   * By default this parameter affects both **IPv4** and **IPv6** address types, if you need to configure each type separately, use object notation.
    *
    * @default true
    */
