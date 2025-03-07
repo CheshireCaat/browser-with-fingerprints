@@ -169,4 +169,15 @@ export interface ProxyOptions {
    * @default '''
    */
   ipInfoKey?: string;
+
+  /**
+   * Unlike **HTTP**, the **QUIC** protocol is built on top of **UDP**.
+   *
+   * Not all proxies support **UDP**, which means that enabling **QUIC** may cause problems with some proxies.
+   *
+   * It is recommended to enable this option only if you are sure that your proxy server supports it.
+   *
+   * @default false
+   */
+  enableQUIC?: boolean;
 }
