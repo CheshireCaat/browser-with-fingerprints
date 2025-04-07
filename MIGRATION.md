@@ -59,14 +59,14 @@ async function main() {
   // Leave an empty string to use the free version.
   plugin.setServiceKey('SERVICE_KEY');
 
-  // Optionally omit key parameter if you do not need an override:
+  // Remove the key from the method call, pass the options as the first parameter:
   const fingerprint = await plugin.fetch({
     tags: ['Microsoft Windows', 'Chrome'],
   });
 
   plugin.useFingerprint(fingerprint);
 
-  // Omit the key option if you do not need an override:
+  // Remove key from the launch options:
   await plugin.launch({ headless: false });
 }
 
@@ -75,4 +75,4 @@ main();
 
 ### Additional notes
 
-The key should not be passed directly to the `fetch`, `spawn` and `launch` methods, it currently overrides the global parameter for specific calls, but this feature will be removed in the future.
+The key should never be passed directly to the `fetch`, `spawn`, and `launch` methods.

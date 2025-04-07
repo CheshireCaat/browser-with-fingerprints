@@ -180,4 +180,41 @@ export interface ProxyOptions {
    * @default false
    */
   enableQUIC?: boolean;
+
+  /**
+   * By default, the browser uses a custom DNS implementation that supports additional DNS features.
+   * If these features are missing, websites can detect it.
+   *
+   * Rather than relying on the native **OS** DNS functions (such as `getaddrinfo`), the custom DNS sends requests directly via UDP or TCP.
+   * The plugin provides the ability to enable this custom DNS feature, allowing you to route DNS traffic through a proxy server or send UDP packets directly.
+   *
+   * Although it is generally harder for websites to detect a custom DNS, they can still recognize that you are using a DNS server other than your ISP's default DNS server.
+   *
+   * Possible values:
+   * - `custom-proxy` - Use **Chrome's** built-in custom DNS implementation to make DNS queries through a proxy server (the proxy server must support UDP).
+   * - `custom-direct` - Use **Chrome's** built-in custom DNS implementation to make DNS queries locally (via UDP or TCP), while routing all other traffic through a proxy server.
+   * - `system-proxy` - Use the system DNS implementation - all DNS queries will be handled by the proxy server, which uses its own DNS, with the hostname sent to the proxy as part of the process.
+   *
+   * The `custom-direct` mode is recommended option if you want to use the custom DNS.
+   *
+   * @remarks
+   * **NOTE**: Enabling custom DNS also requires specifying a DNS server IP.
+   *
+   * @default 'system-proxy'
+   */
+  dnsMode?: 'system-proxy' | 'custom-proxy' | 'custom-direct';
+
+  /**
+   * Using the custom **Chrome** DNS implementation requires specifying a DNS IP address.
+   * Unlike the default method, where the hostname is sent to the proxy server and the proxy server performs a DNS
+   * lookup, this approach resolves IP addresses locally, which requires configuring the DNS server IP for the browser.
+   *
+   * When using the `custom-proxy` or `custom-direct` mode, a valid DNS IP address is required for proper DNS resolution.
+   *
+   * @remarks
+   * **NOTE**: If the `system-proxy` mode is selected, this setting will have no effect.
+   *
+   * @default '1.1.1.1'
+   */
+  dnsIP?: string;
 }

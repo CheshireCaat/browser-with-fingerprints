@@ -29,6 +29,10 @@ describe('plugin', () => {
       'useProfile',
       'useFingerprint',
       'useBrowserVersion',
+      'setServiceKey',
+      'setWorkingFolder',
+      'setEngineTimeout',
+      'setRequestTimeout',
     ]) {
       assert.equal(typeof plugin[method], 'function');
     }
