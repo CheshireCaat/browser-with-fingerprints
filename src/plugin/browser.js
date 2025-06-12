@@ -1,5 +1,5 @@
 const connect = require('chrome-remote-interface');
-const { MAX_RESIZE_RETRIES } = require('../common');
+const { scripts, MAX_RESIZE_RETRIES } = require('../common');
 
 /**
  * Set the browser viewport size.
@@ -44,7 +44,7 @@ exports.setViewport = async (browser, { diff, width, height }) => {
  */
 exports.getViewport = async (cdp) => {
   const { result } = await cdp.Runtime.evaluate({
-    expression: `({ height: window.innerHeight, width: window.innerWidth })`,
+    expression: `(${scripts.getViewport})()`,
     returnByValue: true,
   });
   return result.value;
@@ -61,11 +61,7 @@ exports.getViewport = async (cdp) => {
  */
 const waitForResize = async (cdp) => {
   await cdp.Runtime.evaluate({
-    expression: `new Promise((done) => {
-      new ResizeObserver((_, observer) => {
-        requestAnimationFrame(() => requestAnimationFrame(() => done(observer.disconnect())));
-      }).observe(document.body);
-    })`,
+    expression: `(${scripts.waitForResize})()`,
     returnByValue: true,
     awaitPromise: true,
   });

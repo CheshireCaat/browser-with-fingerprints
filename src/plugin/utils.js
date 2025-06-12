@@ -1,12 +1,7 @@
 const path = require('path');
 
 exports.defaultArgs = ({ args = [], profile = '', devtools = false, headless = !devtools, extensions = [] } = {}) => {
-  const result = [
-    '--no-proxy-server',
-    '--bas-disable-tab-hook',
-    `--user-data-dir=${profile}`,
-    '--disable-features=NetworkServiceInProcess2',
-  ];
+  const result = ['--no-proxy-server', '--bas-disable-tab-hook', `--user-data-dir=${profile}`];
 
   const processed = args.reduce(
     (args, arg) => {
@@ -29,7 +24,7 @@ exports.defaultArgs = ({ args = [], profile = '', devtools = false, headless = !
     result.push('--bas-force-visible-window');
   }
 
-  return processed.concat(result);
+  return processed.concat(result, DEFAULT_ARGS);
 };
 
 exports.getProfilePath = ({ args = [], userDataDir = '' } = {}) => {
@@ -53,5 +48,12 @@ exports.validateLauncher = (launcher) => {
     throw new Error('Unsupported browser launcher - an object with a "launch" method is expected.');
   }
 };
+
+const DEFAULT_ARGS = [
+  '--lang=en',
+  '--disable-auto-reload',
+  '--disk-cache-size=5000000',
+  '--disable-features=NetworkServiceInProcess2,CookieDeprecationFacilitatedTesting,OptimizationGuideModelDownloading,ReportEcn',
+];
 
 const IGNORED_ARGS = ['--kiosk', '--headless', '--user-data-dir', '--start-maximized', '--start-fullscreen'];

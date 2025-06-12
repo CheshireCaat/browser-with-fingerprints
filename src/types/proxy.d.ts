@@ -166,9 +166,20 @@ export interface ProxyOptions {
    *
    * This parameter is used only if the method is set to `ip-api.com` value.
    *
-   * @default '''
+   * @default ''
    */
   ipInfoKey?: string;
+
+  /**
+   * This setting allows you to completely disable the built-in tunneling system.
+   *
+   * If tunneling is disabled, any proxy server you apply will not work - this can be useful if you use a VPN or want to use a direct connection.
+   *
+   * Disable tunneling only if you are sure that you will not need a proxy server and want to use your own network stack.
+   *
+   * @default true
+   */
+  enableTunneling?: boolean;
 
   /**
    * Unlike **HTTP**, the **QUIC** protocol is built on top of **UDP**.

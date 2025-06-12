@@ -3,7 +3,7 @@ const assert = require('assert').strict;
 const { defaultArgs, getProfilePath, validateConfig, validateLauncher } = require('../src/plugin/utils');
 
 describe('utils', () => {
-  const DEFAULT_ARGS = ['--no-proxy-server', '--bas-disable-tab-hook', '--disable-features=NetworkServiceInProcess2'];
+  const DEFAULT_ARGS = ['--no-proxy-server', '--bas-disable-tab-hook'];
 
   describe('#defaultArgs()', () => {
     it('should add extra arguments if extensions or profile are passed', () => {

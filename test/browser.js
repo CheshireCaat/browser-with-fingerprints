@@ -13,7 +13,7 @@ describe('browser', () => {
 
     beforeEach(async function () {
       browser = await plugin.spawn({
-        headless: !this.test.title.includes('headful'),
+        headless: this.test.title.includes('headless'),
       });
     });
 
