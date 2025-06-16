@@ -887,7 +887,7 @@
      <CompileType>NoProtection</CompileType>
      <ScriptVersion>1.0.0</ScriptVersion>
      <AvailableLanguages>en,ru</AvailableLanguages>
-     <EngineVersion>28.8.0</EngineVersion>
+     <EngineVersion>28.8.1</EngineVersion>
      <SettingsWorker>EnableWidevine=true
 EnableSafeBrowsing=true
 EnableVariations=true
@@ -921,7 +921,7 @@ WebglVendor=&quot;&quot;
 Detector=false
 </SettingsWorker>
      <ChromeCommandLine>--disk-cache-size=5000000
---disable-features=CookieDeprecationFacilitatedTesting,OptimizationGuideModelDownloading,ReportEcn
+--disable-features=CookieDeprecationFacilitatedTesting,OptimizationGuideModelDownloading
 --lang=en
 --disable-auto-reload</ChromeCommandLine>
      <ModulesMetaJson>{

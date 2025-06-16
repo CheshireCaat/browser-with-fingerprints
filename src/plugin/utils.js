@@ -53,7 +53,7 @@ const DEFAULT_ARGS = [
   '--lang=en',
   '--disable-auto-reload',
   '--disk-cache-size=5000000',
-  '--disable-features=NetworkServiceInProcess2,CookieDeprecationFacilitatedTesting,OptimizationGuideModelDownloading,ReportEcn',
+  '--disable-features=NetworkServiceInProcess2,CookieDeprecationFacilitatedTesting,OptimizationGuideModelDownloading',
 ];
 
 const IGNORED_ARGS = ['--kiosk', '--headless', '--user-data-dir', '--start-maximized', '--start-fullscreen'];
