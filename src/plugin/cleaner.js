@@ -38,9 +38,17 @@ class SettingsCleaner {
     for (const folder of this.#folders) {
       const pattern = path.join(folder, `{${['t', 's']}}`, '*');
 
-      for (const { path, stats } of await fg(pattern, { stats: true, onlyFiles: false, onlyDirectories: false })) {
-        if (Date.now() - stats.mtime > CLEANUP_INTERVAL && !(await lock.check(path))) {
-          await rm(path, { recursive: true });
+      for (const { path: entryPath, stats } of await fg(pattern, { stats: true, onlyFiles: false })) {
+        if (Date.now() - stats.mtimeMs > CLEANUP_INTERVAL) {
+          const parsedPath = path.parse(entryPath);
+          const checkPath =
+            // To check the log file lock, use the path to the configuration file:
+            parsedPath.ext === '.txt' && path.basename(parsedPath.dir) === 's'
+              ? path.format({ ...parsedPath, base: undefined, ext: '.ini' })
+              : entryPath;
+
+          if (await lock.check(checkPath).catch(() => false)) continue;
+          await rm(entryPath, { recursive: true, force: true });
         }
       }
     }
